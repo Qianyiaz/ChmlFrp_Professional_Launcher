@@ -4,9 +4,11 @@ on:
   push:
     paths:
       - ".code/ChmlFrp_WPF_Clienter/**"
+      - ".github/workflows/Build.yml"
   pull_request:
     paths:
       - ".code/ChmlFrp_WPF_Clienter/**"
+      - ".github/workflows/Build.yml"
   workflow_dispatch:
 
 jobs:
@@ -71,5 +73,5 @@ jobs:
           from lanzou.api import LanZouCloud
           lzy = LanZouCloud()
           lzy.login('${{ env.LANZOUCLOUD_USERNAME }}', '${{ env.LANZOUCLOUD_PASSWORD }}')
-          lzy.upload_file('D:\', folder_id=-1)
+          lzy.upload_file('D:\a\ChmlFrp_WPF_Clienter\ChmlFrp_WPF_Clienter\.code\ChmlFrp_WPF_Clienter\bin\Release\ChmlFrp_WPF_Clienter.exe', folder_id=-1)
           lzy.logout()"
