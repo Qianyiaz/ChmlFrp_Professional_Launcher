@@ -33,7 +33,7 @@
 - [ ] [Xingcheng-Chmlfrp-Lanucher](https://github.com/FengXiang2233/Xingcheng-Chmlfrp-Lanucher)
 - [ ] [Chmlfrp_UI](https://github.com/boringstudents/CHMLFRP_UI)
 - [ ] [ChmlFrp-Frp](https://github.com/TechCat-Team/ChmlFrp-Frp)
-- [ ] [ChmlFrp_Professional_Launcher Gitcode](https://gitcode.com/QyzgjChmlFrp_Professional_Launcherr)
-<br/><dChmlFrp_Professional_LauncherChmlFrp_Professional_Launcher
+- [ ] [ChmlFrp_Professional_Launcher Gitcode](https://gitcode.com/Qyzgj/ChmlFrp_Professional_Launcher)
+<br/>
 
 ###### 如果想合作请进入我的主页，打开billbill，私信交流。或邮箱<Qusay_Diaz.github@outlook.com>。QQ号：2976779544
