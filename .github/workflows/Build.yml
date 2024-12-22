@@ -3,11 +3,11 @@ name: Build .NET Framework Application
 on:
   push:
     paths:
-      - ".code/ChmlFrp_WPF_Clienter/**"
+      - ".code/ChmlFrp_Professional_Launcher/**"
   pull_request:
     paths:
       - ".code/ChmlFrp_WPF_Clienter/**"
-  workflow_dispatch:
+  workflow_dispChmlFrp_Professional_Launcher
 
 jobs:
   build:
@@ -29,7 +29,7 @@ jobs:
           describe=`git describe --tags --always`
           version=$(grep 'AssemblyVersion("' ".code/ChmlFrp_WPF_Clienter/Properties/AssemblyInfo.cs" | sed -E 's/.*AssemblyVersion\("([^"]+)".*/\1/')
           echo "describe=$describe" >> $GITHUB_ENV
-          echo "version=$version" >> $GITHUB_ENV
+          echo "version=$version" >> $GITHUB_ENVChmlFrp_Professional_Launcher
 
       - name: Setup MSBuild.exe
         uses: microsoft/setup-msbuild@v2
@@ -37,15 +37,15 @@ jobs:
       - name: Build
         run: msbuild ".code\\ChmlFrp_WPF_Clienter.sln" -p:Configuration=${{ matrix.configuration }}
 
-      - name: Move Executable to Root
+      - name: Move ExecutableChmlFrp_Professional_Launcher
         run: |
           Move-Item -Path .code\ChmlFrp_WPF_Clienter\bin\${{ matrix.configuration }}\ChmlFrp_WPF_Clienter.exe -Destination .\
 
-      - name: Upload a Build Artifact to GitHub
+      - name: Upload a Build ArtChmlFrp_Professional_LauncherChmlFrp_Professional_Launcher
         uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.configuration }}-Pre-alpha${{ env.describe }}-${{ env.version }}-Windows
           path: |
             ChmlFrp_WPF_Clienter.exe
             README.md
-            LICENSE.md
+            ChmlFrp_Professional_Launcher

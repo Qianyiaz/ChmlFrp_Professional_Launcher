@@ -1,0 +1,172 @@
+﻿<Page x:Class="ChmlFrp_Professional_Launcher.Pages.ChmlFrp.HomePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:ChmlFrp_Professional_Launcher.Pages.ChmlFrp"
+      mc:Ignorable="d"
+      d:DesignHeight="370"
+      d:DesignWidth="620">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="350"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="1">
+            <Border Opacity="0.8"
+                    CornerRadius="0,0,10,0"
+                    Background="#f9f9f9"/>
+            <TextBlock VerticalAlignment="Top"
+                    FontSize="15"
+                    HorizontalAlignment="Left"
+                    Margin="10"
+                    Text="账户详情"/>
+            <StackPanel Orientation="Vertical">
+                <Grid Height="10"/>
+                <Border Height="100"
+                        Width="100">
+                    <Ellipse>
+                        <Ellipse.Fill>
+                            <ImageBrush x:Name="UserImage"
+                                        ImageSource="\Icons\SolarUserCircleLineDuotone.png"
+                                        Stretch="UniformToFill"/>
+                        </Ellipse.Fill>
+                    </Ellipse>
+                </Border>
+                <TextBlock VerticalAlignment="Bottom"
+                        FontSize="20"
+                        x:Name="UserTextBlock"
+                        HorizontalAlignment="Center"
+                        Text="Hi，"/>
+                <TextBlock VerticalAlignment="Bottom"
+                        FontSize="15"
+                        x:Name="Usermailbox"
+                        HorizontalAlignment="Center"
+                        Text="我是擎天柱"/>
+                <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center">
+                    <StackPanel Orientation="Vertical"
+                            Margin="12">
+                        <TextBlock VerticalAlignment="Bottom"
+                                FontSize="15"
+                                HorizontalAlignment="Center"
+                                Text="注册时间"/>
+                        <TextBlock VerticalAlignment="Bottom"
+                                FontSize="15"
+                                x:Name="UserRegistration_time"
+                                HorizontalAlignment="Center"
+                                Text="我是擎天柱"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical"
+                            Margin="12">
+                        <TextBlock VerticalAlignment="Bottom"
+                                FontSize="15"
+                                HorizontalAlignment="Center"
+                                Text="QQ"/>
+                        <TextBlock VerticalAlignment="Bottom"
+                                FontSize="15"
+                                x:Name="UserQQ"
+                                HorizontalAlignment="Center"
+                                Text="我是擎天柱"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical"
+                            Margin="12">
+                        <TextBlock VerticalAlignment="Bottom"
+                                FontSize="15"
+                                HorizontalAlignment="Center"
+                                Text="权限组"/>
+                        <TextBlock VerticalAlignment="Bottom"
+                                FontSize="15"
+                                x:Name="Userright"
+                                HorizontalAlignment="Center"
+                                Text="我是擎天柱"/>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center">
+                    <StackPanel Orientation="Vertical"
+                            Margin="12">
+                        <TextBlock VerticalAlignment="Bottom"
+                                FontSize="15"
+                                HorizontalAlignment="Center"
+                                Text="到期时间"/>
+                        <TextBlock VerticalAlignment="Bottom"
+                                FontSize="15"
+                                x:Name="UserExpiration_time"
+                                HorizontalAlignment="Center"
+                                Text="我是擎天柱"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical"
+                            Margin="12">
+                        <TextBlock VerticalAlignment="Bottom"
+                                FontSize="15"
+                                HorizontalAlignment="Center"
+                                Text="实名状态"/>
+                        <TextBlock VerticalAlignment="Bottom"
+                                FontSize="15"
+                                x:Name="UserReal_name_status"
+                                HorizontalAlignment="Center"
+                                Text="我是擎天柱"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical"
+                            Margin="12">
+                        <TextBlock VerticalAlignment="Bottom"
+                                FontSize="15"
+                                HorizontalAlignment="Center"
+                                Text="剩余积分"/>
+                        <TextBlock VerticalAlignment="Bottom"
+                                FontSize="15"
+                                x:Name="UserPoints_remaining"
+                                HorizontalAlignment="Center"
+                                Text="我是擎天柱"/>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center">
+                    <StackPanel Orientation="Vertical"
+                            Margin="12">
+                        <TextBlock VerticalAlignment="Bottom"
+                                FontSize="15"
+                                HorizontalAlignment="Center"
+                                Text="隧道限制"/>
+                        <TextBlock VerticalAlignment="Bottom"
+                                FontSize="15"
+                                x:Name="UserTunnel_restrictions"
+                                HorizontalAlignment="Center"
+                                Text="我是擎天柱"/>
+                    </StackPanel>
+                    <Grid Width="50"/>
+                    <StackPanel Orientation="Vertical"
+                            Margin="12">
+                        <TextBlock VerticalAlignment="Bottom"
+                                FontSize="15"
+                                HorizontalAlignment="Center"
+                                Text="带宽限制"/>
+                        <TextBlock VerticalAlignment="Bottom"
+                                FontSize="15"
+                                x:Name="UserBandwidth_throttling"
+                                HorizontalAlignment="Center"
+                                Text="我是擎天柱"/>
+                    </StackPanel>
+                </StackPanel>
+                <Button Foreground="{DynamicResource TextPrimaryColor}"
+                        FontWeight="ExtraLight"
+                        Background="Transparent"
+                        Content="点击显示Token"
+                        FontSize="12"
+                        Width="200"
+                        x:Name="Token"
+                        Click="TokenClick"
+                        Height="28">
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius"
+                                    Value="5"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>

@@ -1,0 +1,46 @@
+﻿<Page x:Class="ChmlFrp_Professional_Launcher.Pages.LaunchPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:ChmlFrp_Professional_Launcher.Pages"
+      mc:Ignorable="d"
+      d:DesignHeight="370"
+      d:DesignWidth="770"
+      Title="LaunchPage">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="300"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="1">
+            <Border Opacity="0.8"
+                    Background="#f9f9f9"
+                    CornerRadius="0,0,10,0">
+                <Grid>
+                    <StackPanel HorizontalAlignment="Center"
+                                VerticalAlignment="Bottom">
+                        <Button Foreground="{DynamicResource TextPrimaryColor}"
+                                FontWeight="ExtraLight"
+                                Background="Transparent"
+                                Content="未找到配置文件"
+                                FontSize="15"
+                                Width="250"
+                                Height="60"
+                                x:Name="LaunchButton"
+                                Click="Launch"
+                                Margin="10">
+                            <Button.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius"
+                                            Value="5"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</Page>
