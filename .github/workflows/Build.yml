@@ -6,8 +6,7 @@ on:
       - ".code/ChmlFrp_Professional_Launcher/**"
   pull_request:
     paths:
-      - ".code/ChmlFrp_WPF_Clienter/**"
-  workflow_dispChmlFrp_Professional_Launcher
+      - ".code/ChmlFrp_Professional_Launcher/**"
 
 jobs:
   build:
