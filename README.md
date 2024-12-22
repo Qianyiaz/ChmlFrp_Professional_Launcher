@@ -30,7 +30,6 @@
 - [ ] [Xingcheng-Chmlfrp-Lanucher](https://github.com/FengXiang2233/Xingcheng-Chmlfrp-Lanucher)
 - [ ] [Chmlfrp_UI](https://github.com/boringstudents/CHMLFRP_UI)
 - [ ] [ChmlFrp-Frp](https://github.com/TechCat-Team/ChmlFrp-Frp)
-- [ ] [ChmlFrp_WPF_Clienter Gitee](https://gitee.com/Qianyiaz/ChmlFrp_WPF_Clienter)
 - [ ] [ChmlFrp_WPF_Clienter Gitcode](https://gitcode.com/Qyzgj/ChmlFrp_WPF_Clienter)
 <br/><div align="center">
 
