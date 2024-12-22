@@ -4,11 +4,9 @@ on:
   push:
     paths:
       - ".code/ChmlFrp_WPF_Clienter/**"
-      - ".github/workflows/Build.yml"
   pull_request:
     paths:
       - ".code/ChmlFrp_WPF_Clienter/**"
-      - ".github/workflows/Build.yml"
   workflow_dispatch:
 
 jobs:
@@ -51,3 +49,27 @@ jobs:
             ChmlFrp_WPF_Clienter.exe
             README.md
             LICENSE.md
+
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install lanzou-api
+
+      - name: Upload to LanZouCloud
+        env:
+          LANZOUCLOUD_USERNAME: ${{ secrets.WEBDAV_USERNAM }}
+          LANZOUCLOUD_PASSWORD: ${{ secrets.WEBDAV_PASSWORD }}
+        run: |
+          python -c "
+          from lanzou.api import LanZouCloud
+          lzy = LanZouCloud()
+          lzy.login('${{ env.LANZOUCLOUD_USERNAME }}', '${{ env.LANZOUCLOUD_PASSWORD }}')
+          lzy.upload_file('D:\', folder_id=-1)
+          lzy.logout()"
