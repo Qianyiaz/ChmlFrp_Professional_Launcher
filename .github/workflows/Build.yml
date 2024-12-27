@@ -4,9 +4,12 @@ on:
   push:
     paths:
       - ".code/ChmlFrp_Professional_Launcher/**"
+      - ".github/workflows/Build.yml"
   pull_request:
     paths:
       - ".code/ChmlFrp_Professional_Launcher/**"
+      - ".github/workflows/Build.yml"
+  workflow_dispatch:
 
 jobs:
   build:
@@ -26,25 +29,24 @@ jobs:
         shell: bash
         run: |
           describe=`git describe --tags --always`
-          version=$(grep 'AssemblyVersion("' ".code/ChmlFrp_WPF_Clienter/Properties/AssemblyInfo.cs" | sed -E 's/.*AssemblyVersion\("([^"]+)".*/\1/')
+          version=$(grep 'AssemblyVersion("' ".code/ChmlFrp_Professional_Launcher/Properties/AssemblyInfo.cs" | sed -E 's/.*AssemblyVersion\("([^"]+)".*/\1/')
           echo "describe=$describe" >> $GITHUB_ENV
-          echo "version=$version" >> $GITHUB_ENVChmlFrp_Professional_Launcher
-
+          echo "version=$version" >> $GITHUB_ENV
       - name: Setup MSBuild.exe
         uses: microsoft/setup-msbuild@v2
 
       - name: Build
-        run: msbuild ".code\\ChmlFrp_WPF_Clienter.sln" -p:Configuration=${{ matrix.configuration }}
+        run: msbuild ".code\\ChmlFrp_Professional_Launcher.sln" -p:Configuration=${{ matrix.configuration }}
 
-      - name: Move ExecutableChmlFrp_Professional_Launcher
+      - name: Move Executable to Root
         run: |
-          Move-Item -Path .code\ChmlFrp_WPF_Clienter\bin\${{ matrix.configuration }}\ChmlFrp_WPF_Clienter.exe -Destination .\
+          Move-Item -Path .code\ChmlFrp_Professional_Launcher\bin\${{ matrix.configuration }}\ChmlFrp_Professional_Launcher.exe -Destination .\
 
-      - name: Upload a Build ArtChmlFrp_Professional_LauncherChmlFrp_Professional_Launcher
+      - name: Upload a Build Artifact to GitHub
         uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.configuration }}-Pre-alpha${{ env.describe }}-${{ env.version }}-Windows
           path: |
-            ChmlFrp_WPF_Clienter.exe
+            ChmlFrp_Professional_Launcher.exe
             README.md
-            ChmlFrp_Professional_Launcher
+            LICENSE.md
