@@ -13,7 +13,7 @@
         AllowsTransparency="True"
         ResizeMode="NoResize"
         WindowState="Normal"
-        Title="ChmlFrpLauncher">
+        Title="ChmlFrpProfessionalLauncher">
     <Grid>
         <Image Source="/favicon.ico"/>
     </Grid>

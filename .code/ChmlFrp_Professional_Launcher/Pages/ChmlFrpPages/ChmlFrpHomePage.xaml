@@ -37,7 +37,7 @@
         </StackPanel>
         <Grid Grid.Column="1">
             <Border CornerRadius="0,0,10,10">
-                <Frame x:Name="Pages1Navigation"
+                <Frame x:Name="PagesNavigation"
                        NavigationUIVisibility="Hidden">
                 </Frame>
             </Border>

@@ -14,12 +14,13 @@ namespace ChmlFrp_Professional_Launcher.Pages
     /// </summary>
     public partial class LaunchPage : Page
     {
-        private ClienterClass clienterClass;
+        private Reminding Reminding = new();
+        private SetPath SetPath = new();
 
         public LaunchPage()
         {
             InitializeComponent();
-            clienterClass = new ClienterClass();
+            Reminding.LogsOutputting("进入LaunchPage");
         }
 
         int i = 0;
@@ -27,18 +28,18 @@ namespace ChmlFrp_Professional_Launcher.Pages
         private void Launch(object sender, RoutedEventArgs e)
         {
             LaunchButton.Click -= Launch;
-            if (!File.Exists(clienterClass.frpIniPath) && !File.Exists(clienterClass.frpPath))
+            if (!File.Exists(SetPath.frpIniPath) && !File.Exists(SetPath.frpPath))
             {
                 LaunchButton.Content = "未找到配置文件";
                 return;
             }
             //创建ini实例
             var parser = new FileIniDataParser();
-            IniData data = parser.ReadFile(clienterClass.frpIniPath);
+            IniData data = parser.ReadFile(SetPath.frpIniPath);
             LaunchButton.Content = "正在启动中...";
             if (i == 5) { i = 0; }
-            i++; string logs = Path.Combine(clienterClass.CPLPath, i + ".logs");
-            ProcessStartInfo processInfo = new ProcessStartInfo("cmd.exe", "/c " + clienterClass.frpPath + " -c " + clienterClass.frpIniPath + " >" + logs + " 2>&1")
+            i++; string logs = Path.Combine(SetPath.CPLPath, i + ".logs");
+            ProcessStartInfo processInfo = new ProcessStartInfo("cmd.exe", "/c " + SetPath.frpPath + " -c " + SetPath.frpIniPath + " >" + logs + " 2>&1")
             {
                 RedirectStandardOutput = true,
                 UseShellExecute = false,
@@ -51,13 +52,14 @@ namespace ChmlFrp_Professional_Launcher.Pages
                 LaunchButton.Content = "点击关闭 frpc";
                 LaunchButton.Click += Killfrp;
             }
-            //kongzitaNavigation.Navigate(new System.Uri("Pages/NotesPage.xaml", UriKind.RelativeOrAbsolute));
         }
+
         static bool IsProcessRunning(string processName, int count)
         {
             Process[] processes = Process.GetProcessesByName(processName);
             return processes.Length >= count;
         }
+
         private void Killfrp(object sender, RoutedEventArgs e)
         {
             LaunchButton.Click -= Killfrp;

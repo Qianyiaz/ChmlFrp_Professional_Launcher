@@ -10,8 +10,9 @@ namespace ChmlFrp_Professional_Launcher
 {
     public partial class StartWindow : Window
     {
+        private Reminding Reminding;
         private Timer timer;
-        private ClienterClass clienterClass;
+        private SetPath SetPath;
 
         static bool IsProcessRunning(string processName, int count)
         {
@@ -22,9 +23,12 @@ namespace ChmlFrp_Professional_Launcher
         public StartWindow()
         {
             InitializeComponent();
-            clienterClass = new ClienterClass();
-            if (IsProcessRunning("ChmlFrpLauncher", 2)) Close(); //检测到有两个ChmlFrpLauncher就退出
-                                                                 //进入 1 s 的计时
+            SetPath = new();Reminding = new();
+            if (IsProcessRunning("ChmlFrpProfessionalLauncher", 2))
+            {
+                Reminding.LogsOutputting("检测到有两个ChmlFrpProfessionalLauncher退出"); Close();
+            }
+            //进入 2 s 的计时
             timer = new Timer(TimerCallback, null, TimeSpan.FromSeconds(2), Timeout.InfiniteTimeSpan);
         }
 
@@ -36,21 +40,55 @@ namespace ChmlFrp_Professional_Launcher
                 var parser = new FileIniDataParser();
                 IniData data;
                 //检测是否有相关配置文件
-                if (!File.Exists(clienterClass.CPLPath) && !File.Exists(clienterClass.frpPath) && !File.Exists(clienterClass.setupIniPath) && !File.Exists(clienterClass.pictures_path) && !File.Exists(clienterClass.temp_path))
+                try
                 {
-                    Directory.CreateDirectory(clienterClass.CPLPath); Directory.CreateDirectory(clienterClass.frpPath); Directory.CreateDirectory(clienterClass.pictures_path); Directory.CreateDirectory(clienterClass.temp_path); //创建文件夹
-                    data = new IniData();
-                    data["ChmlFrp_Professional_Launcher Setup"]["Versions"] = "0.0.0.0.3";
-                    parser.WriteFile(clienterClass.setupIniPath, data);
-                }
-                for (int i = 1; i < 6; i++)
-                {
-                    if (!File.Exists(Path.Combine(clienterClass.CPLPath, i + ".logs")))
+                    if (!File.Exists(SetPath.CPLPath))
                     {
-                        File.Create(Path.Combine(clienterClass.CPLPath, i + ".logs")); //创建logs日志文件
+                        Directory.CreateDirectory(SetPath.CPLPath);
+                    }
+                    if (!File.Exists(SetPath.frpPath))
+                    {
+                        Directory.CreateDirectory(SetPath.frpPath);
+                    }
+                    if (!File.Exists(SetPath.pictures_path))
+                    {
+                        Directory.CreateDirectory(SetPath.pictures_path);
+                    }
+                    if (!File.Exists(SetPath.temp_path))
+                    {
+                        Directory.CreateDirectory(SetPath.temp_path);
+                    }
+                    if (!File.Exists(SetPath.setupIniPath))
+                    {
+                        data = new IniData();
+                        data["ChmlFrp_Professional_Launcher Setup"]["Versions"] = "0.0.0.5";
+                        parser.WriteFile(SetPath.setupIniPath, data);
+                    }
+                    File.WriteAllText(SetPath.logfilePath, string.Empty);
+                }
+                catch
+                {
+                    Reminding.LogsOutputting("文件夹或文件创建失败");
+                }
+                Reminding.LogsOutputting("文件夹已创建或创建成功");
+                //创建日志文件
+                try
+                {
+                    for (int i = 1; i < 6; i++)
+                    {
+                        if (!File.Exists(Path.Combine(SetPath.CPLPath, i + ".logs")))
+                        {
+                            File.Create(Path.Combine(SetPath.CPLPath, i + ".logs"));
+                        }
                     }
                 }
+                catch
+                {
+                    Reminding.LogsOutputting("日志文件创建失败");
+                }
+                Reminding.LogsOutputting("日志文件已创建或创建成功");
                 //界面退出，弹出MainWindow。
+                Reminding.LogsOutputting("进入MainWindow");
                 MainWindow MainWindow = new MainWindow();
                 Window window = Window.GetWindow(this);
                 window.Close();

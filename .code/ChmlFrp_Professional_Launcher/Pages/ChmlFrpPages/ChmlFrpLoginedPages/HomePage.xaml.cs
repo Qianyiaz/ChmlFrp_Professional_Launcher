@@ -1,48 +1,45 @@
-﻿using System.IO;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 using Path = System.IO.Path;
 using Newtonsoft.Json.Linq;
-using Newtonsoft.Json;
 using System;
 using System.Windows.Media.Imaging;
-using System.Net;
 using System.Windows;
-using static System.Net.WebRequestMethods;
-using System.Threading;
 
-namespace ChmlFrp_Professional_Launcher.Pages.ChmlFrp
+
+namespace ChmlFrp_Professional_Launcher.Pages.ChmlFrpLoginPages
 {
     /// <summary>
     /// HomePage.xaml 的交互逻辑
     /// </summary>
     public partial class HomePage : Page
     {
-        private ClienterClass clienterClass;
+        private SetPath SetPath;
+        private string temp_UserImage;
 
         public HomePage()
         {
             InitializeComponent();
-            clienterClass = new ClienterClass();
-            InitializesetPaths();
+            SetPath = new SetPath();
+            string jsonContent = System.IO.File.ReadAllText(SetPath.temp_api_path);
+            var jsonObject = JObject.Parse(jsonContent);
+            temp_UserImage = Path.Combine(SetPath.temp_path, "temp_UserImage.png");
+            if (System.IO.File.Exists(temp_UserImage))
+            {
+                InitializesetPaths();
+            }
+            else
+            {
+                Downloadfiles Downloadfiles = new Downloadfiles();
+                Downloadfiles.Download(jsonObject["data"]["userimg"]?.ToString(), temp_UserImage, "others");
+                InitializesetPaths();
+            }
         }
 
 
         private void InitializesetPaths()
         {
-            string jsonContent = System.IO.File.ReadAllText(clienterClass.temp_api_path);
+            string jsonContent = System.IO.File.ReadAllText(SetPath.temp_api_path);
             var jsonObject = JObject.Parse(jsonContent);
-            string url = jsonObject["data"]["userimg"]?.ToString();
-            string temp_UserImage = Path.Combine(clienterClass.temp_path, "temp_UserImage.png");
-            try
-            {
-                using (WebClient client = new WebClient())
-                {
-                    client.DownloadFile(new Uri(url), temp_UserImage);
-                }
-            }
-            catch
-            {
-            }
             UserImage.ImageSource = new BitmapImage(new Uri(temp_UserImage));
             UserTextBlock.Text = UserTextBlock.Text + jsonObject["data"]["username"]?.ToString();
             Usermailbox.Text = jsonObject["data"]["email"]?.ToString();
@@ -56,10 +53,10 @@ namespace ChmlFrp_Professional_Launcher.Pages.ChmlFrp
             UserBandwidth_throttling.Text = "国内" + jsonObject["data"]["bandwidth"]?.ToString() + "m";
         }
 
-        private void TokenClick(object sender, System.Windows.RoutedEventArgs e)
+        private void TokenClick(object sender, RoutedEventArgs e)
         {
             Token.Click -= TokenClick;
-            string jsonContent = System.IO.File.ReadAllText(clienterClass.temp_api_path);
+            string jsonContent = System.IO.File.ReadAllText(SetPath.temp_api_path);
             var jsonObject = JObject.Parse(jsonContent);
             if (Token.Content.ToString() == jsonObject["data"]["usertoken"]?.ToString())
             {

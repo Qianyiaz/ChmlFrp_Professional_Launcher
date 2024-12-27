@@ -1,53 +1,13 @@
-﻿/*
-temp_api_path = ClienterClass.temp_api_path;
-//                            _ooOoo_  
-//                           o8888888o  
-//                           88" . "88  
-//                           (| -_- |)  
-//                            O\ = /O  
-//                        ____/`---'\____  
-//                      .   ' \\| |// `.  
-//                       / \\||| : |||// \  
-//                     / _||||| -:- |||||- \  
-//                       | | \\\ - /// | |  
-//                     | \_| ''\---/'' | |  
-//                      \ .-\__ `-` ___/-. /  
-//                   ___`. .' /--.--\ `. . __  
-//                ."" '< `.___\_<|>_/___.' >'"".  
-//               | | : `- \`.;`\ _ /`;.`/ - ` : | |  
-//                 \ \ `-. \_ __\ /__ _/ .-` / /  
-//         ======`-.____`-.___\_____/___.-`____.-'======  
-//                            `=---='  
-//  
-//         .............................................  
-//                  佛祖保佑             永无BUG 
-//          佛曰:  
-//                  写字楼里写字间，写字间里程序员；  
-//                  程序人员写程序，又拿程序换酒钱。  
-//                  酒醒只在网上坐，酒醉还来网下眠；  
-//                  酒醉酒醒日复日，网上网下年复年。  
-//                  但愿老死电脑间，不愿鞠躬老板前；  
-//                  奔驰宝马贵者趣，公交自行程序员。  
-//                  别人笑我忒疯癫，我笑自己命太贱；  
-//                  不见满街漂亮妹，哪个归得程序员？
-*/
-
-using ChmlFrp_Professional_Launcher.Pages;
-using IniParser.Model;
-using IniParser;
-using Newtonsoft.Json.Linq;
+﻿using ChmlFrp_Professional_Launcher.Pages;
 using System;
 using System.IO;
 using System.Linq;
-using System.Net.Http;
-using System.Net;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-
+using static ChmlFrp_Professional_Launcher.Downloadfiles;
 
 
 namespace ChmlFrp_Professional_Launcher
@@ -57,12 +17,12 @@ namespace ChmlFrp_Professional_Launcher
     /// </summary>
     public partial class MainWindow : Window
     {
-        private ClienterClass clienterClass;
+        private Reminding Reminding = new();
+        private SetPath SetPath = new();
         public MainWindow()
         {
             InitializeComponent();
-            clienterClass = new ClienterClass();
-            string[] imageFiles = Directory.GetFiles(clienterClass.pictures_path, "*.*")
+            string[] imageFiles = Directory.GetFiles(SetPath.pictures_path, "*.*")
                 .Where(file => file.EndsWith(".jpg", StringComparison.OrdinalIgnoreCase) ||
                                file.EndsWith(".png", StringComparison.OrdinalIgnoreCase))
                 .ToArray();
@@ -74,13 +34,13 @@ namespace ChmlFrp_Professional_Launcher
                 Imagewallpaper.ImageSource = new BitmapImage(new Uri(randomImage, UriKind.RelativeOrAbsolute));
                 Imagewallpaper.Stretch = Stretch.UniformToFill;
             }
-            LaunchPageButton.SetValue(Button.BackgroundProperty, new SolidColorBrush((Color)ColorConverter.ConvertFromString("#f9f9f9")));
-            LaunchPageButton.SetValue(Button.ForegroundProperty, new SolidColorBrush((Color)ColorConverter.ConvertFromString("#1276DB")));
-            PagesNavigation.Navigate(new LaunchPage());
+            Reminding.LogsOutputting("背景图片或默认加载成功");
+            rdLaunchPage_Click(this, new RoutedEventArgs());
         }
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
+            Reminding.LogsOutputting("关闭软件");
             Close();
         }
 
@@ -89,8 +49,16 @@ namespace ChmlFrp_Professional_Launcher
             WindowState = WindowState.Minimized;
         }
 
+        private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            DragMove();
+        }
+
         private void rdLaunchPage_Click(object sender, RoutedEventArgs e)
         {
+            ChmlfrpPageButton.RemoveHandler(Button.ClickEvent, new RoutedEventHandler(rdChmlfrpPage_Click));
+            LaunchPageButton.RemoveHandler(Button.ClickEvent, new RoutedEventHandler(rdLaunchPage_Click));
+            SettingsPageButton.RemoveHandler(Button.ClickEvent, new RoutedEventHandler(rdSettingsPage_Click));
             LaunchPageButton.Click -= rdLaunchPage_Click;
             ChmlfrpPageButton.Click += rdChmlfrpPage_Click;
             SettingsPageButton.Click += rdSettingsPage_Click;
@@ -105,26 +73,10 @@ namespace ChmlFrp_Professional_Launcher
 
         private void rdChmlfrpPage_Click(object sender, RoutedEventArgs e)
         {
-            IniData data;
-            var parser = new FileIniDataParser();
-            data = parser.ReadFile(clienterClass.setupIniPath);
-            string url = "https://cf-v2.uapis.cn/login?username=" + data["ChmlFrp_Professional_Launcher Setup"]["Username"] + "&password=" + data["ChmlFrp_Professional_Launcher Setup"]["Password"];
-            using (HttpClient client = new HttpClient())
-            {
-                try
-                {
-                    WebClient webClient = new WebClient();
-                    webClient.Encoding = Encoding.UTF8;
-                    File.WriteAllText(clienterClass.temp_api_path, webClient.DownloadString(url));
-                }
-                catch
-                {
-                }
-            }
-            string jsonContent = File.ReadAllText(clienterClass.temp_api_path);
-            var jsonObject = JObject.Parse(jsonContent);
-            string msg = jsonObject["msg"]?.ToString();
-            ChmlfrpPageButton.Click -= rdChmlfrpPage_Click;
+            Downloadfiles Downloadfiles = new Downloadfiles();
+            ChmlfrpPageButton.RemoveHandler(Button.ClickEvent, new RoutedEventHandler(rdChmlfrpPage_Click));
+            LaunchPageButton.RemoveHandler(Button.ClickEvent, new RoutedEventHandler(rdLaunchPage_Click));
+            SettingsPageButton.RemoveHandler(Button.ClickEvent, new RoutedEventHandler(rdSettingsPage_Click));
             LaunchPageButton.Click += rdLaunchPage_Click;
             SettingsPageButton.Click += rdSettingsPage_Click;
             LaunchPageButton.SetValue(Button.BackgroundProperty, new SolidColorBrush((Color)ColorConverter.ConvertFromString("#1276DB")));
@@ -133,7 +85,7 @@ namespace ChmlFrp_Professional_Launcher
             ChmlfrpPageButton.SetValue(Button.ForegroundProperty, new SolidColorBrush((Color)ColorConverter.ConvertFromString("#1276DB")));
             SettingsPageButton.SetValue(Button.BackgroundProperty, new SolidColorBrush((Color)ColorConverter.ConvertFromString("#1276DB")));
             SettingsPageButton.SetValue(Button.ForegroundProperty, new SolidColorBrush((Color)ColorConverter.ConvertFromString("#f9f9f9")));
-            if (msg == "登录成功")
+            if (Downloadfiles.GitAPI_Login())
             {
                 PagesNavigation.Navigate(new ChmlFrphomePage());
                 return;
@@ -141,13 +93,11 @@ namespace ChmlFrp_Professional_Launcher
             PagesNavigation.Navigate(new ChmlFrpLoginPage());
         }
 
-        private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            DragMove();
-        }
-
         private void rdSettingsPage_Click(object sender, RoutedEventArgs e)
         {
+            ChmlfrpPageButton.RemoveHandler(Button.ClickEvent, new RoutedEventHandler(rdChmlfrpPage_Click));
+            LaunchPageButton.RemoveHandler(Button.ClickEvent, new RoutedEventHandler(rdLaunchPage_Click));
+            SettingsPageButton.RemoveHandler(Button.ClickEvent, new RoutedEventHandler(rdSettingsPage_Click));
             ChmlfrpPageButton.Click += rdChmlfrpPage_Click;
             SettingsPageButton.Click -= rdSettingsPage_Click;
             LaunchPageButton.Click += rdLaunchPage_Click;

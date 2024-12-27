@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ChmlFrp_Professional_Launcher"
+        xmlns:wi="clr-namespace:System.Windows.Shell;assembly=PresentationFramework"
         mc:Ignorable="d"
         Height="450"
         Width="800"
@@ -12,11 +13,10 @@
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
         AllowsTransparency="True"
-        ResizeMode="NoResize"
+        ResizeMode="CanResize"
         Background="Transparent"
         WindowState="Normal"
-        Title="ChmlFrpLauncher">
-
+        Title="ChmlFrpProfessionalLauncher">
 
     <Border Margin="15"
             Background="Transparent">
@@ -53,12 +53,6 @@
                                 </TransformGroup>
                             </Path.RenderTransform>
                         </Path>
-                        <!--<Grid Grid.Column="1">
-                        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" >
-                            <TextBlock FontSize="21" Text="CPL" Foreground="#f9f9f9"
-                               FontWeight="Bold" />
-                        </StackPanel>
-                    </Grid>-->
                     </Grid>
 
                     <Grid Width="280">
@@ -136,7 +130,7 @@
                         <Button x:Name="btnMinimize"
                                 Height="25"
                                 Width="25"
-                                Style="{DynamicResource IconButtonsStyle}"
+                                Style="{StaticResource IconButtonsStyle}"
                                 Content="{DynamicResource minimize}"
                                 Click="btnMinimize_Click"/>
                     </StackPanel>
@@ -156,6 +150,9 @@
                            NavigationUIVisibility="Hidden">
                     </Frame>
                 </Border>
+                <ResizeGrip HorizontalAlignment="Right"
+                            VerticalAlignment="Bottom"
+                            Margin="0,0,10,10"/>
             </Grid>
         </Grid>
     </Border>

@@ -1,11 +1,5 @@
-﻿using System.IO;
-using System.Windows.Controls;
-using Path = System.IO.Path;
-using Newtonsoft.Json.Linq;
-using Newtonsoft.Json;
-using System;
-using System.Windows.Media.Imaging;
-using System.Net;
+﻿using System.Windows.Controls;
+using ChmlFrp_Professional_Launcher.Pages.ChmlFrpLoginPages;
 
 
 namespace ChmlFrp_Professional_Launcher.Pages
@@ -15,23 +9,24 @@ namespace ChmlFrp_Professional_Launcher.Pages
     /// </summary>
     public partial class ChmlFrphomePage : Page
     {
+        private Reminding Reminding = new();
         public ChmlFrphomePage()
         {
             InitializeComponent();
-            Uri uri = new Uri("/Pages/ChmlFrpPages/ChmlFrpLoginedPages/HomePage.xaml", UriKind.Relative);
-            Pages1Navigation.Source = uri;
+            Reminding.LogsOutputting("进入ChmlFrphomePage");
+            rdLaunchPage_Click(null, null);
         }
 
         private void rdLaunchPage_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            Uri uri = new Uri("/Pages/ChmlFrpPages/ChmlFrpLoginedPages/HomePage.xaml", UriKind.Relative);
-            Pages1Navigation.Source = uri;
+            PagesNavigation.Navigate(new HomePage());
+            Reminding.LogsOutputting("进入HomePage");
         }
 
         private void rdTMA_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            Uri uri = new Uri("/Pages/ChmlFrpPages/ChmlFrpLoginedPages/TMAPage.xaml", UriKind.Relative);
-            Pages1Navigation.Source = uri;
+            PagesNavigation.Navigate(new TMAPage());
+            Reminding.LogsOutputting("进入TMAPage");
         }
     }
 }
