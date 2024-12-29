@@ -18,48 +18,48 @@
         WindowState="Normal"
         Title="ChmlFrpProfessionalLauncher">
 
-    <Border Margin="15"
-            Background="Transparent">
+    <Border Background="Transparent">
         <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="50"/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
+            <Grid Margin="15">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
 
-            <Border  CornerRadius="10,10,0,0"
+                <Border  CornerRadius="10,10,0,0"
                      MouseLeftButtonDown="Border_MouseLeftButtonDown"
                      Grid.Row="0"
                      Height="50"
                      Background="#1276DB">
-                <Grid>
-                    <Grid Margin="0,0,520,0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="60"/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
+                    <Grid>
+                        <Grid Margin="0,0,520,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
 
-                        <Path Data="{DynamicResource logo}"
+                            <Path Data="{DynamicResource logo}"
                               Stretch="Fill"
                               Fill="#CFE2F7"
                               Width="25"
                               Height="25"
                               RenderTransformOrigin="0.5,0.5">
-                            <Path.RenderTransform>
-                                <TransformGroup>
-                                    <ScaleTransform ScaleX="-1"/>
-                                    <SkewTransform/>
-                                    <RotateTransform Angle="-180"/>
-                                    <TranslateTransform/>
-                                </TransformGroup>
-                            </Path.RenderTransform>
-                        </Path>
-                    </Grid>
+                                <Path.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform ScaleX="-1"/>
+                                        <SkewTransform/>
+                                        <RotateTransform Angle="-180"/>
+                                        <TranslateTransform/>
+                                    </TransformGroup>
+                                </Path.RenderTransform>
+                            </Path>
+                        </Grid>
 
-                    <Grid Width="280">
-                        <StackPanel HorizontalAlignment="Center"
+                        <Grid Width="280">
+                            <StackPanel HorizontalAlignment="Center"
                                     VerticalAlignment="Center"
                                     Orientation="Horizontal">
-                            <Button Foreground="#f9f9f9"
+                                <Button Foreground="#f9f9f9"
                                     FontWeight="ExtraLight"
                                     Background="#1276DB"
                                     Content="启动"
@@ -69,14 +69,14 @@
                                     BorderBrush="{x:Null}"
                                     x:Name="LaunchPageButton"
                                     Click="rdLaunchPage_Click">
-                                <Button.Resources>
-                                    <Style TargetType="{x:Type Border}">
-                                        <Setter Property="CornerRadius"
+                                    <Button.Resources>
+                                        <Style TargetType="{x:Type Border}">
+                                            <Setter Property="CornerRadius"
                                                 Value="15"/>
-                                    </Style>
-                                </Button.Resources>
-                            </Button>
-                            <Button Foreground="#f9f9f9"
+                                        </Style>
+                                    </Button.Resources>
+                                </Button>
+                                <Button Foreground="#f9f9f9"
                                     FontWeight="ExtraLight"
                                     Background="#1276DB"
                                     Content="登录"
@@ -86,14 +86,14 @@
                                     BorderBrush="{x:Null}"
                                     x:Name="ChmlfrpPageButton"
                                     Click="rdChmlfrpPage_Click">
-                                <Button.Resources>
-                                    <Style TargetType="{x:Type Border}">
-                                        <Setter Property="CornerRadius"
+                                    <Button.Resources>
+                                        <Style TargetType="{x:Type Border}">
+                                            <Setter Property="CornerRadius"
                                                 Value="15"/>
-                                    </Style>
-                                </Button.Resources>
-                            </Button>
-                            <Button Foreground="#f9f9f9"
+                                        </Style>
+                                    </Button.Resources>
+                                </Button>
+                                <Button Foreground="#f9f9f9"
                                     FontWeight="ExtraLight"
                                     Background="#1276DB"
                                     Content="设置"
@@ -103,23 +103,23 @@
                                     BorderBrush="{x:Null}"
                                     x:Name="SettingsPageButton"
                                     Click="rdSettingsPage_Click">
-                                <Button.Resources>
-                                    <Style TargetType="{x:Type Border}">
-                                        <Setter Property="CornerRadius"
+                                    <Button.Resources>
+                                        <Style TargetType="{x:Type Border}">
+                                            <Setter Property="CornerRadius"
                                                 Value="15"/>
-                                    </Style>
-                                </Button.Resources>
-                            </Button>
-                        </StackPanel>
-                    </Grid>
+                                        </Style>
+                                    </Button.Resources>
+                                </Button>
+                            </StackPanel>
+                        </Grid>
 
-                    <StackPanel HorizontalAlignment="Right"
+                        <StackPanel HorizontalAlignment="Right"
                                 Orientation="Horizontal"
                                 FlowDirection="RightToLeft"
                                 Height="50"
                                 Width="100">
-                        <Grid Width="15"/>
-                        <Button x:Name="btnClose"
+                            <Grid Width="15"/>
+                            <Button x:Name="btnClose"
                                 Margin="5"
                                 Height="25"
                                 Width="25"
@@ -127,32 +127,41 @@
                                 Content="{DynamicResource close}"
                                 Click="btnClose_Click"
                                 Tag="IsCloseButton"/>
-                        <Button x:Name="btnMinimize"
+                            <Button x:Name="btnMinimize"
                                 Height="25"
                                 Width="25"
                                 Style="{StaticResource IconButtonsStyle}"
                                 Content="{DynamicResource minimize}"
                                 Click="btnMinimize_Click"/>
-                    </StackPanel>
-                </Grid>
-            </Border>
-            <Grid Grid.Row="1">
-                <Border Background="#C7D7EE"
-                        CornerRadius="0,0,10,10"/>
-                <Border CornerRadius="0,0,10,10">
-                    <Border.Background>
-                        <ImageBrush Opacity="0.8"
-                                    x:Name="Imagewallpaper"/>
-                    </Border.Background>
+                        </StackPanel>
+                    </Grid>
                 </Border>
-                <Border CornerRadius="0,0,10,10">
-                    <Frame x:Name="PagesNavigation"
+                <Grid Grid.Row="1">
+                    <Border Background="#C7D7EE"
+                        CornerRadius="0,0,10,10"/>
+                    <Border CornerRadius="0,0,10,10">
+                        <Border.Background>
+                            <ImageBrush Opacity="0.8"
+                                    x:Name="Imagewallpaper"/>
+                        </Border.Background>
+                    </Border>
+                    <Border CornerRadius="0,0,10,10">
+                        <Frame x:Name="PagesNavigation"
+                           NavigationUIVisibility="Hidden">
+                        </Frame>
+                    </Border>
+                    <ResizeGrip HorizontalAlignment="Right"
+                            VerticalAlignment="Bottom"
+                            Margin="0,0,10,10"/>
+                </Grid>
+            </Grid>
+
+            <Grid Margin="15">
+                <Border CornerRadius="10">
+                    <Frame x:Name="PagesNavigationtwo"
                            NavigationUIVisibility="Hidden">
                     </Frame>
                 </Border>
-                <ResizeGrip HorizontalAlignment="Right"
-                            VerticalAlignment="Bottom"
-                            Margin="0,0,10,10"/>
             </Grid>
         </Grid>
     </Border>

@@ -40,6 +40,7 @@ using IniParser;
 using Newtonsoft.Json.Linq;
 using System.Text;
 using System;
+using System.Windows;
 using ChmlFrp_Professional_Launcher.Pages;
 
 
@@ -129,7 +130,6 @@ namespace ChmlFrp_Professional_Launcher
 
         public bool GitAPI_Login()
         {
-            SetPath SetPath = new();
             IniData data;
             var parser = new FileIniDataParser();
             data = parser.ReadFile(SetPath.setupIniPath);
@@ -139,6 +139,7 @@ namespace ChmlFrp_Professional_Launcher
                 var jsonObject = JObject.Parse(File.ReadAllText(SetPath.temp_api_path));
                 string msg = jsonObject["msg"]?.ToString();
                 Reminding.LogsOutputting(msg);
+                Reminding.RemindingShow(msg);
 
                 if (msg == "登录成功")
                 {
@@ -173,6 +174,14 @@ namespace ChmlFrp_Professional_Launcher
             }
 
             File.AppendAllText(SetPath.logfilePath, logEntry + Environment.NewLine);
+        }
+
+        public void RemindingShow(string message)
+        {
+            MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
+            RemindingPage remindingPage = new RemindingPage();
+            remindingPage.RemidingTextBlock.Text = message;
+            mainWindow.PagesNavigationtwo.Navigate(remindingPage);
         }
     }
 }

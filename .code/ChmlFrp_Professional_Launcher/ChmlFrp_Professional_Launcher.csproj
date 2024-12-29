@@ -112,7 +112,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ClienterClass.cs" />
+    <Compile Include="DataClass.cs" />
     <Compile Include="Pages\BlankPage.xaml.cs">
       <DependentUpon>BlankPage.xaml</DependentUpon>
     </Compile>
@@ -127,6 +127,9 @@
     </Compile>
     <Compile Include="Pages\ChmlFrpPages\ChmlFrpLoginedPages\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\RemindingPage.xaml.cs">
+      <DependentUpon>RemindingPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\SettingPages\SettingHomePage.xaml.cs">
       <DependentUpon>SettingHomePage.xaml</DependentUpon>
@@ -155,6 +158,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\ChmlFrpPages\ChmlFrpLoginedPages\TMAPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\RemindingPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

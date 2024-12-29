@@ -10,9 +10,8 @@ namespace ChmlFrp_Professional_Launcher
 {
     public partial class StartWindow : Window
     {
-        private Reminding Reminding;
-        private Timer timer;
-        private SetPath SetPath;
+        private Reminding Reminding = new();
+        private SetPath SetPath = new();
 
         static bool IsProcessRunning(string processName, int count)
         {
@@ -23,16 +22,14 @@ namespace ChmlFrp_Professional_Launcher
         public StartWindow()
         {
             InitializeComponent();
-            SetPath = new();Reminding = new();
             if (IsProcessRunning("ChmlFrpProfessionalLauncher", 2))
             {
                 Reminding.LogsOutputting("检测到有两个ChmlFrpProfessionalLauncher退出"); Close();
             }
-            //进入 2 s 的计时
-            timer = new Timer(TimerCallback, null, TimeSpan.FromSeconds(2), Timeout.InfiniteTimeSpan);
+            set();
         }
 
-        private void TimerCallback(object state)
+        private void set()
         {
             Application.Current.Dispatcher.Invoke(() =>
             {
@@ -89,10 +86,6 @@ namespace ChmlFrp_Professional_Launcher
                 Reminding.LogsOutputting("日志文件已创建或创建成功");
                 //界面退出，弹出MainWindow。
                 Reminding.LogsOutputting("进入MainWindow");
-                MainWindow MainWindow = new MainWindow();
-                Window window = Window.GetWindow(this);
-                window.Close();
-                MainWindow.Show();
             });
         }
     }

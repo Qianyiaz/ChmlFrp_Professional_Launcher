@@ -2,12 +2,12 @@
 using System;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using static ChmlFrp_Professional_Launcher.Downloadfiles;
 
 
 namespace ChmlFrp_Professional_Launcher
@@ -21,6 +21,10 @@ namespace ChmlFrp_Professional_Launcher
         private SetPath SetPath = new();
         public MainWindow()
         {
+            StartWindow startWindow = new();
+            startWindow.Show();
+            System.Threading.Thread.Sleep(3000);
+            startWindow.Close();
             InitializeComponent();
             string[] imageFiles = Directory.GetFiles(SetPath.pictures_path, "*.*")
                 .Where(file => file.EndsWith(".jpg", StringComparison.OrdinalIgnoreCase) ||
