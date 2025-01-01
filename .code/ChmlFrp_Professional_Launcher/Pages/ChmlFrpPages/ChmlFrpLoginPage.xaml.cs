@@ -23,9 +23,12 @@ namespace ChmlFrp_Professional_Launcher.Pages
             Reminding.LogsOutputting("进入ChmlFrpLoginPage");
             var parser = new FileIniDataParser();
             data = parser.ReadFile(SetPath.setupIniPath);
-            if (data["ChmlFrp_Professional_Launcher Setup"]["Username"] != "" || data["ChmlFrp_Professional_Launcher Setup"]["Password"] != "")
+            if (data["ChmlFrp_Professional_Launcher Setup"]["Username"] != "")
             {
                 TextBox_Username.Text = data["ChmlFrp_Professional_Launcher Setup"]["Username"];
+            }
+            if (data["ChmlFrp_Professional_Launcher Setup"]["Password"] != "")
+            {
                 TextBox_password.Password = data["ChmlFrp_Professional_Launcher Setup"]["Password"];
             }
         }
@@ -36,7 +39,8 @@ namespace ChmlFrp_Professional_Launcher.Pages
             {
                 TextBox_Username.Foreground = new SolidColorBrush(Colors.Gray);
                 return;
-            } else if (TextBox_Username.Text == "")
+            }
+            else if (TextBox_Username.Text == "")
             {
                 TextBox_Username.Foreground = new SolidColorBrush(Colors.Black);
             }
