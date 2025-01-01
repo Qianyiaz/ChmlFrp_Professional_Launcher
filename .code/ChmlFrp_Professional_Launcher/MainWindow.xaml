@@ -16,7 +16,7 @@
         ResizeMode="CanResize"
         Background="Transparent"
         WindowState="Normal"
-        Title="ChmlFrpProfessionalLauncher">
+        Title="ChmlFrp_Professional_Launcher">
 
     <Border Background="Transparent">
         <Grid>
@@ -26,7 +26,7 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
 
-                <Border  CornerRadius="10,10,0,0"
+                <Border  CornerRadius="5,5,0,0"
                      MouseLeftButtonDown="Border_MouseLeftButtonDown"
                      Grid.Row="0"
                      Height="50"
@@ -138,14 +138,14 @@
                 </Border>
                 <Grid Grid.Row="1">
                     <Border Background="#C7D7EE"
-                        CornerRadius="0,0,10,10"/>
-                    <Border CornerRadius="0,0,10,10">
+                        CornerRadius="0,0,5,5"/>
+                    <Border CornerRadius="0,0,4,4">
                         <Border.Background>
                             <ImageBrush Opacity="0.8"
                                     x:Name="Imagewallpaper"/>
                         </Border.Background>
                     </Border>
-                    <Border CornerRadius="0,0,10,10">
+                    <Border CornerRadius="0,0,5,5">
                         <Frame x:Name="PagesNavigation"
                            NavigationUIVisibility="Hidden">
                         </Frame>
@@ -157,7 +157,7 @@
             </Grid>
 
             <Grid Margin="15">
-                <Border CornerRadius="10">
+                <Border CornerRadius="5">
                     <Frame x:Name="PagesNavigationtwo"
                            NavigationUIVisibility="Hidden">
                     </Frame>

@@ -10,23 +10,24 @@
       Title="RemindingPage">
 
     <Grid>
-        <Border x:Name="RwmindingBorder"
-                                        Background="White"
+        <Border x:Name="RemindingBorder"
                                         HorizontalAlignment="Left"
                                         VerticalAlignment="Bottom"
-                                        CornerRadius="0,10,10,0"
+                                        CornerRadius="0,5,5,0"
                                         Opacity="0.8"
-                                        Margin="0,0,0,75"
-                                        Height="25">
+                                        Margin="0,0,0,45"
+                                        Height="auto">
             <TextBox FontSize="15"
+                     Margin="10,2,10,5"
                      BorderThickness="0"
                      x:Name="RemidingTextBlock"
                      Background="Transparent"
-                     Foreground="Black"
+                     Foreground="White"
                      Text="我是擎天柱"
                      VerticalAlignment="Center"
                      IsReadOnly="True"
-                     IsHitTestVisible="False"/>
+                     IsHitTestVisible="False"
+                     FontFamily="Segoe UI"/>
         </Border>
     </Grid>
 </Page>

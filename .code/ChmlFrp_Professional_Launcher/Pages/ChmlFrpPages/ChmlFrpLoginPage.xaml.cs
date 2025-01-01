@@ -2,6 +2,7 @@
 using System.Windows.Controls;
 using IniParser.Model;
 using IniParser;
+using System.Windows.Media;
 
 
 namespace ChmlFrp_Professional_Launcher.Pages
@@ -14,47 +15,70 @@ namespace ChmlFrp_Professional_Launcher.Pages
         private Reminding Reminding = new();
         private SetPath SetPath = new();
         private Downloadfiles Downloadfiles = new();
+        private IniData data;
 
         public ChmlFrpLoginPage()
         {
             InitializeComponent();
             Reminding.LogsOutputting("进入ChmlFrpLoginPage");
-            IniData data;
             var parser = new FileIniDataParser();
             data = parser.ReadFile(SetPath.setupIniPath);
-            TextBox_Username.Text = data["ChmlFrp_Professional_Launcher Setup"]["Username"];
-            TextBox_password.Text = data["ChmlFrp_Professional_Launcher Setup"]["Password"];
+            if (data["ChmlFrp_Professional_Launcher Setup"]["Username"] != "" || data["ChmlFrp_Professional_Launcher Setup"]["Password"] != "")
+            {
+                TextBox_Username.Text = data["ChmlFrp_Professional_Launcher Setup"]["Username"];
+                TextBox_password.Password = data["ChmlFrp_Professional_Launcher Setup"]["Password"];
+            }
         }
 
         private void TextBox_Username_ini(object sender, TextChangedEventArgs e)
         {
+            if (TextBox_Username.Text == "用户名或邮箱")
+            {
+                TextBox_Username.Foreground = new SolidColorBrush(Colors.Gray);
+                return;
+            } else if (TextBox_Username.Text == "")
+            {
+                TextBox_Username.Foreground = new SolidColorBrush(Colors.Black);
+            }
+            else
+            {
+                TextBox_Username.Foreground = new SolidColorBrush(Colors.Black);
+            }
             var parser = new FileIniDataParser();
-            IniData data = parser.ReadFile(SetPath.setupIniPath);
             data["ChmlFrp_Professional_Launcher Setup"]["Username"] = TextBox_Username.Text;
-            parser.WriteFile(SetPath.setupIniPath, data);
-        }
-
-        private void TextBox_password_ini(object sender, TextChangedEventArgs e)
-        {
-            var parser = new FileIniDataParser();
-            IniData data = parser.ReadFile(SetPath.setupIniPath);
-            data["ChmlFrp_Professional_Launcher Setup"]["Password"] = TextBox_password.Text;
             parser.WriteFile(SetPath.setupIniPath, data);
         }
 
         private void logon(object sender, RoutedEventArgs e)
         {
             logonButton.Click -= logon;
-            if (Downloadfiles.GitAPI_Login())
+            data["ChmlFrp_Professional_Launcher Setup"]["Password"] = TextBox_password.Password;
+            var parser = new FileIniDataParser();
+            parser.WriteFile(SetPath.setupIniPath, data);
+            if (Downloadfiles.GitAPI_Login(true))
             {
                 NavigationService.Navigate(new ChmlFrphomePage());
                 return;
             }
             else
             {
-                TextBox_Username.Text = null;
-                TextBox_password.Text = null;
                 logonButton.Click += logon;
+            }
+        }
+
+        private void TextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (TextBox_Username.Text == "用户名或邮箱")
+            {
+                TextBox_Username.Text = "";
+            }
+        }
+
+        private void TextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (TextBox_Username.Text == "")
+            {
+                TextBox_Username.Text = "用户名或邮箱";
             }
         }
     }

@@ -42,12 +42,14 @@ using System.Text;
 using System;
 using System.Windows;
 using ChmlFrp_Professional_Launcher.Pages;
+using System.Windows.Media;
 
 
 namespace ChmlFrp_Professional_Launcher
 {
     internal class SetPath
     {
+        //定义路径
         public string directoryPath;
         public string frpPath;
         public string frpIniPath;
@@ -75,8 +77,8 @@ namespace ChmlFrp_Professional_Launcher
 
     internal class Downloadfiles
     {
-        private Reminding Reminding = new();
-        private SetPath SetPath = new();
+        Reminding Reminding = new();
+        SetPath SetPath = new();
 
         public string Download(string url, string path, string fileclass)
         {
@@ -128,7 +130,7 @@ namespace ChmlFrp_Professional_Launcher
             }
         }
 
-        public bool GitAPI_Login()
+        public bool GitAPI_Login(bool Remind)
         {
             IniData data;
             var parser = new FileIniDataParser();
@@ -138,14 +140,21 @@ namespace ChmlFrp_Professional_Launcher
             {
                 var jsonObject = JObject.Parse(File.ReadAllText(SetPath.temp_api_path));
                 string msg = jsonObject["msg"]?.ToString();
-                Reminding.LogsOutputting(msg);
-                Reminding.RemindingShow(msg);
-
-                if (msg == "登录成功")
+                Reminding.LogsOutputting("API提醒：" + msg);
+                if (msg == "登录成功" && Remind == false)
                 {
                     return true;
                 }
-                else
+                else if (Remind && msg == "登录成功")
+                {
+                    Reminding.RemindingShow(msg, "green");
+                    return true;
+                }
+                else if (Remind)
+                {
+                    Reminding.RemindingShow(msg, "red");
+                    return false;
+                } else
                 {
                     return false;
                 }
@@ -160,7 +169,8 @@ namespace ChmlFrp_Professional_Launcher
 
     internal class Reminding
     {
-        private SetPath SetPath = new();
+        SetPath SetPath = new();
+
 
         public void LogsOutputting(string logEntry)
         {
@@ -176,12 +186,99 @@ namespace ChmlFrp_Professional_Launcher
             File.AppendAllText(SetPath.logfilePath, logEntry + Environment.NewLine);
         }
 
-        public void RemindingShow(string message)
+
+        public void RemindingShow(string message, string color)
         {
             MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
             RemindingPage remindingPage = new RemindingPage();
-            remindingPage.RemidingTextBlock.Text = message;
-            mainWindow.PagesNavigationtwo.Navigate(remindingPage);
+            if (remindingPage.RemindingBorder != null)
+            {
+                if (color == "green")
+                {
+                    remindingPage.RemindingBorder.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#3DB43E"));
+                }
+                else if (color == "blue")
+                {
+                    remindingPage.RemindingBorder.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#349EF7"));
+                }
+                else if (color == "red")
+                {
+                    remindingPage.RemindingBorder.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF0000"));
+                }
+                else
+                {
+                    LogsOutputting("RemindingShow颜色参数错误");
+                    return;
+                }
+                remindingPage.RemidingTextBlock.Text = message;
+                LogsOutputting("显示提醒：" + message);
+                if (mainWindow?.PagesNavigationtwo != null)
+                {
+                    mainWindow.PagesNavigationtwo.Navigate(remindingPage);
+                }
+                else
+                {
+                    LogsOutputting("不存在PagesNavigationtwo");
+                }
+            }
+        }
+
+
+        //初始化
+        public void Initialize()
+        {
+            //创建ini实例
+            var parser = new FileIniDataParser();
+            IniData data;
+            //检测是否有相关配置文件
+            try
+            {
+                if (!File.Exists(SetPath.CPLPath))
+                {
+                    Directory.CreateDirectory(SetPath.CPLPath);
+                }
+                if (!File.Exists(SetPath.frpPath))
+                {
+                    Directory.CreateDirectory(SetPath.frpPath);
+                }
+                if (!File.Exists(SetPath.pictures_path))
+                {
+                    Directory.CreateDirectory(SetPath.pictures_path);
+                }
+                if (!File.Exists(SetPath.temp_path))
+                {
+                    Directory.CreateDirectory(SetPath.temp_path);
+                }
+                if (!File.Exists(SetPath.setupIniPath))
+                {
+                    data = new IniData();
+                    data["ChmlFrp_Professional_Launcher Setup"]["Versions"] = "0.0.0.5";
+                    parser.WriteFile(SetPath.setupIniPath, data);
+                }
+                File.WriteAllText(SetPath.logfilePath, string.Empty);
+            }
+            catch
+            {
+                LogsOutputting("文件夹或文件创建失败");
+            }
+            LogsOutputting("文件夹已创建或创建成功");
+            //创建日志文件
+            try
+            {
+                for (int i = 1; i < 6; i++)
+                {
+                    if (!File.Exists(Path.Combine(SetPath.CPLPath, i + ".logs")))
+                    {
+                        File.Create(Path.Combine(SetPath.CPLPath, i + ".logs"));
+                    }
+                }
+            }
+            catch
+            {
+                LogsOutputting("日志文件创建失败");
+            }
+            LogsOutputting("日志文件已创建或创建成功");
+            LogsOutputting("进入MainWindow");
         }
     }
 }

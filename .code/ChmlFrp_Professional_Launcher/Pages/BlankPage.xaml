@@ -13,13 +13,14 @@
         <StackPanel Orientation="Vertical"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Top">
-            <Grid Height="45"></Grid>
-            <Image
+            <Image Margin="0,25,0,0"
                 Source="\Icons\FluentEmojiHighContrastConstruction.png"
-                    Height="200"
+                    Stretch="Fill"
+                    Height="250"
                     Width="250"/>
             <TextBlock HorizontalAlignment="Center"
                     FontSize="25"
+                    FontFamily="Segoe UI"
                     Text="正在施工中..."/>
         </StackPanel>
     </Grid>

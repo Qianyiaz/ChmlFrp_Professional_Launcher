@@ -3,18 +3,15 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ChmlFrp_Professional_Launcher"
+        xmlns:local="clr-namespace:ChmlFrp_Professional_Launcher.Pages"
         mc:Ignorable="d"
-        Height="150"
-        Width="150"
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
         Background="Transparent"
         AllowsTransparency="True"
         ResizeMode="NoResize"
-        WindowState="Normal"
-        Title="ChmlFrpProfessionalLauncher">
+        WindowState="Normal">
     <Grid>
-        <Image Source="/favicon.ico"/>
+        <Image Height="150" Width="150" Stretch="Fill" Source="/favicon.ico"/>
     </Grid>
 </Window>

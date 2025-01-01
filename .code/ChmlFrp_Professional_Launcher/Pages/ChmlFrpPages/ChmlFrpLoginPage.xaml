@@ -9,114 +9,112 @@
       Title="ChmFrp">
 
     <Grid>
-        <Border Background="Transparent">
-            <Frame x:Name="PagesNavigation"
-                   NavigationUIVisibility="Automatic">
-            </Frame>
-        </Border>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="360"/>
+        </Grid.ColumnDefinitions>
 
-        <Border Margin="50"
+        <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock Text="Sign In to"
+                            Margin="0,-25,0,0"
+                            FontSize="30"
+                            FontFamily="Bold"/>
+            <TextBlock Text="ChmlFrp Panel"
+                            Margin="0,35,0,0"
+                            FontSize="30"
+                            FontFamily="Bold"/>
+        </StackPanel>
+
+        <Border Width="360"
+                Grid.Column="1"
                 Opacity="0.8"
                 Background="#f9f9f9"
-                CornerRadius="10"
-                Grid.Row="0">
+                HorizontalAlignment="Right"
+                CornerRadius="0,0,5,0">
             <Grid>
                 <StackPanel HorizontalAlignment="Center"
-                            VerticalAlignment="Top"
+                            VerticalAlignment="Center"
                             Orientation="Vertical">
-                    <TextBlock Text="ChmlFrp 启动页"
-                            Margin="15"
-                               FontSize="35"
-                            HorizontalAlignment="Center"/>
 
-                    <StackPanel HorizontalAlignment="Center"
-                                VerticalAlignment="Center"
-                                Orientation="Horizontal">
-                        <TextBlock FontSize="20"
-                                   Text="用户名:"
-                                   Foreground="Black"
-                                   FontWeight="Bold"/>
-                        <TextBox  TextChanged="TextBox_Username_ini"
-                                  Width="150"
-                                  x:Name="TextBox_Username"
-                                  Foreground="Black"
-                                  BorderBrush="{x:Null}"
-                                  FontSize="15">
-                            <TextBox.Resources>
-                                <Style TargetType="{x:Type TextBox}">
-                                    <Setter Property="Template">
-                                        <Setter.Value>
-                                            <ControlTemplate TargetType="{x:Type TextBox}">
-                                                <Border Background="Transparent"
-                                                        CornerRadius="5"
-                                                        Width="150"
-                                                        BorderBrush="#332C43"
-                                                        BorderThickness="1">
-                                                    <ScrollViewer x:Name="PART_ContentHost"/>
-                                                </Border>
-                                            </ControlTemplate>
-                                        </Setter.Value>
-                                    </Setter>
-                                </Style>
-                            </TextBox.Resources>
-                        </TextBox>
-                    </StackPanel>
-                    <StackPanel Margin="5"
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"
-                                Orientation="Horizontal">
-                        <TextBlock Height="25"
-                                   FontSize="20"
-                                   Text="密码:"
-                                   Foreground="Black"
-                                   FontWeight="Bold"
-                                   Width="65"/>
-                        <TextBox  TextChanged="TextBox_password_ini"
-                                  Width="150"
-                                  x:Name="TextBox_password"
-                                  Foreground="Black"
-                                  BorderBrush="{x:Null}"
-                                  FontSize="15">
-                            <TextBox.Resources>
-                                <Style TargetType="{x:Type TextBox}">
-                                    <Setter Property="Template">
-                                        <Setter.Value>
-                                            <ControlTemplate TargetType="{x:Type TextBox}">
-                                                <Border Background="Transparent"
-                                                        CornerRadius="5"
-                                                        BorderBrush="#332C43"
-                                                        BorderThickness="1">
-                                                    <ScrollViewer x:Name="PART_ContentHost"/>
-                                                </Border>
-                                            </ControlTemplate>
-                                        </Setter.Value>
-                                    </Setter>
-                                </Style>
-                            </TextBox.Resources>
-                        </TextBox>
-                    </StackPanel>
+                    <TextBox TextChanged="TextBox_Username_ini"
+                             x:Name="TextBox_Username"
+                             Height="35"
+                             Width="320"
+                             Margin="0,-25,0,0"
+                             Foreground="Gray"
+                             BorderBrush="{x:Null}"
+                             FontSize="16"
+                             FontFamily="Bold"
+                             GotFocus="TextBox_GotFocus"
+                             LostFocus="TextBox_LostFocus"
+                             Text="用户名或邮箱"
+                             TextAlignment="Left"
+                             VerticalContentAlignment="Center">
+                        <TextBox.Resources>
+                            <Style TargetType="{x:Type TextBox}">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type TextBox}">
+                                            <Border Background="Transparent"
+                                                    CornerRadius="15"
+                                                    BorderBrush="Black"
+                                                    BorderThickness="1">
+                                                <ScrollViewer x:Name="PART_ContentHost" Padding="10,0,0,0"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </TextBox.Resources>
+                    </TextBox>
+
+                    <PasswordBox x:Name="TextBox_password"
+                             Height="35"
+                             Width="320"
+                             Margin="0,25,0,0"
+                             Foreground="Black"
+                             BorderBrush="{x:Null}"
+                             FontSize="16"
+                             FontFamily="Bold"
+                             VerticalContentAlignment="Center">
+                        <PasswordBox.Resources>
+                            <Style TargetType="{x:Type PasswordBox}">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type PasswordBox}">
+                                            <Border Background="Transparent"
+                                                    CornerRadius="15"
+                                                    BorderBrush="Black"
+                                                    BorderThickness="1">
+                                                <ScrollViewer x:Name="PART_ContentHost" Padding="10,0,0,0"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </PasswordBox.Resources>
+                    </PasswordBox>
 
                     <Button Foreground="{DynamicResource TextPrimaryColor}"
                             FontWeight="ExtraLight"
                             Background="Transparent"
                             Content="登录"
-                            Margin="25"
                             FontSize="15"
-                            Width="300"
-                            Height="35"
+                            Width="340"
+                            Height="45"
+                            Margin="0,55,0,0"
                             x:Name="logonButton"
                             Click="logon">
                         <Button.Resources>
                             <Style TargetType="{x:Type Border}">
                                 <Setter Property="CornerRadius"
-                                        Value="5"/>
+                                        Value="15"/>
                             </Style>
                         </Button.Resources>
                     </Button>
+                    
                 </StackPanel>
             </Grid>
         </Border>
     </Grid>
-    <!--<TextBlock HorizontalAlignment="Left" VerticalAlignment="Top"  x:Name="text_msg" Height="auto" Width="auto" FontSize="15" Text="提示语" Foreground="Black"
-                               FontWeight="Bold" Margin="340,275,0,0"/>-->
 </Page>

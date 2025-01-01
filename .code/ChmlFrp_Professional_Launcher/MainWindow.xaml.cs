@@ -1,8 +1,8 @@
 ﻿using ChmlFrp_Professional_Launcher.Pages;
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -21,11 +21,20 @@ namespace ChmlFrp_Professional_Launcher
         private SetPath SetPath = new();
         public MainWindow()
         {
-            StartWindow startWindow = new();
-            startWindow.Show();
+            // 检测是否有两个ChmlFrp_Professional_Launcher进程
+            if (IsProcessRunning("ChmlFrp_Professional_Launcher", 2))
+            {
+                Reminding.LogsOutputting("检测到有两个ChmlFrp_Professional_Launcher退出");
+                btnClose_Click(null,null);
+            }
+            // 弹出启动页
+            StartWindow StartWindow = new();
+            StartWindow.Show();
             System.Threading.Thread.Sleep(3000);
-            startWindow.Close();
+            StartWindow.Close();
+            // 初始化主窗口
             InitializeComponent();
+            // 显示背景图片
             string[] imageFiles = Directory.GetFiles(SetPath.pictures_path, "*.*")
                 .Where(file => file.EndsWith(".jpg", StringComparison.OrdinalIgnoreCase) ||
                                file.EndsWith(".png", StringComparison.OrdinalIgnoreCase))
@@ -39,6 +48,7 @@ namespace ChmlFrp_Professional_Launcher
                 Imagewallpaper.Stretch = Stretch.UniformToFill;
             }
             Reminding.LogsOutputting("背景图片或默认加载成功");
+            // 进入启动页
             rdLaunchPage_Click(this, new RoutedEventArgs());
         }
 
@@ -89,7 +99,7 @@ namespace ChmlFrp_Professional_Launcher
             ChmlfrpPageButton.SetValue(Button.ForegroundProperty, new SolidColorBrush((Color)ColorConverter.ConvertFromString("#1276DB")));
             SettingsPageButton.SetValue(Button.BackgroundProperty, new SolidColorBrush((Color)ColorConverter.ConvertFromString("#1276DB")));
             SettingsPageButton.SetValue(Button.ForegroundProperty, new SolidColorBrush((Color)ColorConverter.ConvertFromString("#f9f9f9")));
-            if (Downloadfiles.GitAPI_Login())
+            if (Downloadfiles.GitAPI_Login(false))
             {
                 PagesNavigation.Navigate(new ChmlFrphomePage());
                 return;
@@ -111,7 +121,14 @@ namespace ChmlFrp_Professional_Launcher
             ChmlfrpPageButton.SetValue(Button.ForegroundProperty, new SolidColorBrush((Color)ColorConverter.ConvertFromString("#f9f9f9")));
             SettingsPageButton.SetValue(Button.BackgroundProperty, new SolidColorBrush((Color)ColorConverter.ConvertFromString("#f9f9f9")));
             SettingsPageButton.SetValue(Button.ForegroundProperty, new SolidColorBrush((Color)ColorConverter.ConvertFromString("#1276DB")));
-            PagesNavigation.Navigate(new SettingHomePage());
+            PagesNavigation.Navigate(new BlankPage());
+            //PagesNavigation.Navigate(new SettingHomePage());
+        }
+
+        static bool IsProcessRunning(string processName, int count)
+        {
+            Process[] processes = Process.GetProcessesByName(processName);
+            return processes.Length >= count;
         }
     }
 }
