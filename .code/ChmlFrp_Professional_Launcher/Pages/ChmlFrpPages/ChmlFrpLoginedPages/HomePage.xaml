@@ -8,6 +8,15 @@
       d:DesignHeight="370"
       d:DesignWidth="620">
 
+    <Page.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="FontWeight" Value="Normal"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+    </Page.Resources>
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -15,17 +24,17 @@
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="1">
             <Border Opacity="0.8"
-                    CornerRadius="0,0,10,0"
+                    CornerRadius="0,0,6,0"
                     Background="#f9f9f9"/>
             <TextBlock VerticalAlignment="Top"
-                    FontSize="15"
-                    HorizontalAlignment="Left"
-                    Margin="10"
-                    Text="账户详情"/>
+                       FontSize="15"
+                       FontWeight="Black"
+                       HorizontalAlignment="Left"
+                       Margin="10"
+                       Text="账户详情"/>
             <StackPanel Orientation="Vertical">
                 <Grid Height="10"/>
-                <Border Height="100"
-                        Width="100">
+                <Border Height="100" Width="100">
                     <Ellipse>
                         <Ellipse.Fill>
                             <ImageBrush x:Name="UserImage"
@@ -34,138 +43,46 @@
                         </Ellipse.Fill>
                     </Ellipse>
                 </Border>
-                <TextBlock VerticalAlignment="Bottom"
-                        FontSize="20"
-                        x:Name="UserTextBlock"
-                        HorizontalAlignment="Center"
-                        Text="Hi，"/>
-                <TextBlock VerticalAlignment="Bottom"
-                        FontSize="15"
-                        x:Name="Usermailbox"
-                        HorizontalAlignment="Center"
-                        Text="我是擎天柱"/>
-                <StackPanel Orientation="Horizontal"
-                        HorizontalAlignment="Center">
-                    <StackPanel Orientation="Vertical"
-                            Margin="12">
-                        <TextBlock VerticalAlignment="Bottom"
-                                FontSize="15"
-                                HorizontalAlignment="Center"
-                                Text="注册时间"/>
-                        <TextBlock VerticalAlignment="Bottom"
-                                FontSize="15"
-                                x:Name="UserRegistration_time"
-                                HorizontalAlignment="Center"
-                                Text="我是擎天柱"/>
+                <TextBlock x:Name="UserTextBlock" FontSize="20" Text="Hi，"/>
+                <TextBlock x:Name="Usermailbox" Text="我是擎天柱"/>
+                <UniformGrid Columns="3" HorizontalAlignment="Center">
+                    <StackPanel>
+                        <TextBlock Text="注册时间"/>
+                        <TextBlock x:Name="UserRegistration_time" Text="我是擎天柱"/>
                     </StackPanel>
-                    <StackPanel Orientation="Vertical"
-                            Margin="12">
-                        <TextBlock VerticalAlignment="Bottom"
-                                FontSize="15"
-                                HorizontalAlignment="Center"
-                                Text="QQ"/>
-                        <TextBlock VerticalAlignment="Bottom"
-                                FontSize="15"
-                                x:Name="UserQQ"
-                                HorizontalAlignment="Center"
-                                Text="我是擎天柱"/>
+                    <StackPanel>
+                        <TextBlock Text="QQ"/>
+                        <TextBlock x:Name="UserQQ" Text="我是擎天柱"/>
                     </StackPanel>
-                    <StackPanel Orientation="Vertical"
-                            Margin="12">
-                        <TextBlock VerticalAlignment="Bottom"
-                                FontSize="15"
-                                HorizontalAlignment="Center"
-                                Text="权限组"/>
-                        <TextBlock VerticalAlignment="Bottom"
-                                FontSize="15"
-                                x:Name="Userright"
-                                HorizontalAlignment="Center"
-                                Text="我是擎天柱"/>
+                    <StackPanel>
+                        <TextBlock Text="权限组"/>
+                        <TextBlock x:Name="Userright" Text="我是擎天柱"/>
                     </StackPanel>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal"
-                        HorizontalAlignment="Center">
-                    <StackPanel Orientation="Vertical"
-                            Margin="12">
-                        <TextBlock VerticalAlignment="Bottom"
-                                FontSize="15"
-                                HorizontalAlignment="Center"
-                                Text="到期时间"/>
-                        <TextBlock VerticalAlignment="Bottom"
-                                FontSize="15"
-                                x:Name="UserExpiration_time"
-                                HorizontalAlignment="Center"
-                                Text="我是擎天柱"/>
+                </UniformGrid>
+                <UniformGrid Columns="3" HorizontalAlignment="Center" Margin="0,5,5,0">
+                    <StackPanel>
+                        <TextBlock Text="到期时间"/>
+                        <TextBlock x:Name="UserExpiration_time" Text="我是擎天柱"/>
                     </StackPanel>
-                    <StackPanel Orientation="Vertical"
-                            Margin="12">
-                        <TextBlock VerticalAlignment="Bottom"
-                                FontSize="15"
-                                HorizontalAlignment="Center"
-                                Text="实名状态"/>
-                        <TextBlock VerticalAlignment="Bottom"
-                                FontSize="15"
-                                x:Name="UserReal_name_status"
-                                HorizontalAlignment="Center"
-                                Text="我是擎天柱"/>
+                    <StackPanel>
+                        <TextBlock Text="实名状态"/>
+                        <TextBlock x:Name="UserReal_name_status" Text="我是擎天柱"/>
                     </StackPanel>
-                    <StackPanel Orientation="Vertical"
-                            Margin="12">
-                        <TextBlock VerticalAlignment="Bottom"
-                                FontSize="15"
-                                HorizontalAlignment="Center"
-                                Text="剩余积分"/>
-                        <TextBlock VerticalAlignment="Bottom"
-                                FontSize="15"
-                                x:Name="UserPoints_remaining"
-                                HorizontalAlignment="Center"
-                                Text="我是擎天柱"/>
+                    <StackPanel>
+                        <TextBlock Text="剩余积分"/>
+                        <TextBlock x:Name="UserPoints_remaining" Text="我是擎天柱"/>
                     </StackPanel>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal"
-                        HorizontalAlignment="Center">
-                    <StackPanel Orientation="Vertical"
-                            Margin="12">
-                        <TextBlock VerticalAlignment="Bottom"
-                                FontSize="15"
-                                HorizontalAlignment="Center"
-                                Text="隧道限制"/>
-                        <TextBlock VerticalAlignment="Bottom"
-                                FontSize="15"
-                                x:Name="UserTunnel_restrictions"
-                                HorizontalAlignment="Center"
-                                Text="我是擎天柱"/>
+                </UniformGrid>
+                <UniformGrid Columns="2" HorizontalAlignment="Center">
+                    <StackPanel Margin="0,0,15,0">
+                        <TextBlock Text="隧道限制"/>
+                        <TextBlock x:Name="UserTunnel_restrictions" Text="我是擎天柱"/>
                     </StackPanel>
-                    <Grid Width="50"/>
-                    <StackPanel Orientation="Vertical"
-                            Margin="12">
-                        <TextBlock VerticalAlignment="Bottom"
-                                FontSize="15"
-                                HorizontalAlignment="Center"
-                                Text="带宽限制"/>
-                        <TextBlock VerticalAlignment="Bottom"
-                                FontSize="15"
-                                x:Name="UserBandwidth_throttling"
-                                HorizontalAlignment="Center"
-                                Text="我是擎天柱"/>
+                    <StackPanel>
+                        <TextBlock Text="带宽限制"/>
+                        <TextBlock x:Name="UserBandwidth_throttling" Text="我是擎天柱"/>
                     </StackPanel>
-                </StackPanel>
-                <Button Foreground="{DynamicResource TextPrimaryColor}"
-                        FontWeight="ExtraLight"
-                        Background="Transparent"
-                        Content="点击显示Token"
-                        FontSize="12"
-                        Width="200"
-                        x:Name="Token"
-                        Click="TokenClick"
-                        Height="28">
-                    <Button.Resources>
-                        <Style TargetType="{x:Type Border}">
-                            <Setter Property="CornerRadius"
-                                    Value="5"/>
-                        </Style>
-                    </Button.Resources>
-                </Button>
+                </UniformGrid>
             </StackPanel>
         </Grid>
     </Grid>

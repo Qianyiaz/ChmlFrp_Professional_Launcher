@@ -43,6 +43,7 @@ using System;
 using System.Windows;
 using ChmlFrp_Professional_Launcher.Pages;
 using System.Windows.Media;
+using System.Windows.Controls;
 
 
 namespace ChmlFrp_Professional_Launcher
@@ -161,6 +162,7 @@ namespace ChmlFrp_Professional_Launcher
             }
             else
             {
+                if (Remind) Reminding.RemindingShow("网络错误", "red");
                 return false;
             }
         }
@@ -280,5 +282,16 @@ namespace ChmlFrp_Professional_Launcher
             LogsOutputting("日志文件已创建或创建成功");
             LogsOutputting("进入MainWindow");
         }
+    }
+
+    public class CornerButten:Button
+    {
+        public CornerRadius CornerRadius
+        {
+            get { return (CornerRadius)GetValue(CornerRadiusProperty); }
+            set { SetValue(CornerRadiusProperty, value); }
+        }
+        public static readonly DependencyProperty CornerRadiusProperty =
+            DependencyProperty.Register("CornerRadius", typeof(CornerRadius), typeof(CornerButten));
     }
 }

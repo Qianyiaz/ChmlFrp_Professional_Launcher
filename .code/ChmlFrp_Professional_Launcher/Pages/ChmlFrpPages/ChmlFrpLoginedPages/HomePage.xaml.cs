@@ -53,21 +53,21 @@ namespace ChmlFrp_Professional_Launcher.Pages.ChmlFrpLoginPages
             UserBandwidth_throttling.Text = "国内" + jsonObject["data"]["bandwidth"]?.ToString() + "m";
         }
 
-        private void TokenClick(object sender, RoutedEventArgs e)
-        {
-            Token.Click -= TokenClick;
-            string jsonContent = System.IO.File.ReadAllText(SetPath.temp_api_path);
-            var jsonObject = JObject.Parse(jsonContent);
-            if (Token.Content.ToString() == jsonObject["data"]["usertoken"]?.ToString())
-            {
-                Clipboard.SetDataObject(Token.Content.ToString());
-                Token.Content = "已复制到的剪切板点击重新显示";
-                Token.Click += TokenClick;
-                return;
-            }
-            Token.Content = jsonObject["data"]["usertoken"]?.ToString();
-            Token.Click += TokenClick;
-        }
+        //private void TokenClick(object sender, RoutedEventArgs e)
+        //{
+        //    Token.Click -= TokenClick;
+        //    string jsonContent = System.IO.File.ReadAllText(SetPath.temp_api_path);
+        //    var jsonObject = JObject.Parse(jsonContent);
+        //    if (Token.Content.ToString() == jsonObject["data"]["usertoken"]?.ToString())
+        //    {
+        //        Clipboard.SetDataObject(Token.Content.ToString());
+        //        Token.Content = "已复制到的剪切板点击重新显示";
+        //        Token.Click += TokenClick;
+        //        return;
+        //    }
+        //    Token.Content = jsonObject["data"]["usertoken"]?.ToString();
+        //    Token.Click += TokenClick;
+        //}
     }
 }
 

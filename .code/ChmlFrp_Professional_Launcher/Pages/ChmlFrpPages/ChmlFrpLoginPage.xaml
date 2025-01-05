@@ -30,7 +30,7 @@
                 Opacity="0.8"
                 Background="#f9f9f9"
                 HorizontalAlignment="Right"
-                CornerRadius="0,0,5,0">
+                CornerRadius="0,0,6,0">
             <Grid>
                 <StackPanel HorizontalAlignment="Center"
                             VerticalAlignment="Center"

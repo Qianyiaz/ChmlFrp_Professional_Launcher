@@ -26,7 +26,7 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
 
-                <Border  CornerRadius="5,5,0,0"
+                <Border  CornerRadius="6,6,0,0"
                      MouseLeftButtonDown="Border_MouseLeftButtonDown"
                      Grid.Row="0"
                      Height="50"
@@ -55,61 +55,46 @@
                             </Path>
                         </Grid>
 
-                        <Grid Width="280">
+                        <Grid>
                             <StackPanel HorizontalAlignment="Center"
                                     VerticalAlignment="Center"
                                     Orientation="Horizontal">
-                                <Button Foreground="#f9f9f9"
+                                
+                                <local:CornerButten  Foreground="#f9f9f9"
                                     FontWeight="ExtraLight"
                                     Background="#1276DB"
                                     Content="启动"
                                     FontSize="13"
                                     Width="75"
-                                    Height="28"
+                                    Height="30"
                                     BorderBrush="{x:Null}"
                                     x:Name="LaunchPageButton"
-                                    Click="rdLaunchPage_Click">
-                                    <Button.Resources>
-                                        <Style TargetType="{x:Type Border}">
-                                            <Setter Property="CornerRadius"
-                                                Value="15"/>
-                                        </Style>
-                                    </Button.Resources>
-                                </Button>
-                                <Button Foreground="#f9f9f9"
+                                    CornerRadius="20"
+                                    Click="rdLaunchPage_Click"/>
+
+                                <local:CornerButten Foreground="#f9f9f9"
                                     FontWeight="ExtraLight"
                                     Background="#1276DB"
                                     Content="登录"
                                     FontSize="13"
                                     Width="75"
-                                    Height="28"
+                                    Height="30"
                                     BorderBrush="{x:Null}"
                                     x:Name="ChmlfrpPageButton"
-                                    Click="rdChmlfrpPage_Click">
-                                    <Button.Resources>
-                                        <Style TargetType="{x:Type Border}">
-                                            <Setter Property="CornerRadius"
-                                                Value="15"/>
-                                        </Style>
-                                    </Button.Resources>
-                                </Button>
-                                <Button Foreground="#f9f9f9"
+                                    CornerRadius="20"
+                                    Click="rdChmlfrpPage_Click"/>
+
+                                <local:CornerButten Foreground="#f9f9f9"
                                     FontWeight="ExtraLight"
                                     Background="#1276DB"
                                     Content="设置"
                                     FontSize="13"
                                     Width="75"
-                                    Height="28"
+                                    Height="30"
                                     BorderBrush="{x:Null}"
                                     x:Name="SettingsPageButton"
-                                    Click="rdSettingsPage_Click">
-                                    <Button.Resources>
-                                        <Style TargetType="{x:Type Border}">
-                                            <Setter Property="CornerRadius"
-                                                Value="15"/>
-                                        </Style>
-                                    </Button.Resources>
-                                </Button>
+                                    CornerRadius="20"
+                                    Click="rdSettingsPage_Click"/>
                             </StackPanel>
                         </Grid>
 
@@ -136,16 +121,17 @@
                         </StackPanel>
                     </Grid>
                 </Border>
+                
                 <Grid Grid.Row="1">
                     <Border Background="#C7D7EE"
-                        CornerRadius="0,0,5,5"/>
-                    <Border CornerRadius="0,0,4,4">
+                        CornerRadius="0,0,6,6"/>
+                    <Border CornerRadius="0,0,5,5">
                         <Border.Background>
                             <ImageBrush Opacity="0.8"
                                     x:Name="Imagewallpaper"/>
                         </Border.Background>
                     </Border>
-                    <Border CornerRadius="0,0,5,5">
+                    <Border CornerRadius="0,0,6,6">
                         <Frame x:Name="PagesNavigation"
                            NavigationUIVisibility="Hidden">
                         </Frame>

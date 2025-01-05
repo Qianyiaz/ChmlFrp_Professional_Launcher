@@ -17,15 +17,14 @@
         <Grid Grid.Column="1">
             <Border Opacity="0.8"
                     Background="#f9f9f9"
-                    CornerRadius="0,0,5,0">
+                    CornerRadius="0,0,6,0">
                 <Grid>
                     <StackPanel HorizontalAlignment="Center"
                                 VerticalAlignment="Bottom">
                         <Button Foreground="{DynamicResource TextPrimaryColor}"
-                                FontWeight="ExtraLight"
                                 Background="Transparent"
                                 Content="未找到配置文件"
-                                FontSize="15"
+                                FontSize="13"
                                 Width="250"
                                 Height="60"
                                 x:Name="LaunchButton"
@@ -34,10 +33,11 @@
                             <Button.Resources>
                                 <Style TargetType="{x:Type Border}">
                                     <Setter Property="CornerRadius"
-                                            Value="5"/>
+                                            Value="10"/>
                                 </Style>
                             </Button.Resources>
                         </Button>
+                        <!--<ComboBox/>-->
                     </StackPanel>
                 </Grid>
             </Border>

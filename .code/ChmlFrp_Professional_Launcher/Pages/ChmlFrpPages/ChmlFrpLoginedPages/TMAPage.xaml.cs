@@ -54,6 +54,8 @@ namespace ChmlFrp_Professional_Launcher.Pages.ChmlFrpLoginPages
                             if (state == "false")
                             {
                                 NodeTextBlock_1_3_2.Text = "离线";
+                                NodeTextBlock_1_3_1.Background = Brushes.Yellow;
+                                NodeTextBlock_1_3_2.Foreground = Brushes.Red;
                             }
                             if (state == "true")
                             {
@@ -70,6 +72,8 @@ namespace ChmlFrp_Professional_Launcher.Pages.ChmlFrpLoginPages
                             if (state == "false")
                             {
                                 NodeTextBlock_2_3_2.Text = "离线";
+                                NodeTextBlock_2_3_1.Background = Brushes.Yellow;
+                                NodeTextBlock_2_3_2.Foreground = Brushes.Red;
                             }
                             NodeTextBlock_2_4_2.Text = tunnel["node"]?.ToString();
                             if (state == "true")
@@ -86,6 +90,8 @@ namespace ChmlFrp_Professional_Launcher.Pages.ChmlFrpLoginPages
                             if (state == "false")
                             {
                                 NodeTextBlock_3_3_2.Text = "离线";
+                                NodeTextBlock_3_3_1.Background = Brushes.Yellow;
+                                NodeTextBlock_3_3_2.Foreground = Brushes.Red;
                             }
                             if (state == "true")
                             {
@@ -102,6 +108,8 @@ namespace ChmlFrp_Professional_Launcher.Pages.ChmlFrpLoginPages
                             if (state == "false")
                             {
                                 NodeTextBlock_2_3_2.Text = "离线";
+                                NodeTextBlock_2_3_1.Background = Brushes.Yellow;
+                                NodeTextBlock_2_3_2.Foreground = Brushes.Red;
                             }
                             if (state == "true")
                             {
