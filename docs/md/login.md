@@ -1,6 +1,7 @@
 # 登录参数
-| username | 用户名或邮箱 |
+| 参数 | 描述 |
 | ------- | ------- |
+| username | 用户名或邮箱 |
 | password | 密码 |
 ## 登录成功API返回
 ```
@@ -14,7 +15,7 @@
         "usertoken": "token",
         "qianDao": "false",
         "userGroup": "普通用户",
-        "integral": 5,
+        "integral": 114514,
         "abroadBandwidth": 16,
         "bandwidth": 8,
         "qq": 2976779544,
@@ -30,31 +31,32 @@
 }
 ```
 ### 登录成功API解析
-| 字段          | 描述     |
-| ------------- | -------- |
-| username      | 用户名   |
-| password      | 密码     |
-| email         | 邮箱     |
-| usertoken     | 令牌     |
-| realName      | 实名状态 |
-| usergroup     | 用户等级 |
-| userimg       | 用户头像 |
-| integral      | 积分数   |
-| bandwidth     | 国内带宽 |
-| abroadBandwidth | 国外带宽 |
-| tunnel        | 隧道拥有数 |
-| usedTunnel    | 隧道使用数 |
+| 字段 | 描述 | 例举 |
+| --------- | -------- | --------  |
+| username      | 用户名   | Qyzgj |
+| password      | 密码     | null |
+| email         | 邮箱     | <2976779544@qq.com> |
+| usertoken     | 令牌     | token |
+| realName      | 实名状态 | 已实名 |
+| usergroup     | 用户等级 | 普通用户 |
+| userimg       | 用户头像 | https:www.example.com/logo.png |
+| integral      | 积分数   | 114514 |
+| bandwidth     | 国内带宽 | 8 |
+| abroadBandwidth | 国外带宽 | 16 |
+| tunnel        | 隧道拥有数 | 2 |
+| usedTunnel    | 隧道使用数 | 1 |
 ### 示例代码 C#
 ``` csharp
-using Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Linq; // 使用Json.net,自行下载。
 
 class Program
 {
     static void Main()
     {
+            // 不提供下载方法，自行学习。
             string jsonContent = System.IO.File.ReadAllText("path/to/your/jsonfile.json"); // 为文件路径
             var jsonObject = JObject.Parse(jsonContent);
-            string msg = jsonObject["msg"]?.ToString(); // 读取是否登录状态
+            string username = jsonObject["data"]["username"]?.ToString(); // 读取用户名。
     }
 }
 ```
@@ -83,4 +85,3 @@ class Program
     "state": "fail"
 }
 ```
-> 声明：部分示例来自[这里](https://github.com/boringstudents/chmlfrp_v2api)，还有部分来自[这里](https://apifox.com/apidoc/shared-24b31bd1-e48b-44ab-a486-81cf5f964422/)，在此感谢。
