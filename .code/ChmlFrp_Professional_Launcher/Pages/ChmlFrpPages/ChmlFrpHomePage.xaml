@@ -33,7 +33,6 @@
                     FontWeight="Bold"
                     Content="隧道管理"
                     Style="{DynamicResource MenuRadioButtonStyle}"/>
-
         </StackPanel>
         <Grid Grid.Column="1">
             <Border CornerRadius="0,0,10,10">

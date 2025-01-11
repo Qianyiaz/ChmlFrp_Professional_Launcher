@@ -284,7 +284,7 @@ namespace ChmlFrp_Professional_Launcher
         }
     }
 
-    public class CornerButten:Button
+    public class CornerButten: RadioButton
     {
         public CornerRadius CornerRadius
         {

@@ -60,11 +60,9 @@
                                     VerticalAlignment="Center"
                                     Orientation="Horizontal">
                                 
-                                <local:CornerButten  Foreground="#f9f9f9"
-                                    FontWeight="ExtraLight"
-                                    Background="#1276DB"
+                                <local:CornerButten  
+                                    IsChecked="True"
                                     Content="启动"
-                                    FontSize="13"
                                     Width="75"
                                     Height="30"
                                     BorderBrush="{x:Null}"
@@ -72,11 +70,8 @@
                                     CornerRadius="20"
                                     Click="rdLaunchPage_Click"/>
 
-                                <local:CornerButten Foreground="#f9f9f9"
-                                    FontWeight="ExtraLight"
-                                    Background="#1276DB"
+                                <local:CornerButten 
                                     Content="登录"
-                                    FontSize="13"
                                     Width="75"
                                     Height="30"
                                     BorderBrush="{x:Null}"
@@ -84,11 +79,8 @@
                                     CornerRadius="20"
                                     Click="rdChmlfrpPage_Click"/>
 
-                                <local:CornerButten Foreground="#f9f9f9"
-                                    FontWeight="ExtraLight"
-                                    Background="#1276DB"
+                                <local:CornerButten 
                                     Content="设置"
-                                    FontSize="13"
                                     Width="75"
                                     Height="30"
                                     BorderBrush="{x:Null}"

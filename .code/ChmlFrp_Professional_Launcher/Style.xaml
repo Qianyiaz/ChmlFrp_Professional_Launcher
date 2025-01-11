@@ -147,9 +147,18 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:CornerButten}">
-                    <Border Background="{TemplateBinding Background}" CornerRadius="{TemplateBinding CornerRadius}">
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <Border x:Name="border" Background="#1276DB" CornerRadius="{TemplateBinding CornerRadius}">
+                        <TextBlock FontSize="14" x:Name="borderTextBlock" Foreground="#f9f9f9" Text="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="#f9f9f9"/>
+                            <Setter TargetName="borderTextBlock" Property="Foreground" Value="Black"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="#ADD8E6"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

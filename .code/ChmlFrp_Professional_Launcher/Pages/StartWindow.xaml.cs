@@ -1,4 +1,8 @@
-﻿using System.Windows;
+﻿using System;
+using System.Linq;
+using System.Windows;
+using System.Windows.Media.Imaging;
+
 
 namespace ChmlFrp_Professional_Launcher
 {
@@ -8,8 +12,21 @@ namespace ChmlFrp_Professional_Launcher
         public StartWindow()
         {
             InitializeComponent();
+            LoadLargestIcon();
             Loaded += StartWindow_Loaded;
-            Reminding.Initialize();        }
+            Reminding.Initialize();        
+        }
+
+        private void LoadLargestIcon()
+        {
+            var iconUri = new Uri("pack://application:,,,/favicon.ico", UriKind.RelativeOrAbsolute);
+            var decoder = new IconBitmapDecoder(iconUri, BitmapCreateOptions.None, BitmapCacheOption.Default);
+            var largestFrame = decoder.Frames.OrderByDescending(f => f.PixelWidth).FirstOrDefault();
+            if (largestFrame != null)
+            {
+                IconImage.Source = largestFrame;
+            }
+        }
 
         private void StartWindow_Loaded(object sender, RoutedEventArgs e)
         {
