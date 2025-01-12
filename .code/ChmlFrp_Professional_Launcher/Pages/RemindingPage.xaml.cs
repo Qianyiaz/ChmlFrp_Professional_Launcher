@@ -18,7 +18,7 @@ namespace ChmlFrp_Professional_Launcher.Pages
 
         private void RemindingPage_Loaded(object sender, RoutedEventArgs e)
         {
-            DispatcherTimer timer = new DispatcherTimer();
+            DispatcherTimer timer = new();
             timer.Interval = TimeSpan.FromSeconds(3);
             timer.Tick += Timer_Tick;
             timer.Start();

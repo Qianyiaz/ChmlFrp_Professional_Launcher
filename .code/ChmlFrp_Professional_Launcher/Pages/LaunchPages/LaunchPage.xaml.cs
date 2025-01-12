@@ -39,13 +39,13 @@ namespace ChmlFrp_Professional_Launcher.Pages
             LaunchButton.Content = "正在启动中...";
             if (i == 5) { i = 0; }
             i++; string logs = Path.Combine(SetPath.CPLPath, i + ".logs");
-            ProcessStartInfo processInfo = new ProcessStartInfo("cmd.exe", "/c " + SetPath.frpPath + " -c " + SetPath.frpIniPath + " >" + logs + " 2>&1")
+            ProcessStartInfo processInfo = new("cmd.exe", "/c " + SetPath.frpPath + " -c " + SetPath.frpIniPath + " >" + logs + " 2>&1")
             {
                 RedirectStandardOutput = true,
                 UseShellExecute = false,
                 CreateNoWindow = true
             };
-            using (Process process = new Process())
+            using (Process process = new())
             {
                 process.StartInfo = processInfo;
                 process.Start();

@@ -33,7 +33,7 @@ namespace ChmlFrp_Professional_Launcher.Pages.ChmlFrpLoginPages
         {
             string jsonContent = System.IO.File.ReadAllText(SetPath.temp_api_path);
             var jsonObject = JObject.Parse(jsonContent);
-            Downloadfiles Downloadfiles = new Downloadfiles();
+            Downloadfiles Downloadfiles = new();
             if (Downloadfiles.Download("http://cf-v2.uapis.cn/tunnel?token=" + jsonObject["data"]["usertoken"]?.ToString(), temp_api_tunnel_path, "txt") == "下载成功")
             {
                 jsonContent = System.IO.File.ReadAllText(temp_api_tunnel_path);

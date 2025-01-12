@@ -90,11 +90,11 @@ namespace ChmlFrp_Professional_Launcher
             }
             if (fileclass == "txt")
             {
-                using (HttpClient client = new HttpClient())
+                using (HttpClient client = new())
                 {
                     try
                     {
-                        WebClient webClient = new WebClient();
+                        WebClient webClient = new();
                         webClient.Encoding = Encoding.UTF8;
                         File.WriteAllText(path, webClient.DownloadString(url));
                     }
@@ -111,7 +111,7 @@ namespace ChmlFrp_Professional_Launcher
             {
                 try
                 {
-                    using (WebClient client = new WebClient())
+                    using (WebClient client = new())
                     {
                         client.DownloadFile(new Uri(url), path);
                     }
@@ -136,7 +136,7 @@ namespace ChmlFrp_Professional_Launcher
             IniData data;
             var parser = new FileIniDataParser();
             data = parser.ReadFile(SetPath.setupIniPath);
-            Downloadfiles Downloadfiles = new Downloadfiles();
+            Downloadfiles Downloadfiles = new();
             if (Downloadfiles.Download("https://cf-v2.uapis.cn/login?username=" + data["ChmlFrp_Professional_Launcher Setup"]["Username"] + "&password=" + data["ChmlFrp_Professional_Launcher Setup"]["Password"], SetPath.temp_api_path, "txt") == "下载成功")
             {
                 var jsonObject = JObject.Parse(File.ReadAllText(SetPath.temp_api_path));
@@ -178,7 +178,7 @@ namespace ChmlFrp_Professional_Launcher
             logEntry = $"[{DateTime.Now}] " + logEntry;
             Console.WriteLine(logEntry);
 
-            FileInfo logFileInfo = new FileInfo(SetPath.logfilePath);
+            FileInfo logFileInfo = new(SetPath.logfilePath);
             if (logFileInfo.Exists && logFileInfo.Length > 15 * 1024)
             {
                 File.WriteAllText(SetPath.logfilePath, string.Empty);
@@ -189,38 +189,28 @@ namespace ChmlFrp_Professional_Launcher
 
         public void RemindingShow(string message, string color)
         {
-            MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
-            RemindingPage remindingPage = new RemindingPage();
-            if (remindingPage.RemindingBorder != null)
+            MainWindow MainWindow = Application.Current.MainWindow as MainWindow;
+            RemindingPage RemindingPage = new();
+            if (color == "green")
             {
-                if (color == "green")
-                {
-                    remindingPage.RemindingBorder.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#3DB43E"));
-                }
-                else if (color == "blue")
-                {
-                    remindingPage.RemindingBorder.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#349EF7"));
-                }
-                else if (color == "red")
-                {
-                    remindingPage.RemindingBorder.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF0000"));
-                }
-                else
-                {
-                    LogsOutputting("RemindingShow颜色参数错误");
-                    return;
-                }
-                remindingPage.RemidingTextBlock.Text = message;
-                LogsOutputting("显示提醒：" + message);
-                if (mainWindow?.PagesNavigationtwo != null)
-                {
-                    mainWindow.PagesNavigationtwo.Navigate(remindingPage);
-                }
-                else
-                {
-                    LogsOutputting("不存在PagesNavigationtwo");
-                }
+                RemindingPage.RemindingBorder.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#3DB43E"));
             }
+            else if (color == "blue")
+            {
+                RemindingPage.RemindingBorder.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#349EF7"));
+            }
+            else if (color == "red")
+            {
+                RemindingPage.RemindingBorder.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF0000"));
+            }
+            else
+            {
+                LogsOutputting("RemindingShow颜色参数错误");
+                return;
+            }
+            RemindingPage.RemidingTextBlock.Text = message;
+            LogsOutputting("显示提醒：" + message);
+            MainWindow.PagesNavigationtwo.Navigate(RemindingPage);
         }
 
         //初始化
@@ -283,6 +273,10 @@ namespace ChmlFrp_Professional_Launcher
 
     public class CornerButten : RadioButton
     {
+    }
+
+    public class LaunchingButten : Button
+    {
         public CornerRadius CornerRadius
         {
             get { return (CornerRadius)GetValue(CornerRadiusProperty); }
@@ -290,6 +284,6 @@ namespace ChmlFrp_Professional_Launcher
         }
 
         public static readonly DependencyProperty CornerRadiusProperty =
-            DependencyProperty.Register("CornerRadius", typeof(CornerRadius), typeof(CornerButten));
+            DependencyProperty.Register("CornerRadius", typeof(CornerRadius), typeof(LaunchingButten));
     }
 }

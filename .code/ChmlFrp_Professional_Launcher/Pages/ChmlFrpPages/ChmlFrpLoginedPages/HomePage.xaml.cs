@@ -27,7 +27,7 @@ namespace ChmlFrp_Professional_Launcher.Pages.ChmlFrpLoginPages
             }
             else
             {
-                Downloadfiles Downloadfiles = new Downloadfiles();
+                Downloadfiles Downloadfiles = new();
                 Downloadfiles.Download(jsonObject["data"]["userimg"]?.ToString(), temp_UserImage, "others");
                 InitializesetPaths();
             }

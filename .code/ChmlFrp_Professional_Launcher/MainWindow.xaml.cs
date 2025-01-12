@@ -18,7 +18,7 @@ namespace ChmlFrp_Professional_Launcher
     {
         private Reminding Reminding = new();
         private SetPath SetPath = new();
-        private Downloadfiles Downloadfiles = new Downloadfiles();
+        private Downloadfiles Downloadfiles = new();
 
         public MainWindow()
         {
@@ -43,7 +43,7 @@ namespace ChmlFrp_Professional_Launcher
 
             if (imageFiles.Length > 0)
             {
-                Random random = new Random();
+                Random random = new();
                 string randomImage = imageFiles[random.Next(imageFiles.Length)];
                 Imagewallpaper.ImageSource = new BitmapImage(new Uri(randomImage, UriKind.RelativeOrAbsolute));
                 Imagewallpaper.Stretch = Stretch.UniformToFill;
