@@ -22,8 +22,8 @@
         <Grid>
             <Grid Margin="15">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="50"/>
-                    <RowDefinition/>
+                    <RowDefinition Height="50" />
+                    <RowDefinition />
                 </Grid.RowDefinitions>
 
                 <Border  CornerRadius="6,6,0,0"
@@ -34,8 +34,8 @@
                     <Grid>
                         <Grid Margin="0,0,520,0">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="60"/>
-                                <ColumnDefinition/>
+                                <ColumnDefinition Width="60" />
+                                <ColumnDefinition />
                             </Grid.ColumnDefinitions>
 
                             <Path Data="{DynamicResource logo}"
@@ -46,10 +46,10 @@
                               RenderTransformOrigin="0.5,0.5">
                                 <Path.RenderTransform>
                                     <TransformGroup>
-                                        <ScaleTransform ScaleX="-1"/>
-                                        <SkewTransform/>
-                                        <RotateTransform Angle="-180"/>
-                                        <TranslateTransform/>
+                                        <ScaleTransform ScaleX="-1" />
+                                        <SkewTransform />
+                                        <RotateTransform Angle="-180" />
+                                        <TranslateTransform />
                                     </TransformGroup>
                                 </Path.RenderTransform>
                             </Path>
@@ -59,8 +59,8 @@
                             <StackPanel HorizontalAlignment="Center"
                                     VerticalAlignment="Center"
                                     Orientation="Horizontal">
-                                
-                                <local:CornerButten  
+
+                                <local:CornerButten
                                     IsChecked="True"
                                     Content="启动"
                                     Width="75"
@@ -68,25 +68,25 @@
                                     BorderBrush="{x:Null}"
                                     x:Name="LaunchPageButton"
                                     CornerRadius="20"
-                                    Click="rdLaunchPage_Click"/>
+                                    Click="rdLaunchPage_Click" />
 
-                                <local:CornerButten 
+                                <local:CornerButten
                                     Content="登录"
                                     Width="75"
                                     Height="30"
                                     BorderBrush="{x:Null}"
                                     x:Name="ChmlfrpPageButton"
                                     CornerRadius="20"
-                                    Click="rdChmlfrpPage_Click"/>
+                                    Click="rdChmlfrpPage_Click" />
 
-                                <local:CornerButten 
+                                <local:CornerButten
                                     Content="设置"
                                     Width="75"
                                     Height="30"
                                     BorderBrush="{x:Null}"
                                     x:Name="SettingsPageButton"
                                     CornerRadius="20"
-                                    Click="rdSettingsPage_Click"/>
+                                    Click="rdSettingsPage_Click" />
                             </StackPanel>
                         </Grid>
 
@@ -95,7 +95,7 @@
                                 FlowDirection="RightToLeft"
                                 Height="50"
                                 Width="100">
-                            <Grid Width="15"/>
+                            <Grid Width="15" />
                             <Button x:Name="btnClose"
                                 Margin="5"
                                 Height="25"
@@ -103,24 +103,24 @@
                                 Style="{StaticResource IconButtonsStyle}"
                                 Content="{DynamicResource close}"
                                 Click="btnClose_Click"
-                                Tag="IsCloseButton"/>
+                                Tag="IsCloseButton" />
                             <Button x:Name="btnMinimize"
                                 Height="25"
                                 Width="25"
                                 Style="{StaticResource IconButtonsStyle}"
                                 Content="{DynamicResource minimize}"
-                                Click="btnMinimize_Click"/>
+                                Click="btnMinimize_Click" />
                         </StackPanel>
                     </Grid>
                 </Border>
-                
+
                 <Grid Grid.Row="1">
                     <Border Background="#C7D7EE"
-                        CornerRadius="0,0,6,6"/>
+                        CornerRadius="0,0,6,6" />
                     <Border CornerRadius="0,0,5,5">
                         <Border.Background>
                             <ImageBrush Opacity="0.8"
-                                    x:Name="Imagewallpaper"/>
+                                    x:Name="Imagewallpaper" />
                         </Border.Background>
                     </Border>
                     <Border CornerRadius="0,0,6,6">
@@ -130,7 +130,7 @@
                     </Border>
                     <ResizeGrip HorizontalAlignment="Right"
                             VerticalAlignment="Bottom"
-                            Margin="0,0,10,10"/>
+                            Margin="0,0,10,10" />
                 </Grid>
             </Grid>
 

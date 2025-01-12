@@ -1,6 +1,5 @@
-﻿using System.Windows.Controls;
-using ChmlFrp_Professional_Launcher.Pages.ChmlFrpLoginPages;
-
+﻿using ChmlFrp_Professional_Launcher.Pages.ChmlFrpLoginPages;
+using System.Windows.Controls;
 
 namespace ChmlFrp_Professional_Launcher.Pages
 {
@@ -10,6 +9,7 @@ namespace ChmlFrp_Professional_Launcher.Pages
     public partial class ChmlFrphomePage : Page
     {
         private Reminding Reminding = new();
+
         public ChmlFrphomePage()
         {
             InitializeComponent();

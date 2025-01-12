@@ -1,11 +1,8 @@
-﻿using System.Net.Http;
-using System.Net;
-using System.Text;
+﻿using Newtonsoft.Json.Linq;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using System.IO;
-using Newtonsoft.Json.Linq;
 
 namespace ChmlFrp_Professional_Launcher.Pages.ChmlFrpLoginPages
 {
@@ -37,7 +34,7 @@ namespace ChmlFrp_Professional_Launcher.Pages.ChmlFrpLoginPages
             string jsonContent = System.IO.File.ReadAllText(SetPath.temp_api_path);
             var jsonObject = JObject.Parse(jsonContent);
             Downloadfiles Downloadfiles = new Downloadfiles();
-            if(Downloadfiles.Download("http://cf-v2.uapis.cn/tunnel?token=" + jsonObject["data"]["usertoken"]?.ToString(), temp_api_tunnel_path, "txt") == "下载成功")
+            if (Downloadfiles.Download("http://cf-v2.uapis.cn/tunnel?token=" + jsonObject["data"]["usertoken"]?.ToString(), temp_api_tunnel_path, "txt") == "下载成功")
             {
                 jsonContent = System.IO.File.ReadAllText(temp_api_tunnel_path);
                 jsonObject = JObject.Parse(jsonContent);

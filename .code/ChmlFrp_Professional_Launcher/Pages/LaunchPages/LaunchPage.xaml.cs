@@ -23,7 +23,7 @@ namespace ChmlFrp_Professional_Launcher.Pages
             Reminding.LogsOutputting("进入LaunchPage");
         }
 
-        int i = 0;
+        private int i = 0;
 
         private void Launch(object sender, RoutedEventArgs e)
         {
@@ -54,7 +54,7 @@ namespace ChmlFrp_Professional_Launcher.Pages
             }
         }
 
-        static bool IsProcessRunning(string processName, int count)
+        private static bool IsProcessRunning(string processName, int count)
         {
             Process[] processes = Process.GetProcessesByName(processName);
             return processes.Length >= count;

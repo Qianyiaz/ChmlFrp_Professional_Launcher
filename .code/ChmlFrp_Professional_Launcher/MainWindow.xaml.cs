@@ -9,7 +9,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
-
 namespace ChmlFrp_Professional_Launcher
 {
     /// <summary>
@@ -17,16 +16,17 @@ namespace ChmlFrp_Professional_Launcher
     /// </summary>
     public partial class MainWindow : Window
     {
-        Reminding Reminding = new();
-        SetPath SetPath = new();
-        Downloadfiles Downloadfiles = new Downloadfiles();
+        private Reminding Reminding = new();
+        private SetPath SetPath = new();
+        private Downloadfiles Downloadfiles = new Downloadfiles();
+
         public MainWindow()
         {
             // 检测是否有两个ChmlFrp_Professional_Launcher进程
             if (IsProcessRunning("ChmlFrp_Professional_Launcher", 2))
             {
                 Reminding.LogsOutputting("检测到有两个ChmlFrp_Professional_Launcher退出");
-                btnClose_Click(null,null);
+                btnClose_Click(null, null);
             }
             // 弹出加载页
             StartWindow StartWindow = new();
@@ -91,7 +91,7 @@ namespace ChmlFrp_Professional_Launcher
             //PagesNavigation.Navigate(new SettingHomePage());
         }
 
-        static bool IsProcessRunning(string processName, int count)
+        private static bool IsProcessRunning(string processName, int count)
         {
             Process[] processes = Process.GetProcessesByName(processName);
             return processes.Length >= count;

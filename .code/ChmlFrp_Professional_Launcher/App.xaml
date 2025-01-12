@@ -7,9 +7,9 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Theme.xaml"/>
-                <ResourceDictionary Source="Icons/Icons.xaml"/>
-                <ResourceDictionary Source="Style.xaml"/>
+                <ResourceDictionary Source="Theme.xaml" />
+                <ResourceDictionary Source="Icons/Icons.xaml" />
+                <ResourceDictionary Source="Style.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

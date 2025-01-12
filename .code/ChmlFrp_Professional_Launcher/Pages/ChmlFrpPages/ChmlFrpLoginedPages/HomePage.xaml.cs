@@ -1,10 +1,8 @@
-﻿using System.Windows.Controls;
-using Path = System.IO.Path;
-using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json.Linq;
 using System;
+using System.Windows.Controls;
 using System.Windows.Media.Imaging;
-using System.Windows;
-
+using Path = System.IO.Path;
 
 namespace ChmlFrp_Professional_Launcher.Pages.ChmlFrpLoginPages
 {
@@ -34,7 +32,6 @@ namespace ChmlFrp_Professional_Launcher.Pages.ChmlFrpLoginPages
                 InitializesetPaths();
             }
         }
-
 
         private void InitializesetPaths()
         {
@@ -70,4 +67,3 @@ namespace ChmlFrp_Professional_Launcher.Pages.ChmlFrpLoginPages
         //}
     }
 }
-

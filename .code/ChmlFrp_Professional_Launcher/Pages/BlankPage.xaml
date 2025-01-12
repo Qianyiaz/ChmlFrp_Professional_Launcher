@@ -17,11 +17,11 @@
                 Source="\Icons\FluentEmojiHighContrastConstruction.png"
                     Stretch="Fill"
                     Height="250"
-                    Width="250"/>
+                    Width="250" />
             <TextBlock HorizontalAlignment="Center"
                     FontSize="25"
                     FontFamily="Segoe UI"
-                    Text="正在施工中..."/>
+                    Text="正在施工中..." />
         </StackPanel>
     </Grid>
 </Page>

@@ -11,8 +11,8 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition Width="300"/>
+            <ColumnDefinition />
+            <ColumnDefinition Width="300" />
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="1">
             <Border Opacity="0.8"
@@ -33,11 +33,11 @@
                             <Button.Resources>
                                 <Style TargetType="{x:Type Border}">
                                     <Setter Property="CornerRadius"
-                                            Value="10"/>
+                                            Value="10" />
                                 </Style>
                             </Button.Resources>
                         </Button>
-                        <!--<ComboBox/>-->
+                        <!--<ComboBox />-->
                     </StackPanel>
                 </Grid>
             </Border>

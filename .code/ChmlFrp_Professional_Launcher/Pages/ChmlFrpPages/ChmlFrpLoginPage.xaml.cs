@@ -1,9 +1,8 @@
-﻿using System.Windows;
-using System.Windows.Controls;
+﻿using IniParser;
 using IniParser.Model;
-using IniParser;
+using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
-
 
 namespace ChmlFrp_Professional_Launcher.Pages
 {

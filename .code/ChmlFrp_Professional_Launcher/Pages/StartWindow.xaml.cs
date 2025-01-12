@@ -3,18 +3,18 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Media.Imaging;
 
-
 namespace ChmlFrp_Professional_Launcher
 {
     public partial class StartWindow : Window
     {
-        Reminding Reminding = new();
+        private Reminding Reminding = new();
+
         public StartWindow()
         {
             InitializeComponent();
             LoadLargestIcon();
             Loaded += StartWindow_Loaded;
-            Reminding.Initialize();        
+            Reminding.Initialize();
         }
 
         private void LoadLargestIcon()
@@ -41,4 +41,3 @@ namespace ChmlFrp_Professional_Launcher
         }
     }
 }
-

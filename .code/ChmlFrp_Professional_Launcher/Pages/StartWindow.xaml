@@ -12,6 +12,6 @@
         ResizeMode="NoResize"
         WindowState="Normal">
     <Grid>
-        <Image Name="IconImage" Height="150" Width="150" Stretch="Fill"/>
+        <Image Name="IconImage" Height="150" Width="150" Stretch="Fill" />
     </Grid>
 </Window>

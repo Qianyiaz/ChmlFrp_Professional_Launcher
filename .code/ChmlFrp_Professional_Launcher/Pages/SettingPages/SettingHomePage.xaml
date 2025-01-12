@@ -9,7 +9,6 @@
       d:DesignWidth="770"
       Title="SettingHomePage">
 
-  <Grid>
-
-  </Grid>
+    <Grid>
+    </Grid>
 </Page>

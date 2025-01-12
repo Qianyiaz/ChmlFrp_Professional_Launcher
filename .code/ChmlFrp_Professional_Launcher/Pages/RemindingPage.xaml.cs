@@ -3,7 +3,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
 
-
 namespace ChmlFrp_Professional_Launcher.Pages
 {
     /// <summary>
