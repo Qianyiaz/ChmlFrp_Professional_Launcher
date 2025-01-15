@@ -4,8 +4,8 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d"
-      d:DesignHeight="370"
-      d:DesignWidth="770"
+      d:DesignHeight="430"
+      d:DesignWidth="780"
       Title="SettingHomePage">
 
     <Grid>

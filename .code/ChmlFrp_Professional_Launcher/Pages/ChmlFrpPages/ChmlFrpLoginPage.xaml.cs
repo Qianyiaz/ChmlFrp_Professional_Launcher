@@ -1,5 +1,6 @@
 ﻿using IniParser;
 using IniParser.Model;
+using Newtonsoft.Json.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -15,12 +16,12 @@ namespace ChmlFrp_Professional_Launcher.Pages
         private SetPath SetPath = new();
         private Downloadfiles Downloadfiles = new();
         private IniData data;
+        private FileIniDataParser parser = new();
 
         public ChmlFrpLoginPage()
         {
             InitializeComponent();
             Reminding.LogsOutputting("进入ChmlFrpLoginPage");
-            var parser = new FileIniDataParser();
             data = parser.ReadFile(SetPath.setupIniPath);
             if (data["ChmlFrp_Professional_Launcher Setup"]["Username"] != "")
             {
@@ -47,7 +48,6 @@ namespace ChmlFrp_Professional_Launcher.Pages
             {
                 TextBox_Username.Foreground = new SolidColorBrush(Colors.Black);
             }
-            var parser = new FileIniDataParser();
             data["ChmlFrp_Professional_Launcher Setup"]["Username"] = TextBox_Username.Text;
             parser.WriteFile(SetPath.setupIniPath, data);
         }
@@ -56,16 +56,20 @@ namespace ChmlFrp_Professional_Launcher.Pages
         {
             logonButton.Click -= logon;
             data["ChmlFrp_Professional_Launcher Setup"]["Password"] = TextBox_password.Password;
-            var parser = new FileIniDataParser();
             parser.WriteFile(SetPath.setupIniPath, data);
             if (Downloadfiles.GitAPI_Login(true))
             {
+                string jsonContent = System.IO.File.ReadAllText(SetPath.temp_api_path);
+                var jsonObject = JObject.Parse(jsonContent);
+                data["ChmlFrp_Professional_Launcher Setup"]["Token"] = jsonObject["data"]["usertoken"]?.ToString();
+                parser.WriteFile(SetPath.setupIniPath, data);
                 NavigationService.Navigate(new ChmlFrphomePage());
                 return;
             }
             else
             {
                 logonButton.Click += logon;
+                return;
             }
         }
 

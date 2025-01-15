@@ -5,33 +5,35 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:local="clr-namespace:ChmlFrp_Professional_Launcher"
       mc:Ignorable="d"
-      d:DesignHeight="370"
-      d:DesignWidth="770"
+      d:DesignHeight="430"
+      d:DesignWidth="780"
       Title="LaunchPage">
 
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
-            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="350" />
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="1">
             <Border Opacity="0.8"
                     Background="#f9f9f9"
                     CornerRadius="0,0,6,0">
                 <Grid>
-                    <StackPanel HorizontalAlignment="Center"
-                                VerticalAlignment="Bottom">
-                        <local:LaunchingButten Background="Transparent"
+                    <Border BorderThickness="2" Margin="0,0,0,20" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="290" Height="70" BorderBrush="Black" CornerRadius="15">
+                        <Grid>
+                            <StackPanel Orientation="Horizontal">
+                                <local:LaunchingButten Background="Transparent"
                                 Content="未找到配置文件"
                                 FontSize="13"
-                                Width="250"
-                                CornerRadius="15"
-                                Height="60"
+                                Width="220"
+                                CornerRadius="15,0,0,15"
+                                Height="70"
                                 x:Name="LaunchButton"
-                                Click="Launch"
-                                Margin="10" />
-                        <!--<ComboBox />-->
-                    </StackPanel>
+                                Click="Launch" />
+                                <ComboBox Width="70" Height="70" />
+                            </StackPanel>
+                        </Grid>
+                    </Border>
                 </Grid>
             </Border>
         </Grid>

@@ -4,7 +4,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d"
-      d:DesignHeight="370"
+      d:DesignHeight="430"
       d:DesignWidth="620">
 
     <Page.Resources>
@@ -33,7 +33,7 @@
                        Text="账户详情" />
             <StackPanel Orientation="Vertical">
                 <Grid Height="10" />
-                <Border Height="100" Width="100">
+                <Border Height="125" Width="125">
                     <Ellipse>
                         <Ellipse.Fill>
                             <ImageBrush x:Name="UserImage"

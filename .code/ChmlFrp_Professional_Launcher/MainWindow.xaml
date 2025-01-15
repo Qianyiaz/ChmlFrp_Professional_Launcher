@@ -19,7 +19,7 @@
 
     <Border Background="Transparent">
         <Grid>
-            <Grid Margin="15">
+            <Grid Margin="10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="50" />
                     <RowDefinition />
@@ -57,7 +57,7 @@
                                 <local:CornerButten
                                     IsChecked="True"
                                     Margin="0,0,5,0"
-                                    Tag="LaunchPage"
+                                    Data="{DynamicResource home}"
                                     Content="启动"
                                     x:Name="LaunchPageButton"
                                     Click="rdLaunchPage_Click" />
@@ -65,13 +65,13 @@
                                 <local:CornerButten
                                     Margin="0,0,5,0"
                                     Content="登录"
-                                    Tag="ChmlfrpPage"
+                                    Data="{DynamicResource login}"
                                     x:Name="ChmlfrpPageButton"
                                     Click="rdChmlfrpPage_Click" />
 
                                 <local:CornerButten
                                     Content="设置"
-                                    Tag="SettingsPage"
+                                    Data="{DynamicResource Settings}"
                                     x:Name="SettingsPageButton"
                                     Click="rdSettingsPage_Click" />
                             </StackPanel>
@@ -121,7 +121,7 @@
                 </Grid>
             </Grid>
 
-            <Grid Margin="15">
+            <Grid Margin="10">
                 <Border CornerRadius="5">
                     <Frame x:Name="PagesNavigationtwo"
                            NavigationUIVisibility="Hidden">
