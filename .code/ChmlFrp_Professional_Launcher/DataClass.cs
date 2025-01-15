@@ -187,6 +187,16 @@ namespace ChmlFrp_Professional_Launcher
             File.AppendAllText(SetPath.logfilePath, logEntry + Environment.NewLine);
         }
 
+        public void RemindingtwoShow(string subject, string message)
+        {
+            MainWindow MainWindow = Application.Current.MainWindow as MainWindow;
+            RemindingtwoPage RemindingtwoPage = new();
+            RemindingtwoPage.SubjectTextBlock.Text = subject;
+            RemindingtwoPage.TextTextBlock.Text = message;
+            LogsOutputting("显示提醒：" + message);
+            MainWindow.PagesNavigationtwo.Navigate(RemindingtwoPage);
+        }
+
         public void RemindingShow(string message, string color)
         {
             MainWindow MainWindow = Application.Current.MainWindow as MainWindow;
@@ -273,6 +283,14 @@ namespace ChmlFrp_Professional_Launcher
 
     public class CornerButten : RadioButton
     {
+        public object Data
+        {
+            get { return GetValue(DataProperty); }
+            set { SetValue(DataProperty, value); }
+        }
+
+        public static readonly DependencyProperty DataProperty =
+            DependencyProperty.Register("Data", typeof(object), typeof(CornerButten));
     }
 
     public class LaunchingButten : Button
@@ -285,5 +303,17 @@ namespace ChmlFrp_Professional_Launcher
 
         public static readonly DependencyProperty CornerRadiusProperty =
             DependencyProperty.Register("CornerRadius", typeof(CornerRadius), typeof(LaunchingButten));
+    }
+
+    public class ReallyCornerButten : Button
+    {
+        public CornerRadius CornerRadius
+        {
+            get { return (CornerRadius)GetValue(CornerRadiusProperty); }
+            set { SetValue(CornerRadiusProperty, value); }
+        }
+
+        public static readonly DependencyProperty CornerRadiusProperty =
+            DependencyProperty.Register("CornerRadius", typeof(CornerRadius), typeof(ReallyCornerButten));
     }
 }

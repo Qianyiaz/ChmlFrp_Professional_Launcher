@@ -113,6 +113,9 @@
     <Compile Include="Pages\RemindingPage.xaml.cs">
       <DependentUpon>RemindingPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\RemindingtwoPage.xaml.cs">
+      <DependentUpon>RemindingtwoPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\SettingPages\SettingHomePage.xaml.cs">
       <DependentUpon>SettingHomePage.xaml</DependentUpon>
     </Compile>
@@ -144,6 +147,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\RemindingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\RemindingtwoPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

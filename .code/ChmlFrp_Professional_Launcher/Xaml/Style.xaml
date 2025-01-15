@@ -47,6 +47,11 @@
                     <Border Name="bd" CornerRadius="200" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}">
                         <Path Name="ico" Data="{TemplateBinding Content}" Fill="{TemplateBinding BorderBrush}" Height="{TemplateBinding Height}" Width="{TemplateBinding Width}" Stretch="Uniform" />
                     </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="ico" Property="Fill" Value="{DynamicResource PrimaryBackgroundColor}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -149,20 +154,11 @@
                 <ControlTemplate TargetType="{x:Type local:CornerButten}">
                     <Border Width="75" Height="26.5" BorderThickness="0" x:Name="border" Background="#116fce" CornerRadius="15">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <Path x:Name="path" Fill="#f9f9f9" Height="15" Width="15" Stretch="Uniform" Margin="0,0,5,0" />
+                            <Path x:Name="path" Data="{TemplateBinding Data}" Fill="#f9f9f9" Height="15" Width="15" Stretch="Uniform" Margin="0,0,5,0" />
                             <TextBlock Margin="5,0,0,0" FontSize="13" x:Name="borderTextBlock" Foreground="#f9f9f9" Text="{TemplateBinding Content}" HorizontalAlignment="Right" VerticalAlignment="Center" />
                         </StackPanel>
                     </Border>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="Tag" Value="LaunchPage">
-                            <Setter TargetName="path" Property="Data" Value="{DynamicResource home}" />
-                        </Trigger>
-                        <Trigger Property="Tag" Value="ChmlfrpPage">
-                            <Setter TargetName="path" Property="Data" Value="{DynamicResource login}" />
-                        </Trigger>
-                        <Trigger Property="Tag" Value="SettingsPage">
-                            <Setter TargetName="path" Property="Data" Value="{DynamicResource Settings}" />
-                        </Trigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
                                 <Condition Property="IsChecked" Value="True" />
@@ -198,7 +194,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:LaunchingButten}">
-                    <Border BorderThickness="2" BorderBrush="Black" x:Name="border" Background="{TemplateBinding Background}" CornerRadius="{TemplateBinding CornerRadius}">
+                    <Border x:Name="border" Background="{TemplateBinding Background}" CornerRadius="{TemplateBinding CornerRadius}">
                         <TextBlock FontSize="{TemplateBinding FontSize}" x:Name="borderTextBlock" Foreground="{DynamicResource TextPrimaryColor}" Text="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" />
                     </Border>
                     <!--<ControlTemplate.Triggers>
@@ -207,6 +203,25 @@
                         <Trigger Property="IsMouseOver" Value="True">
                         </Trigger>
                     </ControlTemplate.Triggers>-->
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:ReallyCornerButten}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:ReallyCornerButten}">
+                    <Border x:Name="border" Background="{TemplateBinding Background}" BorderThickness="1" BorderBrush="Black" CornerRadius="{TemplateBinding CornerRadius}">
+                        <TextBlock FontSize="{TemplateBinding FontSize}" x:Name="borderTextBlock" Foreground="{DynamicResource TextPrimaryColor}" Text="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="BorderBrush" Value="#116fce"/>
+                            <Setter TargetName="border" Property="Background" Value="#ADD8E6"/>
+                            <Setter TargetName="borderTextBlock" Property="Foreground" Value="#116fce"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
