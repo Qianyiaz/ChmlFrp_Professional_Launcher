@@ -1,4 +1,4 @@
-﻿using ChmlFrp_Professional_Launcher.Pages;
+﻿// ChmlFrp_Professional_Launcher/MainWindow.xaml.cs
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -8,6 +8,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using ChmlFrp_Professional_Launcher.Pages;
 
 namespace ChmlFrp_Professional_Launcher
 {
@@ -36,16 +37,21 @@ namespace ChmlFrp_Professional_Launcher
             // 初始化主窗口
             InitializeComponent();
             // 显示背景图片
-            string[] imageFiles = Directory.GetFiles(SetPath.pictures_path, "*.*")
-                .Where(file => file.EndsWith(".jpg", StringComparison.OrdinalIgnoreCase) ||
-                               file.EndsWith(".png", StringComparison.OrdinalIgnoreCase))
+            string[] imageFiles = Directory
+                .GetFiles(SetPath.pictures_path, "*.*")
+                .Where(file =>
+                    file.EndsWith(".jpg", StringComparison.OrdinalIgnoreCase)
+                    || file.EndsWith(".png", StringComparison.OrdinalIgnoreCase)
+                )
                 .ToArray();
 
             if (imageFiles.Length > 0)
             {
                 Random random = new();
                 string randomImage = imageFiles[random.Next(imageFiles.Length)];
-                Imagewallpaper.ImageSource = new BitmapImage(new Uri(randomImage, UriKind.RelativeOrAbsolute));
+                Imagewallpaper.ImageSource = new BitmapImage(
+                    new Uri(randomImage, UriKind.RelativeOrAbsolute)
+                );
                 Imagewallpaper.Stretch = Stretch.UniformToFill;
             }
             Reminding.LogsOutputting("背景图片或默认加载成功");
@@ -55,9 +61,18 @@ namespace ChmlFrp_Professional_Launcher
 
         private void rdLaunchPage_Click(object sender, RoutedEventArgs e)
         {
-            ChmlfrpPageButton.RemoveHandler(Button.ClickEvent, new RoutedEventHandler(rdChmlfrpPage_Click));
-            LaunchPageButton.RemoveHandler(Button.ClickEvent, new RoutedEventHandler(rdLaunchPage_Click));
-            SettingsPageButton.RemoveHandler(Button.ClickEvent, new RoutedEventHandler(rdSettingsPage_Click));
+            ChmlfrpPageButton.RemoveHandler(
+                Button.ClickEvent,
+                new RoutedEventHandler(rdChmlfrpPage_Click)
+            );
+            LaunchPageButton.RemoveHandler(
+                Button.ClickEvent,
+                new RoutedEventHandler(rdLaunchPage_Click)
+            );
+            SettingsPageButton.RemoveHandler(
+                Button.ClickEvent,
+                new RoutedEventHandler(rdSettingsPage_Click)
+            );
             LaunchPageButton.Click -= rdLaunchPage_Click;
             ChmlfrpPageButton.Click += rdChmlfrpPage_Click;
             SettingsPageButton.Click += rdSettingsPage_Click;
@@ -66,9 +81,18 @@ namespace ChmlFrp_Professional_Launcher
 
         private void rdChmlfrpPage_Click(object sender, RoutedEventArgs e)
         {
-            ChmlfrpPageButton.RemoveHandler(Button.ClickEvent, new RoutedEventHandler(rdChmlfrpPage_Click));
-            LaunchPageButton.RemoveHandler(Button.ClickEvent, new RoutedEventHandler(rdLaunchPage_Click));
-            SettingsPageButton.RemoveHandler(Button.ClickEvent, new RoutedEventHandler(rdSettingsPage_Click));
+            ChmlfrpPageButton.RemoveHandler(
+                Button.ClickEvent,
+                new RoutedEventHandler(rdChmlfrpPage_Click)
+            );
+            LaunchPageButton.RemoveHandler(
+                Button.ClickEvent,
+                new RoutedEventHandler(rdLaunchPage_Click)
+            );
+            SettingsPageButton.RemoveHandler(
+                Button.ClickEvent,
+                new RoutedEventHandler(rdSettingsPage_Click)
+            );
             LaunchPageButton.Click += rdLaunchPage_Click;
             SettingsPageButton.Click += rdSettingsPage_Click;
             if (Downloadfiles.GitAPI_Login(false))
@@ -81,9 +105,18 @@ namespace ChmlFrp_Professional_Launcher
 
         private void rdSettingsPage_Click(object sender, RoutedEventArgs e)
         {
-            ChmlfrpPageButton.RemoveHandler(Button.ClickEvent, new RoutedEventHandler(rdChmlfrpPage_Click));
-            LaunchPageButton.RemoveHandler(Button.ClickEvent, new RoutedEventHandler(rdLaunchPage_Click));
-            SettingsPageButton.RemoveHandler(Button.ClickEvent, new RoutedEventHandler(rdSettingsPage_Click));
+            ChmlfrpPageButton.RemoveHandler(
+                Button.ClickEvent,
+                new RoutedEventHandler(rdChmlfrpPage_Click)
+            );
+            LaunchPageButton.RemoveHandler(
+                Button.ClickEvent,
+                new RoutedEventHandler(rdLaunchPage_Click)
+            );
+            SettingsPageButton.RemoveHandler(
+                Button.ClickEvent,
+                new RoutedEventHandler(rdSettingsPage_Click)
+            );
             ChmlfrpPageButton.Click += rdChmlfrpPage_Click;
             SettingsPageButton.Click -= rdSettingsPage_Click;
             LaunchPageButton.Click += rdLaunchPage_Click;

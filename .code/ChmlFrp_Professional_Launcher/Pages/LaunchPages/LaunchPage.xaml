@@ -24,7 +24,7 @@
                             <StackPanel Orientation="Horizontal">
                                 <local:LaunchingButten Background="Transparent"
                                 Content="未找到配置文件"
-                                FontSize="13"
+                                FontSize="12"
                                 Width="220"
                                 CornerRadius="15,0,0,15"
                                 Height="70"

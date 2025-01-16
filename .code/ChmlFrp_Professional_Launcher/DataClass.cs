@@ -30,11 +30,7 @@
 //                  别人笑我忒疯癫，我笑自己命太贱；
 //                  不见满街漂亮妹，哪个归得程序员？
 */
-
-using ChmlFrp_Professional_Launcher.Pages;
-using IniParser;
-using IniParser.Model;
-using Newtonsoft.Json.Linq;
+// ChmlFrp_Professional_Launcher/DataClass.cs
 using System;
 using System.IO;
 using System.Net;
@@ -43,6 +39,10 @@ using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using ChmlFrp_Professional_Launcher.Pages;
+using IniParser;
+using IniParser.Model;
+using Newtonsoft.Json.Linq;
 
 namespace ChmlFrp_Professional_Launcher
 {
@@ -100,7 +100,9 @@ namespace ChmlFrp_Professional_Launcher
                     }
                     catch
                     {
-                        Reminding.LogsOutputting("下载失败：路径或文件占用或网络错误?path=" + path + "&url=" + url);
+                        Reminding.LogsOutputting(
+                            "下载失败：路径或文件占用或网络错误?path=" + path + "&url=" + url
+                        );
                         return "下载失败：路径或文件占用或网络错误";
                     }
                     Reminding.LogsOutputting("下载成功：已下载到" + path);
@@ -118,7 +120,9 @@ namespace ChmlFrp_Professional_Launcher
                 }
                 catch
                 {
-                    Reminding.LogsOutputting("下载失败：路径或文件占用或网络错误?path=" + path + "&url=" + url);
+                    Reminding.LogsOutputting(
+                        "下载失败：路径或文件占用或网络错误?path=" + path + "&url=" + url
+                    );
                     return "下载失败：路径或文件占用或网络错误";
                 }
                 Reminding.LogsOutputting("下载成功：已下载到" + path);
@@ -137,7 +141,16 @@ namespace ChmlFrp_Professional_Launcher
             var parser = new FileIniDataParser();
             data = parser.ReadFile(SetPath.setupIniPath);
             Downloadfiles Downloadfiles = new();
-            if (Downloadfiles.Download("https://cf-v2.uapis.cn/login?username=" + data["ChmlFrp_Professional_Launcher Setup"]["Username"] + "&password=" + data["ChmlFrp_Professional_Launcher Setup"]["Password"], SetPath.temp_api_path, "txt") == "下载成功")
+            if (
+                Downloadfiles.Download(
+                    "https://cf-v2.uapis.cn/login?username="
+                        + data["ChmlFrp_Professional_Launcher Setup"]["Username"]
+                        + "&password="
+                        + data["ChmlFrp_Professional_Launcher Setup"]["Password"],
+                    SetPath.temp_api_path,
+                    "txt"
+                ) == "下载成功"
+            )
             {
                 var jsonObject = JObject.Parse(File.ReadAllText(SetPath.temp_api_path));
                 string msg = jsonObject["msg"]?.ToString();
@@ -163,7 +176,8 @@ namespace ChmlFrp_Professional_Launcher
             }
             else
             {
-                if (Remind) Reminding.RemindingShow("网络错误", "red");
+                if (Remind)
+                    Reminding.RemindingShow("网络错误", "red");
                 return false;
             }
         }
@@ -203,15 +217,21 @@ namespace ChmlFrp_Professional_Launcher
             RemindingPage RemindingPage = new();
             if (color == "green")
             {
-                RemindingPage.RemindingBorder.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#3DB43E"));
+                RemindingPage.RemindingBorder.Background = new SolidColorBrush(
+                    (Color)ColorConverter.ConvertFromString("#3DB43E")
+                );
             }
             else if (color == "blue")
             {
-                RemindingPage.RemindingBorder.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#349EF7"));
+                RemindingPage.RemindingBorder.Background = new SolidColorBrush(
+                    (Color)ColorConverter.ConvertFromString("#349EF7")
+                );
             }
             else if (color == "red")
             {
-                RemindingPage.RemindingBorder.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF0000"));
+                RemindingPage.RemindingBorder.Background = new SolidColorBrush(
+                    (Color)ColorConverter.ConvertFromString("#FF0000")
+                );
             }
             else
             {
@@ -289,21 +309,14 @@ namespace ChmlFrp_Professional_Launcher
             set { SetValue(DataProperty, value); }
         }
 
-        public static readonly DependencyProperty DataProperty =
-            DependencyProperty.Register("Data", typeof(object), typeof(CornerButten));
+        public static readonly DependencyProperty DataProperty = DependencyProperty.Register(
+            "Data",
+            typeof(object),
+            typeof(CornerButten)
+        );
     }
 
-    public class LaunchingButten : Button
-    {
-        public CornerRadius CornerRadius
-        {
-            get { return (CornerRadius)GetValue(CornerRadiusProperty); }
-            set { SetValue(CornerRadiusProperty, value); }
-        }
-
-        public static readonly DependencyProperty CornerRadiusProperty =
-            DependencyProperty.Register("CornerRadius", typeof(CornerRadius), typeof(LaunchingButten));
-    }
+    public class LaunchingButten : ReallyCornerButten { }
 
     public class ReallyCornerButten : Button
     {
@@ -314,6 +327,10 @@ namespace ChmlFrp_Professional_Launcher
         }
 
         public static readonly DependencyProperty CornerRadiusProperty =
-            DependencyProperty.Register("CornerRadius", typeof(CornerRadius), typeof(ReallyCornerButten));
+            DependencyProperty.Register(
+                "CornerRadius",
+                typeof(CornerRadius),
+                typeof(ReallyCornerButten)
+            );
     }
 }

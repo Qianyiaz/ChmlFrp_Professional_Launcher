@@ -10,12 +10,11 @@
 
     <Grid>
         <Border x:Name="RemindingBorder"
-                                        HorizontalAlignment="Left"
-                                        VerticalAlignment="Bottom"
-                                        CornerRadius="0,5,5,0"
-                                        Opacity="0.8"
-                                        Margin="0,0,0,45"
-                                        Height="auto">
+                HorizontalAlignment="Left"
+                VerticalAlignment="Bottom"
+                CornerRadius="0,5,5,0"
+                Opacity="0.8"
+                Margin="0,0,0,45">
             <TextBox FontSize="15"
                      Margin="10,2,10,5"
                      BorderThickness="0"

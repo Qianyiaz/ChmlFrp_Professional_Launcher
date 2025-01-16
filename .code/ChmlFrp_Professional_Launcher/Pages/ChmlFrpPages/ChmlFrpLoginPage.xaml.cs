@@ -1,9 +1,10 @@
-﻿using IniParser;
-using IniParser.Model;
-using Newtonsoft.Json.Linq;
+﻿using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using IniParser;
+using IniParser.Model;
+using Newtonsoft.Json.Linq;
 
 namespace ChmlFrp_Professional_Launcher.Pages
 {
@@ -52,7 +53,7 @@ namespace ChmlFrp_Professional_Launcher.Pages
             parser.WriteFile(SetPath.setupIniPath, data);
         }
 
-        private void logon(object sender, RoutedEventArgs e)
+        private async void logon(object sender, RoutedEventArgs e)
         {
             logonButton.Click -= logon;
             data["ChmlFrp_Professional_Launcher Setup"]["Password"] = TextBox_password.Password;
@@ -61,8 +62,11 @@ namespace ChmlFrp_Professional_Launcher.Pages
             {
                 string jsonContent = System.IO.File.ReadAllText(SetPath.temp_api_path);
                 var jsonObject = JObject.Parse(jsonContent);
-                data["ChmlFrp_Professional_Launcher Setup"]["Token"] = jsonObject["data"]["usertoken"]?.ToString();
+                data["ChmlFrp_Professional_Launcher Setup"]["Token"] = jsonObject["data"]
+                    ["usertoken"]
+                    ?.ToString();
                 parser.WriteFile(SetPath.setupIniPath, data);
+                await Task.Delay(1000);
                 NavigationService.Navigate(new ChmlFrphomePage());
                 return;
             }

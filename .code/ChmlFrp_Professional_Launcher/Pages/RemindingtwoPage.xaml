@@ -30,11 +30,35 @@
                 HorizontalAlignment="Center">
             <Grid>
                 <StackPanel Orientation="Vertical">
-                    <TextBlock x:Name="SubjectTextBlock" FontSize="25" Text="我是擎天柱" Foreground="#0B5BCB" Margin="20,20,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" />
-                    <Border CornerRadius="2,2,2,2" Background="#116fce" Width="400" Height="2" Margin="0,4,0,0" />
-                    <TextBlock x:Name="TextTextBlock" FontSize="16" Margin="25,10,0,0" Text="我是擎天柱" Foreground="#5C5C5C" />
+                    <TextBlock x:Name="SubjectTextBlock" 
+                               FontSize="25" Text="我是擎天柱" 
+                               Foreground="#0B5BCB" Margin="20,20,0,0" 
+                               VerticalAlignment="Top" 
+                               HorizontalAlignment="Left" />
+                    <Border CornerRadius="2,2,2,2" 
+                            Background="#116fce" 
+                            Width="400" Height="2" 
+                            Margin="0,4,0,0" />
+                    <TextBox x:Name="TextTextBlock" 
+                             FontSize="16" 
+                             Margin="25,10,0,0" 
+                             Text="我是擎天柱" 
+                             Background="Transparent" 
+                             Foreground="#5C5C5C" 
+                             IsReadOnly="True" 
+                             BorderThickness="0" />
                 </StackPanel>
-                <local:ReallyCornerButten FontSize="14" CornerRadius="3" Content="确定" Click="Yes_Button_Click" BorderThickness="1" BorderBrush="Black" Background="Transparent" Width="55" Height="35" Margin="0,0,25,25" VerticalAlignment="Bottom" HorizontalAlignment="Right" />
+                <local:ReallyCornerButten FontSize="14" 
+                                          CornerRadius="3" 
+                                          Content="确定" 
+                                          Click="Yes_Button_Click" 
+                                          BorderThickness="1" 
+                                          BorderBrush="Black" 
+                                          Background="Transparent" 
+                                          Width="55" Height="35" 
+                                          Margin="0,0,25,25" 
+                                          VerticalAlignment="Bottom" 
+                                          HorizontalAlignment="Right" />
             </Grid>
         </Border>
     </Grid>
