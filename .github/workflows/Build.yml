@@ -41,7 +41,7 @@ jobs:
 
       - name: Move Executable to Root
         run: |
-          Move-Item -Path .code\ChmlFrp_Professional_Launcher\bin\${{ matrix.configuration }}\ChmlFrp Professional Launcher.exe -Destination .\
+          Move-Item -Path ".code\ChmlFrp_Professional_Launcher\bin\${{ matrix.configuration }}\ChmlFrp Professional Launcher.exe" -Destination .\
 
       - name: Upload a Build Artifact to GitHub
         uses: actions/upload-artifact@v4
