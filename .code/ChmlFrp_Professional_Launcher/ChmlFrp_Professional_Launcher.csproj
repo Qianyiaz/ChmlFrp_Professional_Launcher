@@ -9,7 +9,7 @@
     <ProjectGuid>{5DAAE426-967A-4BDC-8793-3B9DBF260967}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>ChmlFrp_Professional_Launcher</RootNamespace>
-    <AssemblyName>ChmlFrp_Professional_Launcher</AssemblyName>
+    <AssemblyName>ChmlFrp Professional Launcher</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -110,11 +110,14 @@
     <Compile Include="Pages\ChmlFrpPages\ChmlFrpLoginedPages\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\RemindingPage.xaml.cs">
+    <Compile Include="Pages\RemindingPages\RemindingPage.xaml.cs">
       <DependentUpon>RemindingPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\RemindingtwoPage.xaml.cs">
+    <Compile Include="Pages\RemindingPages\RemindingtwoPage.xaml.cs">
       <DependentUpon>RemindingtwoPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\RemindingPages\RemindingthreePage.xaml.cs">
+      <DependentUpon>RemindingthreePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\SettingPages\SettingHomePage.xaml.cs">
       <DependentUpon>SettingHomePage.xaml</DependentUpon>
@@ -146,13 +149,17 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\RemindingPage.xaml">
+    <Page Include="Pages\RemindingPages\RemindingPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\RemindingtwoPage.xaml">
+    <Page Include="Pages\RemindingPages\RemindingtwoPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\RemindingPages\RemindingthreePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\SettingPages\SettingHomePage.xaml">
       <SubType>Designer</SubType>

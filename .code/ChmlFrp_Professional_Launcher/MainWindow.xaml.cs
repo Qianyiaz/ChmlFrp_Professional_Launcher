@@ -1,4 +1,5 @@
 ﻿// ChmlFrp_Professional_Launcher/MainWindow.xaml.cs
+using ChmlFrp_Professional_Launcher.Pages;
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -8,7 +9,6 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using ChmlFrp_Professional_Launcher.Pages;
 
 namespace ChmlFrp_Professional_Launcher
 {
@@ -24,10 +24,13 @@ namespace ChmlFrp_Professional_Launcher
         public MainWindow()
         {
             // 检测是否有两个ChmlFrp_Professional_Launcher进程
-            if (IsProcessRunning("ChmlFrp_Professional_Launcher", 2))
+            var currentProcess = Process.GetCurrentProcess();
+            var processes = Process.GetProcessesByName(currentProcess.ProcessName);
+            if (processes.Length > 1)
             {
-                Reminding.LogsOutputting("检测到有两个ChmlFrp_Professional_Launcher退出");
+                Reminding.LogsOutputting("发现已启动软件退出");
                 btnClose_Click(null, null);
+                return;
             }
             // 弹出加载页
             StartWindow StartWindow = new();
@@ -57,6 +60,12 @@ namespace ChmlFrp_Professional_Launcher
             Reminding.LogsOutputting("背景图片或默认加载成功");
             // 进入启动页
             rdLaunchPage_Click(this, new RoutedEventArgs());
+            if (!File.Exists(SetPath.frpPath))
+            {
+                RemindingthreePage RemindingthreePage = new();
+                PagesNavigationtwo.Navigate(RemindingthreePage);
+                return;
+            }
         }
 
         private void rdLaunchPage_Click(object sender, RoutedEventArgs e)
@@ -124,16 +133,10 @@ namespace ChmlFrp_Professional_Launcher
             //PagesNavigation.Navigate(new SettingHomePage());
         }
 
-        private static bool IsProcessRunning(string processName, int count)
-        {
-            Process[] processes = Process.GetProcessesByName(processName);
-            return processes.Length >= count;
-        }
-
         //除其他组件窗口事件
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
-            Reminding.LogsOutputting("关闭软件");
+            Reminding.LogsOutputting("退出软件中...");
             Close();
         }
 

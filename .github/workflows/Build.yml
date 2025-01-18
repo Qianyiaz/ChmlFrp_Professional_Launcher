@@ -17,7 +17,7 @@ jobs:
     runs-on: windows-latest
     strategy:
       matrix:
-        configuration: [Release] #,Debug
+        configuration: [Release]
 
     steps:
       - name: Checkout
@@ -32,6 +32,7 @@ jobs:
           version=$(grep 'AssemblyVersion("' ".code/ChmlFrp_Professional_Launcher/Properties/AssemblyInfo.cs" | sed -E 's/.*AssemblyVersion\("([^"]+)".*/\1/')
           echo "describe=$describe" >> $GITHUB_ENV
           echo "version=$version" >> $GITHUB_ENV
+      
       - name: Setup MSBuild.exe
         uses: microsoft/setup-msbuild@v2
 
@@ -40,13 +41,13 @@ jobs:
 
       - name: Move Executable to Root
         run: |
-          Move-Item -Path .code\ChmlFrp_Professional_Launcher\bin\${{ matrix.configuration }}\ChmlFrp_Professional_Launcher.exe -Destination .\
+          Move-Item -Path .code\ChmlFrp_Professional_Launcher\bin\${{ matrix.configuration }}\ChmlFrp Professional Launcher.exe -Destination .\
 
       - name: Upload a Build Artifact to GitHub
         uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.configuration }}-Pre-alpha${{ env.describe }}-${{ env.version }}-Windows
           path: |
-            ChmlFrp_Professional_Launcher.exe
+            ChmlFrp Professional Launcher.exe
             README.md
             LICENSE.md

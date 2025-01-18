@@ -23,7 +23,6 @@ namespace ChmlFrp_Professional_Launcher.Pages
         private void Yes_Button_Click(object sender, RoutedEventArgs e)
         {
             this.Visibility = Visibility.Collapsed;
-            return;
         }
     }
 }

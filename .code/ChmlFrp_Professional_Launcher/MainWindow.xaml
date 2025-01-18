@@ -15,7 +15,7 @@
         ResizeMode="CanResize"
         Background="Transparent"
         WindowState="Normal"
-        Title="ChmlFrp_Professional_Launcher">
+        Title="ChmlFrp Professional Launcher">
 
     <Border Background="Transparent">
         <Grid>

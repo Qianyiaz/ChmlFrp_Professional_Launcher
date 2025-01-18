@@ -1,17 +1,14 @@
-﻿using System;
+﻿using IniParser;
+using IniParser.Model;
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
-using IniParser;
-using IniParser.Model;
 using Path = System.IO.Path;
 
 namespace ChmlFrp_Professional_Launcher.Pages
 {
-    /// <summary>
-    /// Lógica de interacción para HomePage.xaml
-    /// </summary>
     public partial class LaunchPage : Page
     {
         private Reminding Reminding = new();
@@ -21,7 +18,10 @@ namespace ChmlFrp_Professional_Launcher.Pages
         {
             InitializeComponent();
             Reminding.LogsOutputting("进入LaunchPage");
-            Launch(null, null);
+            if (!File.Exists(SetPath.frpPath))
+            {
+                LaunchButton.Content = "未发现FRP文件";
+            }
         }
 
         private int i = 0;
@@ -60,14 +60,14 @@ namespace ChmlFrp_Professional_Launcher.Pages
                 "/c " + SetPath.frpPath + " -c " + SetPath.frpIniPath + " >" + logs + " 2>&1"
             )
             {
-                RedirectStandardOutput = true,
-                UseShellExecute = false,
-                CreateNoWindow = true,
+                RedirectStandardOutput = true, //重定向标准输出
+                UseShellExecute = false, //不使用系统外壳程序启动
+                CreateNoWindow = true, //不显示窗口
             };
             using (Process process = new())
             {
-                process.StartInfo = processInfo;
-                process.Start();
+                process.StartInfo = processInfo; //设置进程启动信息
+                process.Start(); //启动进程
                 LaunchButton.Content = "点击关闭 frpc";
                 LaunchButton.Click += Killfrp;
             }

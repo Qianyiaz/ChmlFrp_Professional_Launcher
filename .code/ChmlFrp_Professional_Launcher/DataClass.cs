@@ -31,6 +31,10 @@
 //                  不见满街漂亮妹，哪个归得程序员？
 */
 // ChmlFrp_Professional_Launcher/DataClass.cs
+using ChmlFrp_Professional_Launcher.Pages;
+using IniParser;
+using IniParser.Model;
+using Newtonsoft.Json.Linq;
 using System;
 using System.IO;
 using System.Net;
@@ -39,10 +43,6 @@ using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using ChmlFrp_Professional_Launcher.Pages;
-using IniParser;
-using IniParser.Model;
-using Newtonsoft.Json.Linq;
 
 namespace ChmlFrp_Professional_Launcher
 {
@@ -193,7 +193,7 @@ namespace ChmlFrp_Professional_Launcher
             Console.WriteLine(logEntry);
 
             FileInfo logFileInfo = new(SetPath.logfilePath);
-            if (logFileInfo.Exists && logFileInfo.Length > 15 * 1024)
+            if (logFileInfo.Exists && logFileInfo.Length > 50 * 1024)
             {
                 File.WriteAllText(SetPath.logfilePath, string.Empty);
             }
@@ -207,7 +207,7 @@ namespace ChmlFrp_Professional_Launcher
             RemindingtwoPage RemindingtwoPage = new();
             RemindingtwoPage.SubjectTextBlock.Text = subject;
             RemindingtwoPage.TextTextBlock.Text = message;
-            LogsOutputting("显示提醒：" + message);
+            //LogsOutputting("显示提醒：" + message);
             MainWindow.PagesNavigationtwo.Navigate(RemindingtwoPage);
         }
 
@@ -239,7 +239,7 @@ namespace ChmlFrp_Professional_Launcher
                 return;
             }
             RemindingPage.RemidingTextBlock.Text = message;
-            LogsOutputting("显示提醒：" + message);
+            //LogsOutputting("显示提醒：" + message);
             MainWindow.PagesNavigationtwo.Navigate(RemindingPage);
         }
 
