@@ -7,7 +7,7 @@
 
 <img src="https://counter.seku.su/cmoe?name=Qianyiaz&theme=r34"/><br>
 
-目前本项目正在开发中... 如果想使用打包好的软件请打开本项目的[Actions](/actions)下载。如果想查看代码可以[点击这里](/.code/ChmlFrp_Professional_Launcher)。
+目前本项目正在开发中... 如果想使用打包好的软件请打开本项目的[Actions](//github.com/Qianyiaz/ChmlFrp_Professional_Launcher/actions)下载。如果想查看代码可以[点击这里](/.code/ChmlFrp_Professional_Launcher)。
 
 如果您也想开发和我一起开发，别犹豫追下面有链接[点击跳转](#联系我)。如果您想支持我，请献上star，求求了，能让更多人看到本项目。
 <br/><div align="left">
