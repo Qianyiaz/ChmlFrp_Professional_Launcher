@@ -1,6 +1,8 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
+using ChmlFrp_Professional_Launcher.Pages.RemindingPages.Third;
 
 namespace ChmlFrp_Professional_Launcher.Pages
 {
@@ -10,6 +12,8 @@ namespace ChmlFrp_Professional_Launcher.Pages
     public partial class RemindingthreePage : Page
     {
         int PageNumber = 0;
+        PageOne PageOne = new();
+        PageTwo PageTwo = new();
 
         public RemindingthreePage()
         {
@@ -39,14 +43,19 @@ namespace ChmlFrp_Professional_Launcher.Pages
         {
             if (PageNumber == 0)
             {
+                No_Button.Click -= No_Button_Click;
                 SubjectTextBlock.Text = "下载FRPC路径";
-                //No_Button.BorderBrush = black;
+                No_Button.BorderBrush = new SolidColorBrush(Colors.Gray);
+                No_Button.Foreground = new SolidColorBrush(Colors.Black);
+                PagesNavigation.Navigate(PageOne);
             }
             else if (PageNumber == 1)
             {
+                No_Button.Click += No_Button_Click;
                 SubjectTextBlock.Text = "下载FRPC类型";
                 No_Button.BorderBrush = Yes_Button.BorderBrush;
                 No_Button.Foreground = Yes_Button.Foreground;
+                PagesNavigation.Navigate(PageTwo);
             }
             else
             {

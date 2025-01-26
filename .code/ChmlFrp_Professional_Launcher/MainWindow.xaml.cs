@@ -1,5 +1,4 @@
 ﻿// ChmlFrp_Professional_Launcher/MainWindow.xaml.cs
-using ChmlFrp_Professional_Launcher.Pages;
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -9,6 +8,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using ChmlFrp_Professional_Launcher.Pages;
 
 namespace ChmlFrp_Professional_Launcher
 {
