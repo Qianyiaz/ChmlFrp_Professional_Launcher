@@ -255,9 +255,6 @@
     <Resource Include="Icons\SolarUserCircleLineDuotone.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Icons\FluentEmojiHighContrastConstruction.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Dll\INIFileParser.dll" />
     <Content Include="Dll\Newtonsoft.Json.dll" />
   </ItemGroup>

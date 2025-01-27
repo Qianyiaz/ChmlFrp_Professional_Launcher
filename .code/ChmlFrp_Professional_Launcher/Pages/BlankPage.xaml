@@ -11,12 +11,13 @@
     <Grid>
         <StackPanel Orientation="Vertical"
                     HorizontalAlignment="Center"
-                    VerticalAlignment="Top">
-            <Image Margin="0,25,0,0"
-                Source="\Icons\FluentEmojiHighContrastConstruction.png"
-                    Stretch="Fill"
-                    Height="250"
-                    Width="250" />
+                    VerticalAlignment="Center">
+            <Path Margin="0,-25,0,0"
+                   Data="{DynamicResource construction}"
+                   Fill="Black"
+                   Stretch="Fill"
+                   Height="200"
+                   Width="200" />
             <TextBlock HorizontalAlignment="Center"
                     FontSize="25"
                     FontFamily="Segoe UI"
