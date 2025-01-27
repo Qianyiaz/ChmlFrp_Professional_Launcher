@@ -20,6 +20,11 @@ namespace ChmlFrp_Professional_Launcher
         private Reminding Reminding = new();
         private SetPath SetPath = new();
         private Downloadfiles Downloadfiles = new();
+        LaunchPage LaunchPage = new();
+        ChmlFrpLoginPage ChmlFrpLoginPage = new();
+        BlankPage BlankPage = new();
+
+        //SettingHomePage SettingHomePage = new();
 
         public MainWindow()
         {
@@ -85,7 +90,7 @@ namespace ChmlFrp_Professional_Launcher
             LaunchPageButton.Click -= rdLaunchPage_Click;
             ChmlfrpPageButton.Click += rdChmlfrpPage_Click;
             SettingsPageButton.Click += rdSettingsPage_Click;
-            PagesNavigation.Navigate(new LaunchPage());
+            PagesNavigation.Navigate(LaunchPage);
         }
 
         private void rdChmlfrpPage_Click(object sender, RoutedEventArgs e)
@@ -106,10 +111,11 @@ namespace ChmlFrp_Professional_Launcher
             SettingsPageButton.Click += rdSettingsPage_Click;
             if (Downloadfiles.GitAPI_Login(false))
             {
-                PagesNavigation.Navigate(new ChmlFrphomePage());
+                ChmlFrphomePage ChmlFrpHomePage = new();
+                PagesNavigation.Navigate(ChmlFrpHomePage);
                 return;
             }
-            PagesNavigation.Navigate(new ChmlFrpLoginPage());
+            PagesNavigation.Navigate(ChmlFrpLoginPage);
         }
 
         private void rdSettingsPage_Click(object sender, RoutedEventArgs e)
@@ -129,8 +135,8 @@ namespace ChmlFrp_Professional_Launcher
             ChmlfrpPageButton.Click += rdChmlfrpPage_Click;
             SettingsPageButton.Click -= rdSettingsPage_Click;
             LaunchPageButton.Click += rdLaunchPage_Click;
-            PagesNavigation.Navigate(new BlankPage());
-            //PagesNavigation.Navigate(new SettingHomePage());
+            PagesNavigation.Navigate(BlankPage);
+            //PagesNavigation.Navigate(SettingHomePage);
         }
 
         //除其他组件窗口事件
