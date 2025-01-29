@@ -31,23 +31,14 @@
                      Height="50"
                      Background="#116fce">
                     <Grid>
-                        <Path Data="{DynamicResource logo}"
+                        <!--<Path Data="{DynamicResource logo}"
                               Stretch="Fill"
                               Fill="#CFE2F7"
                               Margin="15,0,0,0"
                               Width="25"
                               Height="25"
                               RenderTransformOrigin="0.5,0.5"
-                              HorizontalAlignment="Left">
-                            <Path.RenderTransform>
-                                <TransformGroup>
-                                    <ScaleTransform ScaleX="-1" />
-                                    <SkewTransform />
-                                    <RotateTransform Angle="-180" />
-                                    <TranslateTransform />
-                                </TransformGroup>
-                            </Path.RenderTransform>
-                        </Path>
+                              HorizontalAlignment="Left"/>-->
 
                         <Grid>
                             <StackPanel HorizontalAlignment="Center"
