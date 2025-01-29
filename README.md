@@ -11,7 +11,7 @@
 如果您也想开发和我一起开发，别犹豫追下面有链接[点击跳转](#联系我)。如果您想支持我，请献上star，求求了，能让更多人看到本项目。
 <div align="left">
  
-## Star History
+## 星标历史
 
 <a href="https://star-history.com/#Qianyiaz/ChmlFrp_Professional_Launcher&Timeline">
  <picture>
@@ -21,11 +21,11 @@
  </picture>
 </a>
 
-- 给个star吧！！！求求了。Σ(っ °Д °;)っ
+- 给个star吧！！！求求了😭。Σ(っ °Д °;)っ
 
 ## 联系我
 
-如果您想联系我，请访问我的主页，打开 Bilibili 链接，并发送私信。您也可以通过以下方式联系我：
+您可以通过以下方式联系我：
 - X: [QusayDiaz](https://x.com/QusayDiaz)
 - QQ: 2976779544
 - Email: <Qusay_Diaz.github@outlook.com>
