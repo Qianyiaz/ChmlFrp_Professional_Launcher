@@ -250,54 +250,40 @@ namespace ChmlFrp_Professional_Launcher
             var parser = new FileIniDataParser();
             IniData data;
             //检测是否有相关配置文件
-            try
+            if (!File.Exists(SetPath.CPLPath))
             {
-                if (!File.Exists(SetPath.CPLPath))
-                {
-                    Directory.CreateDirectory(SetPath.CPLPath);
-                }
-                if (!File.Exists(SetPath.frpPath))
-                {
-                    Directory.CreateDirectory(SetPath.frpPath);
-                }
-                if (!File.Exists(SetPath.pictures_path))
-                {
-                    Directory.CreateDirectory(SetPath.pictures_path);
-                }
-                if (!File.Exists(SetPath.temp_path))
-                {
-                    Directory.CreateDirectory(SetPath.temp_path);
-                }
-                if (!File.Exists(SetPath.setupIniPath))
-                {
-                    data = new IniData();
-                    data["ChmlFrp_Professional_Launcher Setup"]["Versions"] = "0.0.0.5";
-                    parser.WriteFile(SetPath.setupIniPath, data);
-                }
-                File.WriteAllText(SetPath.logfilePath, string.Empty);
+                Directory.CreateDirectory(SetPath.CPLPath);
             }
-            catch
+            if (!File.Exists(SetPath.frpPath))
             {
-                LogsOutputting("文件夹或文件创建失败");
+                Directory.CreateDirectory(SetPath.frpPath);
             }
-            LogsOutputting("文件夹已创建或创建成功");
+            if (!File.Exists(SetPath.pictures_path))
+            {
+                Directory.CreateDirectory(SetPath.pictures_path);
+            }
+            if (!File.Exists(SetPath.temp_path))
+            {
+                Directory.CreateDirectory(SetPath.temp_path);
+            }
+            if (!File.Exists(SetPath.logfilePath))
+            {
+                File.Create(SetPath.logfilePath);
+            }
+            if (!File.Exists(SetPath.setupIniPath))
+            {
+                data = new IniData();
+                data["ChmlFrp_Professional_Launcher Setup"]["Versions"] = "0.0.0.5";
+                parser.WriteFile(SetPath.setupIniPath, data);
+            }
             //创建日志文件
-            try
+            for (int i = 1; i < 6; i++)
             {
-                for (int i = 1; i < 6; i++)
+                if (!File.Exists(Path.Combine(SetPath.CPLPath, i + ".logs")))
                 {
-                    if (!File.Exists(Path.Combine(SetPath.CPLPath, i + ".logs")))
-                    {
-                        File.Create(Path.Combine(SetPath.CPLPath, i + ".logs"));
-                    }
+                    File.Create(Path.Combine(SetPath.CPLPath, i + ".logs"));
                 }
             }
-            catch
-            {
-                LogsOutputting("日志文件创建失败");
-            }
-            LogsOutputting("日志文件已创建或创建成功");
-            LogsOutputting("进入MainWindow");
         }
     }
 

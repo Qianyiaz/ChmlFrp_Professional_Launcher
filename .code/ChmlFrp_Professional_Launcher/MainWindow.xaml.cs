@@ -1,4 +1,5 @@
 ﻿// ChmlFrp_Professional_Launcher/MainWindow.xaml.cs
+using ChmlFrp_Professional_Launcher.Pages;
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -8,7 +9,6 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using ChmlFrp_Professional_Launcher.Pages;
 
 namespace ChmlFrp_Professional_Launcher
 {
@@ -20,11 +20,11 @@ namespace ChmlFrp_Professional_Launcher
         private Reminding Reminding = new();
         private SetPath SetPath = new();
         private Downloadfiles Downloadfiles = new();
-        LaunchPage LaunchPage = new();
-        ChmlFrpLoginPage ChmlFrpLoginPage = new();
-        BlankPage BlankPage = new();
+        LaunchPage LaunchPage;
+        ChmlFrpLoginPage ChmlFrpLoginPage;
+        BlankPage BlankPage;
 
-        //SettingHomePage SettingHomePage = new();
+        //SettingHomePage SettingHomePage;
 
         public MainWindow()
         {
@@ -33,7 +33,6 @@ namespace ChmlFrp_Professional_Launcher
             var processes = Process.GetProcessesByName(currentProcess.ProcessName);
             if (processes.Length > 1)
             {
-                Reminding.LogsOutputting("发现已启动软件退出");
                 btnClose_Click(null, null);
                 return;
             }
@@ -42,6 +41,11 @@ namespace ChmlFrp_Professional_Launcher
             StartWindow.Show();
             System.Threading.Thread.Sleep(3000); // 3秒后关闭加载页
             StartWindow.Close();
+            // 初始化页面
+            LaunchPage = new();
+            ChmlFrpLoginPage = new();
+            BlankPage = new();
+            //SettingHomePage = new();
             // 初始化主窗口
             InitializeComponent();
             // 显示背景图片

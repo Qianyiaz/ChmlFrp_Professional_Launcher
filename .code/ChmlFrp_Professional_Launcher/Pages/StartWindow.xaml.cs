@@ -20,7 +20,11 @@ namespace ChmlFrp_Professional_Launcher
         private void LoadLargestIcon()
         {
             var iconUri = new Uri("pack://application:,,,/favicon.ico", UriKind.RelativeOrAbsolute);
-            var decoder = new IconBitmapDecoder(iconUri, BitmapCreateOptions.None, BitmapCacheOption.Default);
+            var decoder = new IconBitmapDecoder(
+                iconUri,
+                BitmapCreateOptions.None,
+                BitmapCacheOption.Default
+            );
             var largestFrame = decoder.Frames.OrderByDescending(f => f.PixelWidth).FirstOrDefault();
             if (largestFrame != null)
             {
