@@ -34,5 +34,5 @@
 
 - [ ] [国内](https://gitcode.com/)的[Gitcode镜像](https://gitcode.com/Qyzgj/ChmlFrp_Professional_Launcher)
 - [ ] [官方](https://github.com/TechCat-Team)的[CHMLFRP-FRP](https://github.com/TechCat-Team/ChmlFrp-Frp)
-- [ ] [同窗](https://github.com/boringstudents)的[CHMLFRP_UI](https://github.com/boringstudents/CHMLFRP_UI)
+- [ ] [同窗](https://github.com/boringstudents)的[Chmlfrp-UI-Launcher](https://github.com/boringstudents/CHMLFRP-UI-Launcher)
 - [ ] [枫相](https://github.com/FengXiang2233)的[Xingcheng-Chmlfrp-Lanucher](https://github.com/FengXiang2233/Xingcheng-Chmlfrp-Lanucher)
