@@ -21,6 +21,8 @@
                      Height="50"
                      Background="Transparent"/>
         </Border>
+        
+        
         <Border CornerRadius="6,6,6,6"
                 Height="225"
                 Width="425"
@@ -28,6 +30,11 @@
                 VerticalAlignment="Center"
                 HorizontalAlignment="Center">
             <Grid>
+                
+                <Frame x:Name="PagesNavigation"
+                           NavigationUIVisibility="Hidden">
+                </Frame>
+                
                 <StackPanel Orientation="Vertical">
                     <TextBlock x:Name="SubjectTextBlock" 
                                FontSize="25" 
@@ -35,19 +42,19 @@
                                Foreground="#0B5BCB" Margin="20,20,0,0" 
                                VerticalAlignment="Top" 
                                HorizontalAlignment="Left" />
+                    
                     <Border CornerRadius="2,2,2,2" 
                             Background="#116fce" 
                             Width="400" 
                             Height="2" 
                             Margin="0,4,0,0" />
-                    <Frame x:Name="PagesNavigation"
-                           NavigationUIVisibility="Hidden">
-                    </Frame>
+                    
                 </StackPanel>
                 <StackPanel Margin="0,0,25,25" 
                             VerticalAlignment="Bottom" 
                             HorizontalAlignment="Right"
                             Orientation="Horizontal">
+                    
                     <local:ReallyCornerButten Margin="0,0,5,0"
                                           FontSize="14" 
                                           CornerRadius="3" 
@@ -60,6 +67,7 @@
                                           Background="Transparent" 
                                           Height="35"
                                           Width="60"/>
+                    
                     <local:ReallyCornerButten FontSize="14" 
                                           CornerRadius="3" 
                                           Content="下一步" 
@@ -71,6 +79,7 @@
                                           Background="Transparent" 
                                           Height="35"
                                           Width="60"/>
+                    
                 </StackPanel>
             </Grid>
         </Border>

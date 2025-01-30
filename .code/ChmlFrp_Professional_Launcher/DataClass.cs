@@ -31,10 +31,6 @@
 //                  不见满街漂亮妹，哪个归得程序员？
 */
 // ChmlFrp_Professional_Launcher/DataClass.cs
-using ChmlFrp_Professional_Launcher.Pages;
-using IniParser;
-using IniParser.Model;
-using Newtonsoft.Json.Linq;
 using System;
 using System.IO;
 using System.Net;
@@ -43,6 +39,10 @@ using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using ChmlFrp_Professional_Launcher.Pages;
+using IniParser;
+using IniParser.Model;
+using Newtonsoft.Json.Linq;
 
 namespace ChmlFrp_Professional_Launcher
 {
@@ -240,7 +240,7 @@ namespace ChmlFrp_Professional_Launcher
             }
             RemindingPage.RemidingTextBlock.Text = message;
             //LogsOutputting("显示提醒：" + message);
-            MainWindow.PagesNavigationtwo.Navigate(RemindingPage);
+            MainWindow.PagesNavigationthree.Navigate(RemindingPage);
         }
 
         //初始化
@@ -303,6 +303,8 @@ namespace ChmlFrp_Professional_Launcher
     }
 
     public class LaunchingButten : ReallyCornerButten { }
+
+    public class IconButten : CornerButten { }
 
     public class ReallyCornerButten : Button
     {

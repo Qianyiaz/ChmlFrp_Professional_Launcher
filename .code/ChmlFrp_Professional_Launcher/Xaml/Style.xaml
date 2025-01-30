@@ -226,4 +226,58 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style TargetType="{x:Type local:IconButten}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:IconButten}">
+                    <Border x:Name="border" 
+                            Background="Transparent" 
+                            CornerRadius="15">
+                        <StackPanel Orientation="Horizontal" 
+                                    VerticalAlignment="Center">
+                            <Path Data="{TemplateBinding Data}" 
+                                  Height="50" Width="50"
+                                  Stretch="Fill"
+                                  x:Name="path"
+                                  Fill="Gray" />
+                            <TextBlock FontSize="22" 
+                                       Margin="15,0,0,0"
+                                       x:Name="borderTextBlock" 
+                                       Foreground="Gray" 
+                                       Text="{TemplateBinding Content}"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="path" Property="Fill" Value="Black" />
+                            <Setter TargetName="borderTextBlock" Property="Foreground" Value="Black" />
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="path" Property="Fill" Value="Black" />
+                            <Setter TargetName="borderTextBlock" Property="Foreground" Value="Black" />
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsChecked" Value="True" />
+                                <Condition Property="Content" Value="GitCode"/>
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="path" Property="Fill" Value="#FF0000" />
+                            <Setter TargetName="borderTextBlock" Property="Foreground" Value="#FF0000" />
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsMouseOver" Value="True" />
+                                <Condition Property="Content" Value="GitCode"/>
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="path" Property="Fill" Value="#FF0000" />
+                            <Setter TargetName="borderTextBlock" Property="Foreground" Value="#FF0000" />
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>

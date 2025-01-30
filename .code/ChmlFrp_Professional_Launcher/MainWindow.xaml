@@ -119,6 +119,14 @@
                     </Frame>
                 </Border>
             </Grid>
+
+            <Grid Margin="10">
+                <Border CornerRadius="5">
+                    <Frame x:Name="PagesNavigationthree"
+                           NavigationUIVisibility="Hidden">
+                    </Frame>
+                </Border>
+            </Grid>
         </Grid>
     </Border>
 </Window>

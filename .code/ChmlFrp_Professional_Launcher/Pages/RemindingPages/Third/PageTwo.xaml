@@ -3,12 +3,24 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:ChmlFrp_Professional_Launcher.Pages.RemindingPages.Third"
+      xmlns:local="clr-namespace:ChmlFrp_Professional_Launcher"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      Height="225"
+      Width="425"
       Title="PageTwo">
 
-    <Grid>
-        
-    </Grid>
+    <StackPanel VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                Orientation="Horizontal" >
+
+        <local:IconButten x:Name="X86_Butten"
+                          Content="X86" 
+                          Data="{DynamicResource x86}"
+                          Height="50" Width="150"/>
+
+        <local:IconButten x:Name="AMD_Butten"
+                          Content="AMD" 
+                          Data="{DynamicResource amd}"
+                          Height="50" Width="150"/>
+    </StackPanel>
 </Page>

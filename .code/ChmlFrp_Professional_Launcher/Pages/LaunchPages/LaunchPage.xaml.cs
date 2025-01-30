@@ -1,10 +1,10 @@
-﻿using IniParser;
-using IniParser.Model;
-using System;
+﻿using System;
 using System.Diagnostics;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
+using IniParser;
+using IniParser.Model;
 using Path = System.IO.Path;
 
 namespace ChmlFrp_Professional_Launcher.Pages
@@ -31,11 +31,9 @@ namespace ChmlFrp_Professional_Launcher.Pages
             LaunchButton.Click -= Launch;
             if (!File.Exists(SetPath.frpPath))
             {
-                LaunchButton.Content = "未发现FRP文件";
-                Reminding.RemindingtwoShow(
-                    "未发现FRP文件",
-                    "请检查以下几点：\n1.FRP未安装。\n2.杀毒软件误删。\n\n请把FRP文件放在CPL/frp文件。"
-                );
+                MainWindow MainWindow = Application.Current.MainWindow as MainWindow;
+                RemindingthreePage RemindingthreePage = new();
+                MainWindow.PagesNavigationtwo.Navigate(RemindingthreePage);
                 LaunchButton.Click += Launch;
                 return;
             }
