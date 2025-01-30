@@ -2,10 +2,5 @@
 *.cs        eol=lf 
 *.xaml        eol=lf 
 *.sln        eol=crlf
-*.user        eol=crlf
 *.csproj       eol=crlf
 /.github/scrapped        eol=crlf
-/.code/ChmlFrp_Professional_Launcher/App.xaml       eol=crlf
-/.code/ChmlFrp_Professional_Launcher/App.xaml.cs      eol=crlf
-/.code/ChmlFrp_Professional_Launcher/App.config       eol=crlf
-/.code/ChmlFrp_Professional_Launcher/Properties        eol=crlf
