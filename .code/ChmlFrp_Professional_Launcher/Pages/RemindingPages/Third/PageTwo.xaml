@@ -13,12 +13,12 @@
                 HorizontalAlignment="Center"
                 Orientation="Horizontal" >
 
-        <local:IconButten x:Name="X86_Butten"
+        <local:TransparentIconRadioButton x:Name="X86_Butten"
                           Content="X86" 
                           Data="{DynamicResource x86}"
                           Height="50" Width="150"/>
 
-        <local:IconButten x:Name="AMD_Butten"
+        <local:TransparentIconRadioButton x:Name="AMD_Butten"
                           Content="AMD" 
                           Data="{DynamicResource amd}"
                           Height="50" Width="150"/>

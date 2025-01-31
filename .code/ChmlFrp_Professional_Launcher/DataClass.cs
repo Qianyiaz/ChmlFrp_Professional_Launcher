@@ -32,6 +32,7 @@
 */
 // ChmlFrp_Professional_Launcher/DataClass.cs
 using System;
+using System.ComponentModel;
 using System.IO;
 using System.Net;
 using System.Net.Http;
@@ -50,9 +51,7 @@ namespace ChmlFrp_Professional_Launcher
     {
         //定义路径
         public string directoryPath;
-
-        public string frpPath;
-        public string frpIniPath;
+        public string IniPath;
         public string frpExePath;
         public string setupIniPath;
         public string temp_path;
@@ -65,9 +64,8 @@ namespace ChmlFrp_Professional_Launcher
         {
             directoryPath = Directory.GetCurrentDirectory();
             CPLPath = Path.Combine(directoryPath, "CPL");
-            frpPath = Path.Combine(CPLPath, "frp");
-            frpIniPath = Path.Combine(frpPath, "frpc.ini");
-            frpExePath = Path.Combine(frpPath, "frpc.exe");
+            IniPath = Path.Combine(CPLPath, "ini");
+            frpExePath = Path.Combine(CPLPath, "frpc.exe");
             setupIniPath = Path.Combine(CPLPath, "Setup.ini");
             temp_path = Path.Combine(CPLPath, "temp");
             temp_api_path = Path.Combine(temp_path, "login_chmlfrp_api.json");
@@ -233,6 +231,10 @@ namespace ChmlFrp_Professional_Launcher
                     (Color)ColorConverter.ConvertFromString("#FF0000")
                 );
             }
+            else if (color == "yellow")
+            {
+                RemindingPage.RemindingBorder.Background = new SolidColorBrush(Colors.Yellow);
+            }
             else
             {
                 LogsOutputting("RemindingShow颜色参数错误");
@@ -254,10 +256,6 @@ namespace ChmlFrp_Professional_Launcher
             {
                 Directory.CreateDirectory(SetPath.CPLPath);
             }
-            if (!File.Exists(SetPath.frpPath))
-            {
-                Directory.CreateDirectory(SetPath.frpPath);
-            }
             if (!File.Exists(SetPath.pictures_path))
             {
                 Directory.CreateDirectory(SetPath.pictures_path);
@@ -265,10 +263,6 @@ namespace ChmlFrp_Professional_Launcher
             if (!File.Exists(SetPath.temp_path))
             {
                 Directory.CreateDirectory(SetPath.temp_path);
-            }
-            if (!File.Exists(SetPath.logfilePath))
-            {
-                File.Create(SetPath.logfilePath);
             }
             if (!File.Exists(SetPath.setupIniPath))
             {
@@ -287,7 +281,9 @@ namespace ChmlFrp_Professional_Launcher
         }
     }
 
-    public class CornerButten : RadioButton
+    //自建控件
+
+    public class CornerIconRadioButton : RadioButton
     {
         public object Data
         {
@@ -298,15 +294,13 @@ namespace ChmlFrp_Professional_Launcher
         public static readonly DependencyProperty DataProperty = DependencyProperty.Register(
             "Data",
             typeof(object),
-            typeof(CornerButten)
+            typeof(CornerIconRadioButton)
         );
     }
 
-    public class LaunchingButten : ReallyCornerButten { }
+    public class TransparentIconRadioButton : CornerIconRadioButton { }
 
-    public class IconButten : CornerButten { }
-
-    public class ReallyCornerButten : Button
+    public class CornerButten : Button
     {
         public CornerRadius CornerRadius
         {
@@ -315,10 +309,76 @@ namespace ChmlFrp_Professional_Launcher
         }
 
         public static readonly DependencyProperty CornerRadiusProperty =
+            DependencyProperty.Register("CornerRadius", typeof(CornerRadius), typeof(CornerButten));
+
+        public bool IsSelected
+        {
+            get { return (bool)GetValue(IsSelectedProperty); }
+            set { SetValue(IsSelectedProperty, value); }
+        }
+
+        public static readonly DependencyProperty IsSelectedProperty = DependencyProperty.Register(
+            "IsSelected",
+            typeof(bool),
+            typeof(CornerButten)
+        );
+    }
+
+    public class CornerTextBox : TextBox, INotifyPropertyChanged
+    {
+        public static readonly DependencyProperty CornerRadiusProperty =
             DependencyProperty.Register(
                 "CornerRadius",
                 typeof(CornerRadius),
-                typeof(ReallyCornerButten)
+                typeof(CornerTextBox)
             );
+
+        public CornerRadius CornerRadius
+        {
+            get { return (CornerRadius)GetValue(CornerRadiusProperty); }
+            set { SetValue(CornerRadiusProperty, value); }
+        }
+
+        public static readonly DependencyProperty TextTwoProperty = DependencyProperty.Register(
+            "TextTwo",
+            typeof(string),
+            typeof(CornerTextBox)
+        );
+
+        public string TextTwo
+        {
+            get { return (string)GetValue(TextTwoProperty); }
+            set { SetValue(TextTwoProperty, value); }
+        }
+
+        public static new readonly DependencyProperty TextProperty = DependencyProperty.Register(
+            "Text",
+            typeof(string),
+            typeof(CornerTextBox),
+            new PropertyMetadata(string.Empty, OnTextChanged)
+        );
+
+        public new string Text
+        {
+            get { return (string)GetValue(TextProperty); }
+            set
+            {
+                SetValue(TextProperty, value);
+                OnPropertyChanged(nameof(Text));
+            }
+        }
+
+        private static void OnTextChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var control = d as CornerTextBox;
+            control?.OnPropertyChanged(nameof(Text));
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

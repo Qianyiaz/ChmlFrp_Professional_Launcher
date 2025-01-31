@@ -11,7 +11,7 @@ using System.Windows;
 [assembly: AssemblyConfiguration("ChmlFrp_Professional_Launcher")]
 [assembly: AssemblyCompany("ChmlFrp_Professional_Launcher")]
 [assembly: AssemblyProduct("ChmlFrp_Professional_Launcher")]
-[assembly: AssemblyCopyright("Qusay Diaz ©  2024")]
+[assembly: AssemblyCopyright("Qusay Diaz ©2024~2025")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -45,6 +45,6 @@ using System.Windows;
 //      生成号
 //      修订号
 //
-[assembly: AssemblyVersion("0.0.0.5")]
-[assembly: AssemblyFileVersion("0.0.0.5")]
+[assembly: AssemblyVersion("0.0.0.6")]
+[assembly: AssemblyFileVersion("0.0.0.6")]
 [assembly: NeutralResourcesLanguage("zh")]

@@ -2,7 +2,6 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Media;
 using ChmlFrp_Professional_Launcher.Pages.RemindingPages.Third;
 
 namespace ChmlFrp_Professional_Launcher.Pages
@@ -15,6 +14,7 @@ namespace ChmlFrp_Professional_Launcher.Pages
         int PageNumber = 0;
         Downloadfiles Downloadfiles = new();
         Reminding Reminding = new();
+        SetPath SetPath = new();
         PageOne PageOne = new();
         PageTwo PageTwo = new();
 
@@ -40,17 +40,68 @@ namespace ChmlFrp_Professional_Launcher.Pages
         {
             if (PageTwo.X86_Butten.IsChecked == false && PageTwo.AMD_Butten.IsChecked == false)
             {
-                Reminding.RemindingShow("选项未选择。", "red");
+                Reminding.RemindingShow("选项未选择", "red");
                 return;
             }
+            Reminding.RemindingShow("正在下载中...", "green");
+            await Task.Delay(1000);
             if (PageOne.Github_Butten.IsChecked == true && PageTwo.X86_Butten.IsChecked == true)
-                Downloadfiles.Download(null, null, "github");
+            {
+                if (
+                    Downloadfiles.Download(
+                        "https://raw.githubusercontent.com/Qianyiaz/ChmlFrp_Professional_Launcher/refs/heads/main/.frpc/frpc_86.exe",
+                        SetPath.frpExePath,
+                        "others"
+                    ) != "下载成功"
+                )
+                {
+                    Reminding.RemindingShow("下载失败", "red");
+                    return;
+                }
+            }
             if (PageOne.Github_Butten.IsChecked == true && PageTwo.AMD_Butten.IsChecked == true)
-                Downloadfiles.Download(null, null, "others");
+            {
+                if (
+                    Downloadfiles.Download(
+                        "https://raw.githubusercontent.com/Qianyiaz/ChmlFrp_Professional_Launcher/refs/heads/main/.frpc/frpc_amd.exe",
+                        SetPath.frpExePath,
+                        "others"
+                    ) != "下载成功"
+                )
+                {
+                    Reminding.RemindingShow("下载失败", "red");
+                    return;
+                }
+            }
             if (PageOne.GitCode_Butten.IsChecked == true && PageTwo.X86_Butten.IsChecked == true)
-                Downloadfiles.Download(null, null, "others");
+            {
+                if (
+                    Downloadfiles.Download(
+                        "https://raw.gitcode.com/Qyzgj/ChmlFrp_Professional_Launcher/raw/main/.frpc/frpc_86.exe",
+                        SetPath.frpExePath,
+                        "others"
+                    ) != "下载成功"
+                )
+                {
+                    Reminding.RemindingShow("下载失败", "red");
+                    return;
+                }
+            }
             if (PageOne.GitCode_Butten.IsChecked == true && PageTwo.AMD_Butten.IsChecked == true)
-                Downloadfiles.Download(null, null, "others");
+            {
+                if (
+                    Downloadfiles.Download(
+                        "https://raw.gitcode.com/Qyzgj/ChmlFrp_Professional_Launcher/raw/main/.frpc/frpc_amd.exe",
+                        SetPath.frpExePath,
+                        "others"
+                    ) != "下载成功"
+                )
+                {
+                    Reminding.RemindingShow("下载失败", "red");
+                    return;
+                }
+            }
+            Reminding.RemindingShow("下载成功", "green");
             await Task.Delay(1000);
             this.Visibility = Visibility.Collapsed;
         }
@@ -68,8 +119,7 @@ namespace ChmlFrp_Professional_Launcher.Pages
                 case 0:
                     No_Button.Click -= No_Button_Click;
                     SubjectTextBlock.Text = "下载FRPC路径";
-                    No_Button.BorderBrush = new SolidColorBrush(Colors.Gray);
-                    No_Button.Foreground = new SolidColorBrush(Colors.Black);
+                    No_Button.IsSelected = false;
                     PagesNavigation.Navigate(PageOne);
                     Yes_Button.Click -= Download_Button_Click;
                     Yes_Button.Click -= Yes_Button_Click;
@@ -88,8 +138,7 @@ namespace ChmlFrp_Professional_Launcher.Pages
                     }
                     No_Button.Click += No_Button_Click;
                     SubjectTextBlock.Text = "下载FRPC类型";
-                    No_Button.BorderBrush = Yes_Button.BorderBrush;
-                    No_Button.Foreground = Yes_Button.Foreground;
+                    No_Button.IsSelected = true;
                     PagesNavigation.Navigate(PageTwo);
                     Yes_Button.Click -= Yes_Button_Click;
                     Yes_Button.Click += Download_Button_Click;

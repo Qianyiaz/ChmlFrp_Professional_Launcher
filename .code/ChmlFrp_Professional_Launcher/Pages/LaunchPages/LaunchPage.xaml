@@ -19,21 +19,16 @@
                     Background="#f9f9f9"
                     CornerRadius="0,0,6,0">
                 <Grid>
-                    <Border BorderThickness="2" Margin="0,0,0,20" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="290" Height="70" BorderBrush="Black" CornerRadius="15">
-                        <Grid>
-                            <StackPanel Orientation="Horizontal">
-                                <local:LaunchingButten Background="Transparent"
-                                Content="未找到配置文件"
-                                FontSize="12"
-                                Width="220"
-                                CornerRadius="15,0,0,15"
-                                Height="70"
-                                x:Name="LaunchButton"
-                                Click="Launch" />
-                                <ComboBox Width="70" Height="70" />
-                            </StackPanel>
-                        </Grid>
-                    </Border>
+                    <local:CornerButten IsSelected="True"
+                                        CornerRadius="6"
+                                        Height="70" Width="320"
+                                        FontSize="15"
+                                        Content="启动FRPC"
+                                        x:Name="LaunchButton"
+                                        Click="Launch" 
+                                        Margin="0,0,0,20"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Bottom"/>
                 </Grid>
             </Border>
         </Grid>

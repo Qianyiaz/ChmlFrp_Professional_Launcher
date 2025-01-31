@@ -3,6 +3,7 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -20,8 +21,7 @@ namespace ChmlFrp_Professional_Launcher
         private Reminding Reminding = new();
         private SetPath SetPath = new();
         private Downloadfiles Downloadfiles = new();
-        LaunchPage LaunchPage;
-        ChmlFrpLoginPage ChmlFrpLoginPage;
+        public LaunchPage LaunchPage;
         BlankPage BlankPage;
 
         //SettingHomePage SettingHomePage;
@@ -39,11 +39,10 @@ namespace ChmlFrp_Professional_Launcher
             // 弹出加载页
             StartWindow StartWindow = new();
             StartWindow.Show();
-            System.Threading.Thread.Sleep(3000); // 3秒后关闭加载页
+            Thread.Sleep(3000);
             StartWindow.Close();
             // 初始化页面
             LaunchPage = new();
-            ChmlFrpLoginPage = new();
             BlankPage = new();
             //SettingHomePage = new();
             // 初始化主窗口
@@ -69,7 +68,7 @@ namespace ChmlFrp_Professional_Launcher
             Reminding.LogsOutputting("背景图片或默认加载成功");
             // 进入启动页
             rdLaunchPage_Click(this, new RoutedEventArgs());
-            if (!File.Exists(SetPath.frpPath))
+            if (!File.Exists(SetPath.frpExePath))
             {
                 RemindingthreePage RemindingthreePage = new();
                 PagesNavigationtwo.Navigate(RemindingthreePage);
@@ -97,7 +96,7 @@ namespace ChmlFrp_Professional_Launcher
             PagesNavigation.Navigate(LaunchPage);
         }
 
-        private void rdChmlfrpPage_Click(object sender, RoutedEventArgs e)
+        public void rdChmlfrpPage_Click(object sender, RoutedEventArgs e)
         {
             ChmlfrpPageButton.RemoveHandler(
                 Button.ClickEvent,
@@ -113,13 +112,8 @@ namespace ChmlFrp_Professional_Launcher
             );
             LaunchPageButton.Click += rdLaunchPage_Click;
             SettingsPageButton.Click += rdSettingsPage_Click;
-            if (Downloadfiles.GitAPI_Login(false))
-            {
-                ChmlFrphomePage ChmlFrpHomePage = new();
-                PagesNavigation.Navigate(ChmlFrpHomePage);
-                return;
-            }
-            PagesNavigation.Navigate(ChmlFrpLoginPage);
+            ChmlFrphomePage ChmlFrpHomePage = new();
+            PagesNavigation.Navigate(ChmlFrpHomePage);
         }
 
         private void rdSettingsPage_Click(object sender, RoutedEventArgs e)

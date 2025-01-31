@@ -1,7 +1,6 @@
 ﻿using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 using IniParser;
 using IniParser.Model;
 using Newtonsoft.Json.Linq;
@@ -13,50 +12,24 @@ namespace ChmlFrp_Professional_Launcher.Pages
     /// </summary>
     public partial class ChmlFrpLoginPage : Page
     {
-        private Reminding Reminding = new();
         private SetPath SetPath = new();
         private Downloadfiles Downloadfiles = new();
         private IniData data;
         private FileIniDataParser parser = new();
+        MainWindow MainWindow = Application.Current.MainWindow as MainWindow;
 
         public ChmlFrpLoginPage()
         {
             InitializeComponent();
-            Reminding.LogsOutputting("进入ChmlFrpLoginPage");
             data = parser.ReadFile(SetPath.setupIniPath);
-            if (data["ChmlFrp_Professional_Launcher Setup"]["Username"] != "")
-            {
-                TextBox_Username.Text = data["ChmlFrp_Professional_Launcher Setup"]["Username"];
-            }
-            if (data["ChmlFrp_Professional_Launcher Setup"]["Password"] != "")
-            {
-                TextBox_password.Password = data["ChmlFrp_Professional_Launcher Setup"]["Password"];
-            }
-        }
-
-        private void TextBox_Username_ini(object sender, TextChangedEventArgs e)
-        {
-            if (TextBox_Username.Text == "用户名或邮箱")
-            {
-                TextBox_Username.Foreground = new SolidColorBrush(Colors.Gray);
-                return;
-            }
-            else if (TextBox_Username.Text == "")
-            {
-                TextBox_Username.Foreground = new SolidColorBrush(Colors.Black);
-            }
-            else
-            {
-                TextBox_Username.Foreground = new SolidColorBrush(Colors.Black);
-            }
-            data["ChmlFrp_Professional_Launcher Setup"]["Username"] = TextBox_Username.Text;
-            parser.WriteFile(SetPath.setupIniPath, data);
         }
 
         private async void logon(object sender, RoutedEventArgs e)
         {
             logonButton.Click -= logon;
-            data["ChmlFrp_Professional_Launcher Setup"]["Password"] = TextBox_password.Password;
+            data["ChmlFrp_Professional_Launcher Setup"]["Password"] = TextBox_password.Text;
+            parser.WriteFile(SetPath.setupIniPath, data);
+            data["ChmlFrp_Professional_Launcher Setup"]["Username"] = TextBox_Username.Text;
             parser.WriteFile(SetPath.setupIniPath, data);
             if (Downloadfiles.GitAPI_Login(true))
             {
@@ -67,7 +40,9 @@ namespace ChmlFrp_Professional_Launcher.Pages
                     ?.ToString();
                 parser.WriteFile(SetPath.setupIniPath, data);
                 await Task.Delay(1000);
-                NavigationService.Navigate(new ChmlFrphomePage());
+                this.Visibility = Visibility.Collapsed;
+                ChmlFrphomePage ChmlFrphomePage = new();
+                MainWindow.PagesNavigation.Navigate(ChmlFrphomePage);
                 return;
             }
             else
@@ -77,20 +52,47 @@ namespace ChmlFrp_Professional_Launcher.Pages
             }
         }
 
-        private void TextBox_GotFocus(object sender, RoutedEventArgs e)
+        private void TextBox_Username_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (TextBox_Username.Text == "用户名或邮箱")
+            TextBox_Username.TextTwo = "";
+        }
+
+        private void TextBox_password_GotFocus(object sender, RoutedEventArgs e)
+        {
+            TextBox_password.TextTwo = "";
+        }
+
+        private void TextBox_password_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (TextBox_password.Text == "")
             {
-                TextBox_Username.Text = "";
+                TextBox_password.TextTwo = "密码";
             }
         }
 
-        private void TextBox_LostFocus(object sender, RoutedEventArgs e)
+        private void TextBox_Username_LostFocus(object sender, RoutedEventArgs e)
         {
             if (TextBox_Username.Text == "")
             {
-                TextBox_Username.Text = "用户名或邮箱";
+                TextBox_Username.TextTwo = "用户名或邮箱";
             }
+        }
+
+        private void Border_MouseLeftButtonDown(
+            object sender,
+            System.Windows.Input.MouseButtonEventArgs e
+        )
+        {
+            MainWindow MainWindow = Application.Current.MainWindow as MainWindow;
+            MainWindow.DragMove();
+        }
+
+        private void exit(object sender, RoutedEventArgs e)
+        {
+            this.Visibility = Visibility.Collapsed;
+            MainWindow.LaunchPageButton.IsChecked = true;
+            MainWindow.ChmlfrpPageButton.Click += MainWindow.rdChmlfrpPage_Click;
+            MainWindow.PagesNavigation.Navigate(MainWindow.LaunchPage);
         }
     }
 }

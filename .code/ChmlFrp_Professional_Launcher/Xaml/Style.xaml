@@ -1,6 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:ChmlFrp_Professional_Launcher">
+                    xmlns:local="clr-namespace:ChmlFrp_Professional_Launcher" >
 
     <Style x:Key="IconButtonsStyle" TargetType="{x:Type Button}">
         <Setter Property="Background" Value="Transparent" />
@@ -148,10 +148,10 @@
         </Setter>
     </Style>
 
-    <Style TargetType="{x:Type local:CornerButten}">
+    <Style TargetType="{x:Type local:CornerIconRadioButton}">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type local:CornerButten}">
+                <ControlTemplate TargetType="{x:Type local:CornerIconRadioButton}">
                     <Border Width="75" Height="26.5" BorderThickness="0" x:Name="border" Background="#116fce" CornerRadius="15">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                             <Path x:Name="path" Data="{TemplateBinding Data}" Fill="#f9f9f9" Height="15" Width="15" Stretch="Uniform" Margin="0,0,5,0" />
@@ -190,47 +190,61 @@
         </Setter>
     </Style>
 
-    <Style TargetType="{x:Type local:LaunchingButten}">
+    <Style TargetType="{x:Type local:CornerButten}">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type local:LaunchingButten}">
-                    <Border x:Name="border" Background="{TemplateBinding Background}" CornerRadius="{TemplateBinding CornerRadius}">
-                        <TextBlock FontSize="{TemplateBinding FontSize}" x:Name="borderTextBlock" Foreground="{DynamicResource TextPrimaryColor}" Text="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <ControlTemplate TargetType="{x:Type local:CornerButten}">
+                    <Border x:Name="border" 
+                            Background="Transparent" 
+                            BorderThickness="1" 
+                            BorderBrush="#116fce" 
+                            CornerRadius="{TemplateBinding CornerRadius}">
+                        
+                        <TextBlock FontSize="{TemplateBinding FontSize}" 
+                                   x:Name="borderTextBlock" 
+                                   Foreground="#116fce" 
+                                   Text="{TemplateBinding Content}" 
+                                   HorizontalAlignment="Center" 
+                                   VerticalAlignment="Center" />
+                        
                     </Border>
-                    <!--<ControlTemplate.Triggers>
-                        <Trigger Property="IsChecked" Value="True">
-                        </Trigger>
-                        <Trigger Property="IsMouseOver" Value="True">
-                        </Trigger>
-                    </ControlTemplate.Triggers>-->
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-
-    <Style TargetType="{x:Type local:ReallyCornerButten}">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type local:ReallyCornerButten}">
-                    <Border x:Name="border" Background="{TemplateBinding Background}" BorderThickness="1" BorderBrush="{TemplateBinding BorderBrush}" CornerRadius="{TemplateBinding CornerRadius}">
-                        <TextBlock FontSize="{TemplateBinding FontSize}" x:Name="borderTextBlock" Foreground="{TemplateBinding Foreground}" Text="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                    </Border>
+                    
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
+
+                        <Trigger Property="IsSelected" Value="False">
+                            <Setter TargetName="border" Property="BorderBrush" Value="Gray" />
+                            <Setter TargetName="borderTextBlock" Property="Foreground" Value="Black" />
+                        </Trigger>
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsMouseOver" Value="True" />
+                                <Condition Property="IsSelected" Value="True" />
+                            </MultiTrigger.Conditions>
+
                             <Setter TargetName="border" Property="BorderBrush" Value="#116fce" />
                             <Setter TargetName="border" Property="Background" Value="#ADD8E6" />
                             <Setter TargetName="borderTextBlock" Property="Foreground" Value="#116fce" />
-                        </Trigger>
+                        </MultiTrigger>
+                        
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsMouseOver" Value="True" />
+                                <Condition Property="IsSelected" Value="False" />
+                                
+                            </MultiTrigger.Conditions>
+                        </MultiTrigger>
+                        
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
 
-    <Style TargetType="{x:Type local:IconButten}">
+    <Style TargetType="{x:Type local:TransparentIconRadioButton}">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type local:IconButten}">
+                <ControlTemplate TargetType="{x:Type local:TransparentIconRadioButton}">
                     <Border x:Name="border" 
                             Background="Transparent" 
                             CornerRadius="15">
@@ -280,4 +294,46 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style TargetType="{x:Type local:CornerTextBox}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:CornerTextBox}">
+                    <Border Background="Transparent" 
+                            BorderThickness="2" 
+                            BorderBrush="#116fce" 
+                            CornerRadius="{TemplateBinding CornerRadius}">
+                        <Grid>
+                            <TextBox Text="{Binding Text, RelativeSource={RelativeSource TemplatedParent}, UpdateSourceTrigger=PropertyChanged}"
+                                     Padding="5,0,0,0"
+                                     BorderBrush="Transparent"
+                                     Background="Transparent"
+                                     Foreground="#116fce"
+                                     FontSize="17"                             
+                                     HorizontalContentAlignment="Left"
+                                     VerticalContentAlignment="Center"/>
+                            
+                            <TextBlock x:Name="borderTextBlock" 
+                                       Background="Transparent"
+                                       FontSize="16"
+                                       Foreground="Gray" 
+                                       Text="{TemplateBinding TextTwo}" 
+                                       IsHitTestVisible="False"
+                                       HorizontalAlignment="Center" 
+                                       VerticalAlignment="Center" />
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="borderTextBlock" Property="Foreground" Value="#116fce" />
+                        </Trigger>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter TargetName="borderTextBlock" Property="Foreground" Value="#116fce" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 </ResourceDictionary>

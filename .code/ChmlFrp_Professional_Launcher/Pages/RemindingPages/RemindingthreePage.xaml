@@ -55,30 +55,23 @@
                             HorizontalAlignment="Right"
                             Orientation="Horizontal">
                     
-                    <local:ReallyCornerButten Margin="0,0,5,0"
-                                          FontSize="14" 
-                                          CornerRadius="3" 
-                                          Content="上一步" 
-                                          x:Name="No_Button"
-                                          Click="No_Button_Click" 
-                                          BorderThickness="1" 
-                                          BorderBrush="Black" 
-                                          Foreground="Black"                    
-                                          Background="Transparent" 
-                                          Height="35"
-                                          Width="60"/>
+                    <local:CornerButten Margin="0,0,5,0"
+                                        FontSize="14" 
+                                        IsSelected="False"
+                                        CornerRadius="3" 
+                                        Content="上一步" 
+                                        x:Name="No_Button"
+                                        Height="35"
+                                        Width="60"/>
                     
-                    <local:ReallyCornerButten FontSize="14" 
-                                          CornerRadius="3" 
-                                          Content="下一步" 
-                                          x:Name="Yes_Button"
-                                          Click="Yes_Button_Click" 
-                                          BorderThickness="1" 
-                                          Foreground="#116fce"
-                                          BorderBrush="#116fce" 
-                                          Background="Transparent" 
-                                          Height="35"
-                                          Width="60"/>
+                    <local:CornerButten FontSize="14" 
+                                        CornerRadius="3" 
+                                        Content="下一步" 
+                                        IsSelected="True"
+                                        x:Name="Yes_Button"
+                                        Click="Yes_Button_Click" 
+                                        Height="35"
+                                        Width="60"/>
                     
                 </StackPanel>
             </Grid>

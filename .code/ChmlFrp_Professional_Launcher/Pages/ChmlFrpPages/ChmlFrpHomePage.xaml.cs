@@ -1,5 +1,6 @@
-﻿using ChmlFrp_Professional_Launcher.Pages.ChmlFrpLoginPages;
+﻿using System.Windows;
 using System.Windows.Controls;
+using ChmlFrp_Professional_Launcher.Pages.ChmlFrpLoginPages;
 
 namespace ChmlFrp_Professional_Launcher.Pages
 {
@@ -9,15 +10,22 @@ namespace ChmlFrp_Professional_Launcher.Pages
     public partial class ChmlFrphomePage : Page
     {
         private Reminding Reminding = new();
+        Downloadfiles Downloadfiles = new();
 
         public ChmlFrphomePage()
         {
             InitializeComponent();
-            Reminding.LogsOutputting("进入ChmlFrphomePage");
+            if (!Downloadfiles.GitAPI_Login(false))
+            {
+                MainWindow MainWindow = Application.Current.MainWindow as MainWindow;
+                ChmlFrpLoginPage ChmlFrpLoginPage = new();
+                MainWindow.PagesNavigationtwo.Navigate(ChmlFrpLoginPage);
+                return;
+            }
             rdLaunchPage_Click(null, null);
         }
 
-        private void rdLaunchPage_Click(object sender, System.Windows.RoutedEventArgs e)
+        public void rdLaunchPage_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             PagesNavigation.Navigate(new HomePage());
             Reminding.LogsOutputting("进入HomePage");
