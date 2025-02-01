@@ -9,8 +9,9 @@ namespace ChmlFrp_Professional_Launcher.Pages
     /// </summary>
     public partial class ChmlFrphomePage : Page
     {
-        private Reminding Reminding = new();
         Downloadfiles Downloadfiles = new();
+        HomePage HomePage;
+        TMAPage TMAPage;
 
         public ChmlFrphomePage()
         {
@@ -22,19 +23,19 @@ namespace ChmlFrp_Professional_Launcher.Pages
                 MainWindow.PagesNavigationtwo.Navigate(ChmlFrpLoginPage);
                 return;
             }
+            HomePage = new();
+            TMAPage = new();
             rdLaunchPage_Click(null, null);
         }
 
-        public void rdLaunchPage_Click(object sender, System.Windows.RoutedEventArgs e)
+        public void rdLaunchPage_Click(object sender, RoutedEventArgs e)
         {
-            PagesNavigation.Navigate(new HomePage());
-            Reminding.LogsOutputting("进入HomePage");
+            PagesNavigation.Navigate(HomePage);
         }
 
-        private void rdTMA_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void rdTMA_Click(object sender, RoutedEventArgs e)
         {
-            PagesNavigation.Navigate(new TMAPage());
-            Reminding.LogsOutputting("进入TMAPage");
+            PagesNavigation.Navigate(TMAPage);
         }
     }
 }

@@ -1,9 +1,9 @@
-﻿using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using IniParser;
+﻿using IniParser;
 using IniParser.Model;
 using Newtonsoft.Json.Linq;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace ChmlFrp_Professional_Launcher.Pages
 {
@@ -41,8 +41,8 @@ namespace ChmlFrp_Professional_Launcher.Pages
                 parser.WriteFile(SetPath.setupIniPath, data);
                 await Task.Delay(1000);
                 this.Visibility = Visibility.Collapsed;
-                ChmlFrphomePage ChmlFrphomePage = new();
-                MainWindow.PagesNavigation.Navigate(ChmlFrphomePage);
+                MainWindow.ChmlFrpHomePage = new();
+                MainWindow.PagesNavigation.Navigate(MainWindow.ChmlFrpHomePage);
                 return;
             }
             else
@@ -93,6 +93,7 @@ namespace ChmlFrp_Professional_Launcher.Pages
             MainWindow.LaunchPageButton.IsChecked = true;
             MainWindow.ChmlfrpPageButton.Click += MainWindow.rdChmlfrpPage_Click;
             MainWindow.PagesNavigation.Navigate(MainWindow.LaunchPage);
+            return;
         }
     }
 }

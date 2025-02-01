@@ -1,9 +1,9 @@
-﻿using IniParser;
-using IniParser.Model;
-using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
+using IniParser;
+using IniParser.Model;
+using Newtonsoft.Json.Linq;
 using Path = System.IO.Path;
 
 namespace ChmlFrp_Professional_Launcher.Pages.ChmlFrpLoginPages
@@ -40,7 +40,9 @@ namespace ChmlFrp_Professional_Launcher.Pages.ChmlFrpLoginPages
                 {
                     string jsonContent2 = System.IO.File.ReadAllText(SetPath.temp_api_path);
                     var jsonObject2 = JObject.Parse(jsonContent2);
-                    data["ChmlFrp_Professional_Launcher Setup"]["Token"] = jsonObject2["data"]["usertoken"]?.ToString();
+                    data["ChmlFrp_Professional_Launcher Setup"]["Token"] = jsonObject2["data"]
+                        ["usertoken"]
+                        ?.ToString();
                     parser.WriteFile(SetPath.setupIniPath, data);
                 }
                 else
@@ -49,7 +51,14 @@ namespace ChmlFrp_Professional_Launcher.Pages.ChmlFrpLoginPages
                     return;
                 }
             }
-            if (Downloadfiles.Download("http://cf-v2.uapis.cn/userinfo?token=" + data["ChmlFrp_Professional_Launcher Setup"]["usertoken"], temp_User, "txt") != "下载成功")
+            if (
+                Downloadfiles.Download(
+                    "http://cf-v2.uapis.cn/userinfo?token="
+                        + data["ChmlFrp_Professional_Launcher Setup"]["usertoken"],
+                    temp_User,
+                    "txt"
+                ) != "下载成功"
+            )
             {
                 Reminding.RemindingShow("用户信息加载失败", "red");
             }
@@ -57,7 +66,11 @@ namespace ChmlFrp_Professional_Launcher.Pages.ChmlFrpLoginPages
             {
                 string jsonContent1 = System.IO.File.ReadAllText(SetPath.temp_api_path);
                 var jsonObject1 = JObject.Parse(jsonContent1);
-                Downloadfiles.Download(jsonObject1["data"]["userimg"]?.ToString(), temp_UserImage, "others");
+                Downloadfiles.Download(
+                    jsonObject1["data"]["userimg"]?.ToString(),
+                    temp_UserImage,
+                    "others"
+                );
             }
             string jsonContent = System.IO.File.ReadAllText(SetPath.temp_api_path);
             var jsonObject = JObject.Parse(jsonContent);
@@ -70,8 +83,12 @@ namespace ChmlFrp_Professional_Launcher.Pages.ChmlFrpLoginPages
             UserExpiration_time.Text = jsonObject["data"]["term"]?.ToString();
             UserReal_name_status.Text = jsonObject["data"]["realname"]?.ToString();
             UserPoints_remaining.Text = jsonObject["data"]["integral"]?.ToString();
-            UserTunnel_restrictions.Text = jsonObject["data"]["tunnelCount"]?.ToString() + " / " + jsonObject["data"]["tunnel"]?.ToString();
-            UserBandwidth_throttling.Text = "国内" + jsonObject["data"]["bandwidth"]?.ToString() + "m";
+            UserTunnel_restrictions.Text =
+                jsonObject["data"]["tunnelCount"]?.ToString()
+                + " / "
+                + jsonObject["data"]["tunnel"]?.ToString();
+            UserBandwidth_throttling.Text =
+                "国内" + jsonObject["data"]["bandwidth"]?.ToString() + "m";
         }
 
         //private void TokenClick(object sender, RoutedEventArgs e)

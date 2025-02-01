@@ -20,9 +20,9 @@ namespace ChmlFrp_Professional_Launcher
     {
         private Reminding Reminding = new();
         private SetPath SetPath = new();
-        private Downloadfiles Downloadfiles = new();
         public LaunchPage LaunchPage;
         BlankPage BlankPage;
+        public ChmlFrphomePage ChmlFrpHomePage;
 
         //SettingHomePage SettingHomePage;
 
@@ -112,7 +112,7 @@ namespace ChmlFrp_Professional_Launcher
             );
             LaunchPageButton.Click += rdLaunchPage_Click;
             SettingsPageButton.Click += rdSettingsPage_Click;
-            ChmlFrphomePage ChmlFrpHomePage = new();
+            ChmlFrpHomePage = new();
             PagesNavigation.Navigate(ChmlFrpHomePage);
         }
 

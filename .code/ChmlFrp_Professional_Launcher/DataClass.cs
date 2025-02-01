@@ -37,6 +37,7 @@ using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -79,13 +80,14 @@ namespace ChmlFrp_Professional_Launcher
         private Reminding Reminding = new();
         private SetPath SetPath = new();
 
-        public string Download(string url, string path, string fileclass)
+        public async Task<string> Downloadasync(string url, string path, string fileclass)
         {
             if (url == null)
             {
                 Reminding.LogsOutputting("下载失败：url不能为null。");
                 return "下载失败：url不能为null。";
             }
+
             if (fileclass == "txt")
             {
                 using (HttpClient client = new())
@@ -113,7 +115,62 @@ namespace ChmlFrp_Professional_Launcher
                 {
                     using (WebClient client = new())
                     {
-                        client.DownloadFile(new Uri(url), path);
+                        await client.DownloadFileTaskAsync(new Uri(url), path);
+                    }
+                }
+                catch
+                {
+                    Reminding.LogsOutputting(
+                        "下载失败：路径或文件占用或网络错误?path=" + path + "&url=" + url
+                    );
+                    return "下载失败：路径或文件占用或网络错误";
+                }
+                Reminding.LogsOutputting("下载成功：已下载到" + path);
+                return "下载成功";
+            }
+            else
+            {
+                Reminding.LogsOutputting("下载失败：fileclass错误。");
+                return "下载失败：fileclass错误。";
+            }
+        }
+
+        public string Download(string url, string path, string fileclass)
+        {
+            if (url == null)
+            {
+                Reminding.LogsOutputting("下载失败：url不能为null。");
+                return "下载失败：url不能为null。";
+            }
+
+            if (fileclass == "txt")
+            {
+                using (HttpClient client = new())
+                {
+                    try
+                    {
+                        WebClient webClient = new();
+                        webClient.Encoding = Encoding.UTF8;
+                        File.WriteAllText(path, webClient.DownloadString(url));
+                    }
+                    catch
+                    {
+                        Reminding.LogsOutputting(
+                            "下载失败：路径或文件占用或网络错误?path=" + path + "&url=" + url
+                        );
+                        return "下载失败：路径或文件占用或网络错误";
+                    }
+                    Reminding.LogsOutputting("下载成功：已下载到" + path);
+                    return "下载成功";
+                }
+            }
+            else if (fileclass == "others")
+            {
+                try
+                {
+                    using (WebClient client = new())
+                    {
+                        client.DownloadFileTaskAsync(new Uri(url), path);
                     }
                 }
                 catch

@@ -38,70 +38,60 @@ namespace ChmlFrp_Professional_Launcher.Pages
 
         private async void Download_Button_Click(object sender, RoutedEventArgs e)
         {
-            if (PageTwo.X86_Butten.IsChecked == false && PageTwo.AMD_Butten.IsChecked == false)
-            {
-                Reminding.RemindingShow("选项未选择", "red");
-                return;
-            }
             Reminding.RemindingShow("正在下载中...", "green");
-            await Task.Delay(1000);
-            if (PageOne.Github_Butten.IsChecked == true && PageTwo.X86_Butten.IsChecked == true)
+            PageTwo.PorgressBar.IsIndeterminate = true;
+
+            bool isGithubChecked = PageOne.Github_Butten.IsChecked == true;
+            bool isGitCodeChecked = PageOne.GitCode_Butten.IsChecked == true;
+            bool isX86Checked = PageTwo.X86_Butten.IsChecked == true;
+            bool isAMDChecked = PageTwo.AMD_Butten.IsChecked == true;
+
+            bool downloadSuccess = await Task.Run(async () =>
             {
-                if (
-                    Downloadfiles.Download(
-                        "https://raw.githubusercontent.com/Qianyiaz/ChmlFrp_Professional_Launcher/refs/heads/main/.frpc/frpc_86.exe",
-                        SetPath.frpExePath,
-                        "others"
-                    ) != "下载成功"
-                )
+                if (isGithubChecked && isX86Checked)
                 {
-                    Reminding.RemindingShow("下载失败", "red");
-                    return;
+                    return await Downloadfiles.Downloadasync(
+                            "https://raw.githubusercontent.com/Qianyiaz/ChmlFrp_Professional_Launcher/refs/heads/main/.frpc/frpc_86.exe",
+                            SetPath.frpExePath,
+                            "others"
+                        ) == "下载成功";
                 }
-            }
-            if (PageOne.Github_Butten.IsChecked == true && PageTwo.AMD_Butten.IsChecked == true)
+                if (isGithubChecked && isAMDChecked)
+                {
+                    return await Downloadfiles.Downloadasync(
+                            "https://raw.githubusercontent.com/Qianyiaz/ChmlFrp_Professional_Launcher/refs/heads/main/.frpc/frpc_amd.exe",
+                            SetPath.frpExePath,
+                            "others"
+                        ) == "下载成功";
+                }
+                if (isGitCodeChecked && isX86Checked)
+                {
+                    return await Downloadfiles.Downloadasync(
+                            "https://raw.gitcode.com/Qyzgj/ChmlFrp_Professional_Launcher/raw/main/.frpc/frpc_86.exe",
+                            SetPath.frpExePath,
+                            "others"
+                        ) == "下载成功";
+                }
+                if (isGitCodeChecked && isAMDChecked)
+                {
+                    return await Downloadfiles.Downloadasync(
+                            "https://raw.gitcode.com/Qyzgj/ChmlFrp_Professional_Launcher/raw/main/.frpc/frpc_amd.exe",
+                            SetPath.frpExePath,
+                            "others"
+                        ) == "下载成功";
+                }
+                return false;
+            });
+
+            if (downloadSuccess)
             {
-                if (
-                    Downloadfiles.Download(
-                        "https://raw.githubusercontent.com/Qianyiaz/ChmlFrp_Professional_Launcher/refs/heads/main/.frpc/frpc_amd.exe",
-                        SetPath.frpExePath,
-                        "others"
-                    ) != "下载成功"
-                )
-                {
-                    Reminding.RemindingShow("下载失败", "red");
-                    return;
-                }
+                Reminding.RemindingShow("下载成功", "green");
             }
-            if (PageOne.GitCode_Butten.IsChecked == true && PageTwo.X86_Butten.IsChecked == true)
+            else
             {
-                if (
-                    Downloadfiles.Download(
-                        "https://raw.gitcode.com/Qyzgj/ChmlFrp_Professional_Launcher/raw/main/.frpc/frpc_86.exe",
-                        SetPath.frpExePath,
-                        "others"
-                    ) != "下载成功"
-                )
-                {
-                    Reminding.RemindingShow("下载失败", "red");
-                    return;
-                }
+                Reminding.RemindingShow("下载失败", "red");
             }
-            if (PageOne.GitCode_Butten.IsChecked == true && PageTwo.AMD_Butten.IsChecked == true)
-            {
-                if (
-                    Downloadfiles.Download(
-                        "https://raw.gitcode.com/Qyzgj/ChmlFrp_Professional_Launcher/raw/main/.frpc/frpc_amd.exe",
-                        SetPath.frpExePath,
-                        "others"
-                    ) != "下载成功"
-                )
-                {
-                    Reminding.RemindingShow("下载失败", "red");
-                    return;
-                }
-            }
-            Reminding.RemindingShow("下载成功", "green");
+
             await Task.Delay(1000);
             this.Visibility = Visibility.Collapsed;
         }

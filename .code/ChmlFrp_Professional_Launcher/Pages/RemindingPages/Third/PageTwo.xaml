@@ -8,19 +8,29 @@
       Height="225"
       Width="425"
       Title="PageTwo">
-
-    <StackPanel VerticalAlignment="Center"
+    <Grid>
+        <StackPanel VerticalAlignment="Center"
                 HorizontalAlignment="Center"
                 Orientation="Horizontal" >
 
-        <local:TransparentIconRadioButton x:Name="X86_Butten"
+            <local:TransparentIconRadioButton x:Name="X86_Butten"
                           Content="X86" 
                           Data="{DynamicResource x86}"
                           Height="50" Width="150"/>
 
-        <local:TransparentIconRadioButton x:Name="AMD_Butten"
+            <local:TransparentIconRadioButton x:Name="AMD_Butten"
                           Content="AMD" 
                           Data="{DynamicResource amd}"
                           Height="50" Width="150"/>
-    </StackPanel>
+        </StackPanel>
+        <ProgressBar Height="10" 
+                     Margin="0,0,0,5"
+                     x:Name="PorgressBar"
+                     IsIndeterminate="False"
+                     VerticalAlignment="Bottom" 
+                     Orientation="Horizontal" 
+                     Foreground="LightBlue" 
+                     Background="Transparent"
+                     BorderBrush="Transparent"/>
+    </Grid>
 </Page>
