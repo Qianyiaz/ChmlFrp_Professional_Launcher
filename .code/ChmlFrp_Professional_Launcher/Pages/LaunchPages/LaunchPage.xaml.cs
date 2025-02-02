@@ -12,11 +12,18 @@ namespace ChmlFrp_Professional_Launcher.Pages
         public LaunchPage()
         {
             InitializeComponent();
-            string jsonContent = System.IO.File.ReadAllText(SetPath.temp_api_tunnel_path);
-            var jsonObject = JObject.Parse(jsonContent);
-            foreach (var tunnel in jsonObject["data"])
+            try
             {
-                comboBox.Items.Add(tunnel["name"]?.ToString());
+                string jsonContent = System.IO.File.ReadAllText(SetPath.temp_api_tunnel_path);
+                var jsonObject = JObject.Parse(jsonContent);
+                foreach (var tunnel in jsonObject["data"])
+                {
+                    comboBox.Items.Add(tunnel["name"]?.ToString());
+                }
+            }
+            catch
+            {
+                Reminding.RemindingShow("获取隧道列表失败", "red");
             }
         }
 
