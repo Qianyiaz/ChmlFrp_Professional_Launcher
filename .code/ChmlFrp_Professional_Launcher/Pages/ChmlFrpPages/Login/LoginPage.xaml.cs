@@ -90,9 +90,9 @@ namespace ChmlFrp_Professional_Launcher.Pages.ChmlFrpPages.Login
             return;
         }
 
-        private void Registerpage_Navigate(object sender, RoutedEventArgs e)
-        {
-            MainWindow.ChmlFrpHomePage.ChmlFrpLoginPage.PagesNavigation.Navigate(RegisterPageOne);
-        }
+        //private void Registerpage_Navigate(object sender, RoutedEventArgs e)
+        //{
+        //    MainWindow.ChmlFrpHomePage.ChmlFrpLoginPage.PagesNavigation.Navigate(RegisterPageOne);
+        //}
     }
 }

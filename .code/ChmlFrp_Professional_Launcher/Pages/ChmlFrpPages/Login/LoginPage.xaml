@@ -47,7 +47,7 @@
 
         </StackPanel>
 
-        <local:CornerButten Margin="25,0,0,25"
+        <!--<local:CornerButten Margin="25,0,0,25"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Bottom"
                             FontSize="14" 
@@ -56,7 +56,7 @@
                             IsSelected="True"
                             Click="Registerpage_Navigate"
                             Height="35"
-                            Width="60"/>
+                            Width="60"/>-->
         
         <StackPanel Margin="0,0,25,25" 
                             VerticalAlignment="Bottom" 
