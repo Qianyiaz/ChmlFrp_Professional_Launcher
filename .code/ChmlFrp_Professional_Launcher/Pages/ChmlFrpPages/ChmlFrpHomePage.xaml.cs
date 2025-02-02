@@ -12,6 +12,7 @@ namespace ChmlFrp_Professional_Launcher.Pages
         Downloadfiles Downloadfiles = new();
         HomePage HomePage;
         TMAPage TMAPage;
+        public ChmlFrpLoginPage ChmlFrpLoginPage;
 
         public ChmlFrphomePage()
         {
@@ -19,7 +20,7 @@ namespace ChmlFrp_Professional_Launcher.Pages
             if (!Downloadfiles.GitAPI_Login(false))
             {
                 MainWindow MainWindow = Application.Current.MainWindow as MainWindow;
-                ChmlFrpLoginPage ChmlFrpLoginPage = new();
+                ChmlFrpLoginPage = new();
                 MainWindow.PagesNavigationtwo.Navigate(ChmlFrpLoginPage);
                 return;
             }

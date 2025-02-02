@@ -60,6 +60,7 @@ namespace ChmlFrp_Professional_Launcher
         public string CPLPath;
         public string pictures_path;
         public string logfilePath;
+        public string temp_api_tunnel_path;
 
         public SetPath()
         {
@@ -72,6 +73,7 @@ namespace ChmlFrp_Professional_Launcher
             temp_api_path = Path.Combine(temp_path, "login_chmlfrp_api.json");
             pictures_path = Path.Combine(CPLPath, "pictures");
             logfilePath = Path.Combine(CPLPath, "Debug.logs");
+            temp_api_tunnel_path = Path.Combine(temp_path, "temp_api_tunnel.json");
         }
     }
 
@@ -320,6 +322,10 @@ namespace ChmlFrp_Professional_Launcher
             if (!File.Exists(SetPath.temp_path))
             {
                 Directory.CreateDirectory(SetPath.temp_path);
+            }
+            if (!File.Exists(SetPath.IniPath))
+            {
+                Directory.CreateDirectory(SetPath.IniPath);
             }
             if (!File.Exists(SetPath.setupIniPath))
             {

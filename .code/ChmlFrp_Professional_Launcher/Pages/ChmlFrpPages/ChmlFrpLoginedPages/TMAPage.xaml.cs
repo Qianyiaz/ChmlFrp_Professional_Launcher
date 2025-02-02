@@ -1,8 +1,7 @@
-﻿using Newtonsoft.Json.Linq;
-using System.IO;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using Newtonsoft.Json.Linq;
 
 namespace ChmlFrp_Professional_Launcher.Pages.ChmlFrpLoginPages
 {
@@ -13,14 +12,11 @@ namespace ChmlFrp_Professional_Launcher.Pages.ChmlFrpLoginPages
     {
         private int i;
         private int x;
-        public string temp_api_tunnel_path;
-        private SetPath SetPath;
+        private SetPath SetPath = new();
 
         public TMAPage()
         {
             InitializeComponent();
-            SetPath = new SetPath();
-            temp_api_tunnel_path = Path.Combine(SetPath.temp_path, "temp_api_tunnel.json");
             InitializesetPaths();
             NodeTextBlock_1_3_2.IsReadOnly = true;
             Leftbutton.Click -= btnLeft_Click;
@@ -34,9 +30,16 @@ namespace ChmlFrp_Professional_Launcher.Pages.ChmlFrpLoginPages
             string jsonContent = System.IO.File.ReadAllText(SetPath.temp_api_path);
             var jsonObject = JObject.Parse(jsonContent);
             Downloadfiles Downloadfiles = new();
-            if (Downloadfiles.Download("http://cf-v2.uapis.cn/tunnel?token=" + jsonObject["data"]["usertoken"]?.ToString(), temp_api_tunnel_path, "txt") == "下载成功")
+            if (
+                Downloadfiles.Download(
+                    "http://cf-v2.uapis.cn/tunnel?token="
+                        + jsonObject["data"]["usertoken"]?.ToString(),
+                    SetPath.temp_api_tunnel_path,
+                    "txt"
+                ) == "下载成功"
+            )
             {
-                jsonContent = System.IO.File.ReadAllText(temp_api_tunnel_path);
+                jsonContent = System.IO.File.ReadAllText(SetPath.temp_api_tunnel_path);
                 jsonObject = JObject.Parse(jsonContent);
                 if (jsonObject["msg"]?.ToString() == "获取隧道数据成功")
                 {
@@ -59,7 +62,8 @@ namespace ChmlFrp_Professional_Launcher.Pages.ChmlFrpLoginPages
                                 NodeTextBlock_1_3_2.Text = "在线";
                             }
                             NodeTextBlock_1_4_2.Text = tunnel["node"]?.ToString();
-                            NodeTextBlock_1_5_2.Text = tunnel["localip"]?.ToString() + " - " + tunnel["type"]?.ToString();
+                            NodeTextBlock_1_5_2.Text =
+                                tunnel["localip"]?.ToString() + " - " + tunnel["type"]?.ToString();
                         }
                         if (i == 2)
                         {
@@ -77,7 +81,8 @@ namespace ChmlFrp_Professional_Launcher.Pages.ChmlFrpLoginPages
                             {
                                 NodeTextBlock_2_3_2.Text = "在线";
                             }
-                            NodeTextBlock_2_5_2.Text = tunnel["localip"]?.ToString() + " - " + tunnel["type"]?.ToString();
+                            NodeTextBlock_2_5_2.Text =
+                                tunnel["localip"]?.ToString() + " - " + tunnel["type"]?.ToString();
                         }
                         if (i == 3)
                         {
@@ -95,7 +100,8 @@ namespace ChmlFrp_Professional_Launcher.Pages.ChmlFrpLoginPages
                                 NodeTextBlock_3_3_2.Text = "在线";
                             }
                             NodeTextBlock_3_4_2.Text = tunnel["node"]?.ToString();
-                            NodeTextBlock_3_5_2.Text = tunnel["localip"]?.ToString() + " - " + tunnel["type"]?.ToString();
+                            NodeTextBlock_3_5_2.Text =
+                                tunnel["localip"]?.ToString() + " - " + tunnel["type"]?.ToString();
                         }
                         if (i == 4)
                         {
@@ -113,7 +119,8 @@ namespace ChmlFrp_Professional_Launcher.Pages.ChmlFrpLoginPages
                                 NodeTextBlock_2_3_2.Text = "在线";
                             }
                             NodeTextBlock_4_4_2.Text = tunnel["node"]?.ToString();
-                            NodeTextBlock_4_5_2.Text = tunnel["localip"]?.ToString() + " - " + tunnel["type"]?.ToString();
+                            NodeTextBlock_4_5_2.Text =
+                                tunnel["localip"]?.ToString() + " - " + tunnel["type"]?.ToString();
                         }
                         if (i >= 5)
                         {

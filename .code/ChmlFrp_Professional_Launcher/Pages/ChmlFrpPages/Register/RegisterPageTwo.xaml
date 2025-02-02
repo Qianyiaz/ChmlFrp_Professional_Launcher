@@ -1,0 +1,95 @@
+﻿<Page x:Class="ChmlFrp_Professional_Launcher.Pages.ChmlFrpPages.Register.RegisterPageTwo"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ChmlFrp_Professional_Launcher"
+      mc:Ignorable="d" 
+      Height="225"
+      Width="425"
+      Title="RegisterPageTwo">
+
+    <Grid>
+        <StackPanel Orientation="Vertical">
+            <TextBlock x:Name="SubjectTextBlock" 
+                               FontSize="25" 
+                               Text="注册CHMLFRP" 
+                               Foreground="#0B5BCB" Margin="20,20,0,0" 
+                               VerticalAlignment="Top" 
+                               HorizontalAlignment="Left" />
+
+            <Border CornerRadius="2,2,2,2" 
+                            Background="#116fce" 
+                            Width="400" 
+                            Height="2" 
+                            Margin="0,4,0,0" />
+
+        </StackPanel>
+        
+        <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="0,35,0,0">
+
+            <local:CornerTextBox CornerRadius="5"
+                                         x:Name="TextBox_Mail"
+                                         Height="35"
+                                         Width="380"
+                                         Margin="0,-25,0,0"
+                                         TextTwo="邮箱"
+                                         GotFocus="TextBox_Mail_GotFocus"
+                                         LostFocus="TextBox_Mail_LostFocus"/>
+
+            <local:CornerTextBox x:Name="TextBox_password"
+                                         CornerRadius="5"
+                                         Height="35"
+                                         Width="380"
+                                         Margin="0,5,0,0"
+                                         TextTwo="确认密码" 
+                                         GotFocus="TextBox_password_GotFocus"
+                                         LostFocus="TextBox_password_LostFocus"/>
+
+            <StackPanel Orientation="Horizontal" Margin="0,5,0,0" HorizontalAlignment="Center">
+                
+                <local:CornerTextBox x:Name="TextBox_Code"
+                                         CornerRadius="5,0,0,5"
+                                         Height="35"
+                                         Width="320"
+                                         TextTwo="验证码" 
+                                         GotFocus="TextBox_Code_GotFocus"
+                                         LostFocus="TextBox_Code_LostFocus"/>
+                
+                <local:CornerButten FontSize="14" 
+                                        CornerRadius="0,3,3,0" 
+                                        Content="获取" 
+                                        IsSelected="True"
+                                        Click="GetCode"
+                                        Height="35"
+                                        Width="60"/>
+                
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel Margin="0,0,25,10" 
+                            VerticalAlignment="Bottom" 
+                            HorizontalAlignment="Right"
+                            Orientation="Horizontal">
+
+            <local:CornerButten Margin="0,0,5,0"
+                                        FontSize="14" 
+                                        CornerRadius="3" 
+                                        Content="上一步" 
+                                        IsSelected="True"
+                                        Click="Last"
+                                        Height="35"
+                                        Width="60"/>
+
+            <local:CornerButten FontSize="14" 
+                                        CornerRadius="3" 
+                                        Content="注册" 
+                                        IsSelected="True"
+                                        x:Name="RegisterButton"
+                                        Click="Register"
+                                        Height="35"
+                                        Width="60"/>
+
+        </StackPanel>
+    </Grid>
+</Page>

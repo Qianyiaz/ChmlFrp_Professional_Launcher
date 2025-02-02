@@ -312,7 +312,7 @@
                                      FontSize="17"                             
                                      HorizontalContentAlignment="Left"
                                      VerticalContentAlignment="Center"/>
-                            
+
                             <TextBlock x:Name="borderTextBlock" 
                                        Background="Transparent"
                                        FontSize="16"
@@ -335,5 +335,4 @@
             </Setter.Value>
         </Setter>
     </Style>
-
 </ResourceDictionary>

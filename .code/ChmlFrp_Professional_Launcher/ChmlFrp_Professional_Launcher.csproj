@@ -113,6 +113,15 @@
     <Compile Include="Pages\ChmlFrpPages\ChmlFrpLoginedPages\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\ChmlFrpPages\Login\LoginPage.xaml.cs">
+      <DependentUpon>LoginPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ChmlFrpPages\Register\RegisterPageOne.xaml.cs">
+      <DependentUpon>RegisterPageOne.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ChmlFrpPages\Register\RegisterPageTwo.xaml.cs">
+      <DependentUpon>RegisterPageTwo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\RemindingPages\RemindingPage.xaml.cs">
       <DependentUpon>RemindingPage.xaml</DependentUpon>
     </Compile>
@@ -155,6 +164,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\ChmlFrpPages\ChmlFrpLoginedPages\TMAPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ChmlFrpPages\Login\LoginPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ChmlFrpPages\Register\RegisterPageOne.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ChmlFrpPages\Register\RegisterPageTwo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -261,6 +282,7 @@
     <Content Include="Dll\INIFileParser.dll" />
     <Content Include="Dll\Newtonsoft.Json.dll" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="AfterResolveReferences">
     <ItemGroup>

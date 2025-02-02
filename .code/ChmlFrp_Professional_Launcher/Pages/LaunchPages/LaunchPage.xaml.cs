@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using Newtonsoft.Json.Linq;
 
 namespace ChmlFrp_Professional_Launcher.Pages
 {
@@ -11,6 +12,12 @@ namespace ChmlFrp_Professional_Launcher.Pages
         public LaunchPage()
         {
             InitializeComponent();
+            string jsonContent = System.IO.File.ReadAllText(SetPath.temp_api_tunnel_path);
+            var jsonObject = JObject.Parse(jsonContent);
+            foreach (var tunnel in jsonObject["data"])
+            {
+                comboBox.Items.Add(tunnel["name"]?.ToString());
+            }
         }
 
         //private int i = 0;

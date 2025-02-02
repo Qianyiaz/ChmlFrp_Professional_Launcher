@@ -18,18 +18,21 @@
             <Border Opacity="0.8"
                     Background="#f9f9f9"
                     CornerRadius="0,0,6,0">
-                <Grid>
+                <StackPanel Margin="0,0,0,20"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Bottom"
+                            Orientation="Horizontal">
                     <local:CornerButten IsSelected="True"
-                                        CornerRadius="6"
-                                        Height="70" Width="320"
+                                        CornerRadius="6,0,0,6"
+                                        Height="70" Width="250"
                                         FontSize="15"
                                         Content="启动FRPC"
                                         x:Name="LaunchButton"
-                                        Click="Launch" 
-                                        Margin="0,0,0,20"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Bottom"/>
-                </Grid>
+                                        Click="Launch" />
+                    
+                    <ComboBox  x:Name="comboBox" 
+                                           Width="80"/>
+                </StackPanel>
             </Border>
         </Grid>
     </Grid>
