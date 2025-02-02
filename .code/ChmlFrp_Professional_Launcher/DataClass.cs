@@ -300,7 +300,6 @@ namespace ChmlFrp_Professional_Launcher
                 return;
             }
             RemindingPage.RemidingTextBlock.Text = message;
-            //LogsOutputting("显示提醒：" + message);
             MainWindow.PagesNavigationthree.Navigate(RemindingPage);
         }
 

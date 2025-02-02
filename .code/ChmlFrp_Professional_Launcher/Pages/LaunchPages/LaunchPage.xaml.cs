@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.IO;
+using System.Windows;
 using System.Windows.Controls;
 using Newtonsoft.Json.Linq;
 
@@ -12,18 +13,14 @@ namespace ChmlFrp_Professional_Launcher.Pages
         public LaunchPage()
         {
             InitializeComponent();
-            try
+            if (File.Exists(SetPath.temp_api_tunnel_path))
             {
-                string jsonContent = System.IO.File.ReadAllText(SetPath.temp_api_tunnel_path);
+                string jsonContent = File.ReadAllText(SetPath.temp_api_tunnel_path);
                 var jsonObject = JObject.Parse(jsonContent);
                 foreach (var tunnel in jsonObject["data"])
                 {
                     comboBox.Items.Add(tunnel["name"]?.ToString());
                 }
-            }
-            catch
-            {
-                Reminding.RemindingShow("获取隧道列表失败", "red");
             }
         }
 
