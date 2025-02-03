@@ -255,9 +255,6 @@
     <Resource Include="favicon.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Icons\SolarUserCircleLineDuotone.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Dlls\INIFileParser.dll" />
     <Content Include="Dlls\Newtonsoft.Json.dll" />
   </ItemGroup>

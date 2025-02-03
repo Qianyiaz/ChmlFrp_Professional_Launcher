@@ -1,10 +1,11 @@
-﻿using IniParser;
-using IniParser.Model;
-using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
+using IniParser;
+using IniParser.Model;
+using Newtonsoft.Json.Linq;
 using Path = System.IO.Path;
 
 namespace ChmlFrp_Professional_Launcher.Pages.ChmlFrpLoginPages
@@ -78,7 +79,7 @@ namespace ChmlFrp_Professional_Launcher.Pages.ChmlFrpLoginPages
             var jsonObject = JObject.Parse(jsonContent);
 
             UserImage.ImageSource = new BitmapImage(new Uri(temp_UserImage));
-            UserTextBlock.Text = UserTextBlock.Text + jsonObject["data"]["username"]?.ToString();
+            UserTextBlock.Text = jsonObject["data"]["username"]?.ToString();
             Usermailbox.Text = jsonObject["data"]["email"]?.ToString();
             UserRegistration_time.Text = jsonObject["data"]["regtime"]?.ToString();
             UserQQ.Text = jsonObject["data"]["qq"]?.ToString();
@@ -96,20 +97,24 @@ namespace ChmlFrp_Professional_Launcher.Pages.ChmlFrpLoginPages
                 "国内" + jsonObject["data"]["bandwidth"]?.ToString() + "m";
         }
 
-        //private void TokenClick(object sender, RoutedEventArgs e)
-        //{
-        //    Token.Click -= TokenClick;
-        //    string jsonContent = System.IO.File.ReadAllText(SetPath.temp_api_path);
-        //    var jsonObject = JObject.Parse(jsonContent);
-        //    if (Token.Content.ToString() == jsonObject["data"]["usertoken"]?.ToString())
-        //    {
-        //        Clipboard.SetDataObject(Token.Content.ToString());
-        //        Token.Content = "已复制到的剪切板点击重新显示";
-        //        Token.Click += TokenClick;
-        //        return;
-        //    }
-        //    Token.Content = jsonObject["data"]["usertoken"]?.ToString();
-        //    Token.Click += TokenClick;
-        //}
+        int i;
+
+        private void TokenClick(object sender, System.Windows.RoutedEventArgs e)
+        {
+            Token.Click -= TokenClick;
+            i++;
+            string jsonContent = System.IO.File.ReadAllText(SetPath.temp_api_path);
+            var jsonObject = JObject.Parse(jsonContent);
+            if (i == 1)
+                Reminding.RemindingShow(jsonObject["data"]["usertoken"]?.ToString(), "green");
+            if (i == 2)
+            {
+                Clipboard.SetDataObject(Token.Content.ToString());
+                Reminding.RemindingShow("Token已复制到的剪切板点击重新显示", "green");
+                Token.Content = "点击查看Token";
+                i = 0;
+            }
+            Token.Click += TokenClick;
+        }
     }
 }
