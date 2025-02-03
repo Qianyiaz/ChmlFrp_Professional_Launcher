@@ -31,6 +31,10 @@
 //                  不见满街漂亮妹，哪个归得程序员？
 */
 // ChmlFrp_Professional_Launcher/DataClass.cs
+using ChmlFrp_Professional_Launcher.Pages;
+using IniParser;
+using IniParser.Model;
+using Newtonsoft.Json.Linq;
 using System;
 using System.ComponentModel;
 using System.IO;
@@ -41,10 +45,6 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using ChmlFrp_Professional_Launcher.Pages;
-using IniParser;
-using IniParser.Model;
-using Newtonsoft.Json.Linq;
 
 namespace ChmlFrp_Professional_Launcher
 {
@@ -65,14 +65,16 @@ namespace ChmlFrp_Professional_Launcher
         public SetPath()
         {
             directoryPath = Directory.GetCurrentDirectory();
+            //文件夹路径
             CPLPath = Path.Combine(directoryPath, "CPL");
-            IniPath = Path.Combine(CPLPath, "ini");
+            IniPath = Path.Combine(CPLPath, "Ini");
+            temp_path = Path.Combine(CPLPath, "Temp");
+            pictures_path = Path.Combine(CPLPath, "Pictures");
+            //文件路径
             frpExePath = Path.Combine(CPLPath, "frpc.exe");
-            setupIniPath = Path.Combine(CPLPath, "Setup.ini");
-            temp_path = Path.Combine(CPLPath, "temp");
-            temp_api_path = Path.Combine(temp_path, "login_chmlfrp_api.json");
-            pictures_path = Path.Combine(CPLPath, "pictures");
             logfilePath = Path.Combine(CPLPath, "Debug.logs");
+            setupIniPath = Path.Combine(CPLPath, "Setup.ini");
+            temp_api_path = Path.Combine(temp_path, "login_chmlfrp_api.json");
             temp_api_tunnel_path = Path.Combine(temp_path, "temp_api_tunnel.json");
         }
     }
@@ -112,6 +114,10 @@ namespace ChmlFrp_Professional_Launcher
                     data = new IniData();
                     data["ChmlFrp_Professional_Launcher Setup"]["Versions"] = "0.0.0.5";
                     parser.WriteFile(SetPath.setupIniPath, data);
+                }
+                if (File.Exists(SetPath.logfilePath))
+                {
+                    File.WriteAllText(SetPath.logfilePath, string.Empty);
                 }
                 //创建日志文件
                 for (int i = 1; i < 6; i++)
@@ -165,12 +171,12 @@ namespace ChmlFrp_Professional_Launcher
             return true;
         }
 
-        public string Download(string url, string path, string fileclass)
+        public bool Download(string url, string path, string fileclass)
         {
             if (url == null)
             {
                 Reminding.LogsOutputting("下载失败：url不能为null。");
-                return "下载失败：url不能为null。";
+                return false;
             }
 
             if (fileclass == "txt")
@@ -188,10 +194,10 @@ namespace ChmlFrp_Professional_Launcher
                         Reminding.LogsOutputting(
                             "下载失败：路径或文件占用或网络错误?path=" + path + "&url=" + url
                         );
-                        return "下载失败：路径或文件占用或网络错误";
+                        return false;
                     }
                     Reminding.LogsOutputting("下载成功：已下载到" + path);
-                    return "下载成功";
+                    return true;
                 }
             }
             else if (fileclass == "others")
@@ -208,15 +214,15 @@ namespace ChmlFrp_Professional_Launcher
                     Reminding.LogsOutputting(
                         "下载失败：路径或文件占用或网络错误?path=" + path + "&url=" + url
                     );
-                    return "下载失败：路径或文件占用或网络错误";
+                    return false;
                 }
                 Reminding.LogsOutputting("下载成功：已下载到" + path);
-                return "下载成功";
+                return true;
             }
             else
             {
                 Reminding.LogsOutputting("下载失败：fileclass错误。");
-                return "下载失败：fileclass错误。";
+                return false;
             }
         }
 
@@ -234,7 +240,7 @@ namespace ChmlFrp_Professional_Launcher
                         + data["ChmlFrp_Professional_Launcher Setup"]["Password"],
                     SetPath.temp_api_path,
                     "txt"
-                ) == "下载成功"
+                )
             )
             {
                 var jsonObject = JObject.Parse(File.ReadAllText(SetPath.temp_api_path));
@@ -273,13 +279,6 @@ namespace ChmlFrp_Professional_Launcher
         {
             logEntry = $"[{DateTime.Now}] " + logEntry;
             Console.WriteLine(logEntry);
-
-            FileInfo logFileInfo = new(SetPath.logfilePath);
-            if (logFileInfo.Exists && logFileInfo.Length > 50 * 1024)
-            {
-                File.WriteAllText(SetPath.logfilePath, string.Empty);
-            }
-
             File.AppendAllText(SetPath.logfilePath, logEntry + Environment.NewLine);
         }
 

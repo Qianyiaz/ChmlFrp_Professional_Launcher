@@ -1,11 +1,11 @@
-﻿using System;
+﻿using IniParser;
+using IniParser.Model;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
-using IniParser;
-using IniParser.Model;
-using Newtonsoft.Json.Linq;
 using Path = System.IO.Path;
 
 namespace ChmlFrp_Professional_Launcher.Pages.ChmlFrpLoginPages
@@ -15,23 +15,28 @@ namespace ChmlFrp_Professional_Launcher.Pages.ChmlFrpLoginPages
     /// </summary>
     public partial class HomePage : Page
     {
-        private SetPath SetPath;
+        private Downloadfiles Downloadfiles = new();
+        private Reminding Reminding = new();
+        private SetPath SetPath = new();
+
         private string temp_UserImage;
         private string temp_User;
-        private Downloadfiles Downloadfiles = new();
-        private IniData data;
-        private Reminding Reminding = new();
+        private string usertoken;
+
         private FileIniDataParser parser;
+        private IniData data;
+
         private DispatcherTimer timer;
 
         public HomePage()
         {
             InitializeComponent();
-            SetPath = new SetPath();
-            temp_UserImage = Path.Combine(SetPath.temp_path, "temp_userImage.jpg");
-            temp_User = Path.Combine(SetPath.temp_path, "login_user_api.json");
             parser = new FileIniDataParser();
             data = parser.ReadFile(SetPath.setupIniPath);
+            temp_UserImage = Path.Combine(SetPath.temp_path, "temp_userImage.jpg");
+            temp_User = Path.Combine(SetPath.temp_path, "login_user_api.json");
+            usertoken = data["ChmlFrp_Professional_Launcher Setup"]["Token"];
+
             InitializesetPaths();
 
             // 设置定时器
@@ -48,22 +53,15 @@ namespace ChmlFrp_Professional_Launcher.Pages.ChmlFrpLoginPages
 
         private void InitializesetPaths()
         {
-            if (data["ChmlFrp_Professional_Launcher Setup"]["Token"] == null)
-            {
-                Reminding.RemindingShow("Token未获取", "red");
-                return;
-            }
             if (
-                Downloadfiles.Download(
+                !Downloadfiles.Download(
                     "http://cf-v2.uapis.cn/userinfo?token="
                         + data["ChmlFrp_Professional_Launcher Setup"]["Token"],
                     temp_User,
                     "txt"
-                ) != "下载成功"
+                )
             )
-            {
                 Reminding.RemindingShow("用户信息加载失败", "red");
-            }
             if (!System.IO.File.Exists(temp_UserImage))
             {
                 string jsonContent1 = System.IO.File.ReadAllText(SetPath.temp_api_path);
@@ -99,17 +97,16 @@ namespace ChmlFrp_Professional_Launcher.Pages.ChmlFrpLoginPages
 
         int i;
 
-        private void TokenClick(object sender, System.Windows.RoutedEventArgs e)
+        private void TokenClick(object sender, RoutedEventArgs e)
         {
             Token.Click -= TokenClick;
             i++;
-            string jsonContent = System.IO.File.ReadAllText(SetPath.temp_api_path);
-            var jsonObject = JObject.Parse(jsonContent);
+
             if (i == 1)
-                Reminding.RemindingShow(jsonObject["data"]["usertoken"]?.ToString(), "green");
+                Reminding.RemindingShow(usertoken, "green");
             if (i == 2)
             {
-                Clipboard.SetDataObject(Token.Content.ToString());
+                Clipboard.SetDataObject(usertoken);
                 Reminding.RemindingShow("Token已复制到的剪切板点击重新显示", "green");
                 Token.Content = "点击查看Token";
                 i = 0;

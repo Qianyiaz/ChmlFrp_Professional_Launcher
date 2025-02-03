@@ -1,15 +1,14 @@
 ﻿// ChmlFrp_Professional_Launcher/MainWindow.xaml.cs
+using ChmlFrp_Professional_Launcher.Pages;
 using System;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using ChmlFrp_Professional_Launcher.Pages;
 
 namespace ChmlFrp_Professional_Launcher
 {
@@ -88,68 +87,23 @@ namespace ChmlFrp_Professional_Launcher
             }
         }
 
-        private void rdLaunchPage_Click(object sender, RoutedEventArgs e)
-        {
-            ChmlfrpPageButton.RemoveHandler(
-                Button.ClickEvent,
-                new RoutedEventHandler(rdChmlfrpPage_Click)
-            );
-            LaunchPageButton.RemoveHandler(
-                Button.ClickEvent,
-                new RoutedEventHandler(rdLaunchPage_Click)
-            );
-            SettingsPageButton.RemoveHandler(
-                Button.ClickEvent,
-                new RoutedEventHandler(rdSettingsPage_Click)
-            );
-            LaunchPageButton.Click -= rdLaunchPage_Click;
-            ChmlfrpPageButton.Click += rdChmlfrpPage_Click;
-            SettingsPageButton.Click += rdSettingsPage_Click;
-            PagesNavigation.Navigate(LaunchPage);
-        }
-
         public void rdChmlfrpPage_Click(object sender, RoutedEventArgs e)
         {
-            ChmlfrpPageButton.RemoveHandler(
-                Button.ClickEvent,
-                new RoutedEventHandler(rdChmlfrpPage_Click)
-            );
-            LaunchPageButton.RemoveHandler(
-                Button.ClickEvent,
-                new RoutedEventHandler(rdLaunchPage_Click)
-            );
-            SettingsPageButton.RemoveHandler(
-                Button.ClickEvent,
-                new RoutedEventHandler(rdSettingsPage_Click)
-            );
-            LaunchPageButton.Click += rdLaunchPage_Click;
-            SettingsPageButton.Click += rdSettingsPage_Click;
             PagesNavigation.Navigate(ChmlFrpHomePage);
             if (SignInBool)
                 PagesNavigationtwo.Navigate(ChmlFrpLoginPage);
         }
 
+        private void rdLaunchPage_Click(object sender, RoutedEventArgs e)
+        {
+            PagesNavigation.Navigate(LaunchPage);
+        }
+
         private void rdSettingsPage_Click(object sender, RoutedEventArgs e)
         {
-            ChmlfrpPageButton.RemoveHandler(
-                Button.ClickEvent,
-                new RoutedEventHandler(rdChmlfrpPage_Click)
-            );
-            LaunchPageButton.RemoveHandler(
-                Button.ClickEvent,
-                new RoutedEventHandler(rdLaunchPage_Click)
-            );
-            SettingsPageButton.RemoveHandler(
-                Button.ClickEvent,
-                new RoutedEventHandler(rdSettingsPage_Click)
-            );
-            ChmlfrpPageButton.Click += rdChmlfrpPage_Click;
-            SettingsPageButton.Click -= rdSettingsPage_Click;
-            LaunchPageButton.Click += rdLaunchPage_Click;
             PagesNavigation.Navigate(BlankPage);
         }
 
-        //除其他组件窗口事件
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             Reminding.LogsOutputting("退出软件中...");

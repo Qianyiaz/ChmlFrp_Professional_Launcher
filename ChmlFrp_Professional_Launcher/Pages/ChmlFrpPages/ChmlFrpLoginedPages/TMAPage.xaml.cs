@@ -1,7 +1,7 @@
-﻿using System.Windows;
+﻿using Newtonsoft.Json.Linq;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using Newtonsoft.Json.Linq;
 
 namespace ChmlFrp_Professional_Launcher.Pages.ChmlFrpLoginPages
 {
@@ -36,7 +36,7 @@ namespace ChmlFrp_Professional_Launcher.Pages.ChmlFrpLoginPages
                         + jsonObject["data"]["usertoken"]?.ToString(),
                     SetPath.temp_api_tunnel_path,
                     "txt"
-                ) == "下载成功"
+                )
             )
             {
                 jsonContent = System.IO.File.ReadAllText(SetPath.temp_api_tunnel_path);
