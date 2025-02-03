@@ -18,13 +18,16 @@ namespace ChmlFrp_Professional_Launcher
     /// </summary>
     public partial class MainWindow : Window
     {
-        private Reminding Reminding = new();
-        private SetPath SetPath = new();
-        public LaunchPage LaunchPage;
-        BlankPage BlankPage;
-        public ChmlFrphomePage ChmlFrpHomePage;
+        Reminding Reminding = new();
+        SetPath SetPath = new();
+        Downloadfiles Downloadfiles = new();
 
-        //SettingHomePage SettingHomePage;
+        BlankPage BlankPage;
+        public LaunchPage LaunchPage;
+        public ChmlFrphomePage ChmlFrpHomePage;
+        public ChmlFrpLoginPage ChmlFrpLoginPage;
+
+        public bool SignInBool;
 
         public MainWindow()
         {
@@ -36,17 +39,26 @@ namespace ChmlFrp_Professional_Launcher
                 btnClose_Click(null, null);
                 return;
             }
+
             // 弹出加载页
             StartWindow StartWindow = new();
             StartWindow.Show();
             Thread.Sleep(3000);
             StartWindow.Close();
+
             // 初始化页面
             LaunchPage = new();
             BlankPage = new();
-            //SettingHomePage = new();
+            if (!Downloadfiles.GetAPItoLogin(false))
+            {
+                SignInBool = true;
+                ChmlFrpLoginPage = new();
+            }
+            ChmlFrpHomePage = new();
+
             // 初始化主窗口
             InitializeComponent();
+
             // 显示背景图片
             string[] imageFiles = Directory
                 .GetFiles(SetPath.pictures_path, "*.*")
@@ -66,13 +78,13 @@ namespace ChmlFrp_Professional_Launcher
                 Imagewallpaper.Stretch = Stretch.UniformToFill;
             }
             Reminding.LogsOutputting("背景图片或默认加载成功");
+
             // 进入启动页
             rdLaunchPage_Click(this, new RoutedEventArgs());
             if (!File.Exists(SetPath.frpExePath))
             {
                 RemindingthreePage RemindingthreePage = new();
                 PagesNavigationtwo.Navigate(RemindingthreePage);
-                return;
             }
         }
 
@@ -112,8 +124,9 @@ namespace ChmlFrp_Professional_Launcher
             );
             LaunchPageButton.Click += rdLaunchPage_Click;
             SettingsPageButton.Click += rdSettingsPage_Click;
-            ChmlFrpHomePage = new();
             PagesNavigation.Navigate(ChmlFrpHomePage);
+            if (SignInBool)
+                PagesNavigationtwo.Navigate(ChmlFrpLoginPage);
         }
 
         private void rdSettingsPage_Click(object sender, RoutedEventArgs e)
@@ -134,7 +147,6 @@ namespace ChmlFrp_Professional_Launcher
             SettingsPageButton.Click -= rdSettingsPage_Click;
             LaunchPageButton.Click += rdLaunchPage_Click;
             PagesNavigation.Navigate(BlankPage);
-            //PagesNavigation.Navigate(SettingHomePage);
         }
 
         //除其他组件窗口事件

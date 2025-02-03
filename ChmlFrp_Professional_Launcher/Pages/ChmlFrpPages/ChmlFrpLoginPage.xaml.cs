@@ -39,16 +39,21 @@ namespace ChmlFrp_Professional_Launcher.Pages
             parser.WriteFile(SetPath.setupIniPath, data);
             data["ChmlFrp_Professional_Launcher Setup"]["Username"] = TextBox_Username.Text;
             parser.WriteFile(SetPath.setupIniPath, data);
-            if (Downloadfiles.GitAPI_Login(true))
+            if (Downloadfiles.GetAPItoLogin(true))
             {
+                MainWindow.SignInBool = false;
+
                 string jsonContent = System.IO.File.ReadAllText(SetPath.temp_api_path);
                 var jsonObject = JObject.Parse(jsonContent);
                 data["ChmlFrp_Professional_Launcher Setup"]["Token"] = jsonObject["data"]
                     ["usertoken"]
                     ?.ToString();
                 parser.WriteFile(SetPath.setupIniPath, data);
+
                 await Task.Delay(1000);
+
                 this.Visibility = Visibility.Collapsed;
+
                 MainWindow.ChmlFrpHomePage = new();
                 MainWindow.PagesNavigation.Navigate(MainWindow.ChmlFrpHomePage);
                 return;
@@ -88,7 +93,7 @@ namespace ChmlFrp_Professional_Launcher.Pages
 
         private void exit(object sender, RoutedEventArgs e)
         {
-            MainWindow.ChmlFrpHomePage.ChmlFrpLoginPage.Visibility = Visibility.Collapsed;
+            MainWindow.ChmlFrpLoginPage.Visibility = Visibility.Collapsed;
             MainWindow.LaunchPageButton.IsChecked = true;
             MainWindow.ChmlfrpPageButton.Click += MainWindow.rdChmlfrpPage_Click;
             MainWindow.PagesNavigation.Navigate(MainWindow.LaunchPage);

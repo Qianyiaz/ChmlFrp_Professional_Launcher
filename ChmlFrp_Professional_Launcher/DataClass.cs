@@ -77,64 +77,92 @@ namespace ChmlFrp_Professional_Launcher
         }
     }
 
+    internal class InitializeClass
+    {
+        SetPath SetPath = new();
+        Reminding Reminding = new();
+
+        //初始化
+        public void Initialize()
+        {
+            try
+            {
+                //创建ini实例
+                var parser = new FileIniDataParser();
+                IniData data;
+                //检测是否有相关配置文件
+                if (!File.Exists(SetPath.CPLPath))
+                {
+                    Directory.CreateDirectory(SetPath.CPLPath);
+                }
+                if (!File.Exists(SetPath.pictures_path))
+                {
+                    Directory.CreateDirectory(SetPath.pictures_path);
+                }
+                if (!File.Exists(SetPath.temp_path))
+                {
+                    Directory.CreateDirectory(SetPath.temp_path);
+                }
+                if (!File.Exists(SetPath.IniPath))
+                {
+                    Directory.CreateDirectory(SetPath.IniPath);
+                }
+                if (!File.Exists(SetPath.setupIniPath))
+                {
+                    data = new IniData();
+                    data["ChmlFrp_Professional_Launcher Setup"]["Versions"] = "0.0.0.5";
+                    parser.WriteFile(SetPath.setupIniPath, data);
+                }
+                //创建日志文件
+                for (int i = 1; i < 6; i++)
+                {
+                    if (!File.Exists(Path.Combine(SetPath.CPLPath, i + ".logs")))
+                    {
+                        File.Create(Path.Combine(SetPath.CPLPath, i + ".logs"));
+                    }
+                }
+            }
+            catch
+            {
+                Reminding.LogsOutputting("文件占用无法创建");
+            }
+        }
+    }
+
     internal class Downloadfiles
     {
         private Reminding Reminding = new();
         private SetPath SetPath = new();
 
-        public async Task<string> Downloadasync(string url, string path, string fileclass)
+        public async Task<bool> Downloadasync(string url, string path)
         {
             if (url == null)
             {
                 Reminding.LogsOutputting("下载失败：url不能为null。");
-                return "下载失败：url不能为null。";
+                return false;
+            }
+            if (path == null)
+            {
+                Reminding.LogsOutputting("下载失败：path不能为null。");
+                return false;
             }
 
-            if (fileclass == "txt")
+            try
             {
-                using (HttpClient client = new())
+                using (WebClient client = new())
                 {
-                    try
-                    {
-                        WebClient webClient = new();
-                        webClient.Encoding = Encoding.UTF8;
-                        File.WriteAllText(path, webClient.DownloadString(url));
-                    }
-                    catch
-                    {
-                        Reminding.LogsOutputting(
-                            "下载失败：路径或文件占用或网络错误?path=" + path + "&url=" + url
-                        );
-                        return "下载失败：路径或文件占用或网络错误";
-                    }
-                    Reminding.LogsOutputting("下载成功：已下载到" + path);
-                    return "下载成功";
+                    await client.DownloadFileTaskAsync(new Uri(url), path);
                 }
             }
-            else if (fileclass == "others")
+            catch
             {
-                try
-                {
-                    using (WebClient client = new())
-                    {
-                        await client.DownloadFileTaskAsync(new Uri(url), path);
-                    }
-                }
-                catch
-                {
-                    Reminding.LogsOutputting(
-                        "下载失败：路径或文件占用或网络错误?path=" + path + "&url=" + url
-                    );
-                    return "下载失败：路径或文件占用或网络错误";
-                }
-                Reminding.LogsOutputting("下载成功：已下载到" + path);
-                return "下载成功";
+                Reminding.LogsOutputting(
+                    "下载失败：路径或文件占用或网络错误?path=" + path + "&url=" + url
+                );
+                return false;
             }
-            else
-            {
-                Reminding.LogsOutputting("下载失败：fileclass错误。");
-                return "下载失败：fileclass错误。";
-            }
+            Reminding.LogsOutputting("下载成功：已下载到" + path);
+            return true;
         }
 
         public string Download(string url, string path, string fileclass)
@@ -172,7 +200,7 @@ namespace ChmlFrp_Professional_Launcher
                 {
                     using (WebClient client = new())
                     {
-                        client.DownloadFileTaskAsync(new Uri(url), path);
+                        client.DownloadFile(new Uri(url), path);
                     }
                 }
                 catch
@@ -192,7 +220,7 @@ namespace ChmlFrp_Professional_Launcher
             }
         }
 
-        public bool GitAPI_Login(bool Remind)
+        public bool GetAPItoLogin(bool Remind)
         {
             IniData data;
             var parser = new FileIniDataParser();
@@ -213,9 +241,7 @@ namespace ChmlFrp_Professional_Launcher
                 string msg = jsonObject["msg"]?.ToString();
                 Reminding.LogsOutputting("API提醒：" + msg);
                 if (msg == "登录成功" && Remind == false)
-                {
                     return true;
-                }
                 else if (Remind && msg == "登录成功")
                 {
                     Reminding.RemindingShow(msg, "green");
@@ -227,9 +253,7 @@ namespace ChmlFrp_Professional_Launcher
                     return false;
                 }
                 else
-                {
                     return false;
-                }
             }
             else
             {
@@ -243,6 +267,7 @@ namespace ChmlFrp_Professional_Launcher
     internal class Reminding
     {
         private SetPath SetPath = new();
+        MainWindow MainWindow = Application.Current.MainWindow as MainWindow;
 
         public void LogsOutputting(string logEntry)
         {
@@ -260,17 +285,14 @@ namespace ChmlFrp_Professional_Launcher
 
         public void RemindingtwoShow(string subject, string message)
         {
-            MainWindow MainWindow = Application.Current.MainWindow as MainWindow;
             RemindingtwoPage RemindingtwoPage = new();
             RemindingtwoPage.SubjectTextBlock.Text = subject;
             RemindingtwoPage.TextTextBlock.Text = message;
-            //LogsOutputting("显示提醒：" + message);
             MainWindow.PagesNavigationtwo.Navigate(RemindingtwoPage);
         }
 
         public void RemindingShow(string message, string color)
         {
-            MainWindow MainWindow = Application.Current.MainWindow as MainWindow;
             RemindingPage RemindingPage = new();
             if (color == "green")
             {
@@ -301,45 +323,6 @@ namespace ChmlFrp_Professional_Launcher
             }
             RemindingPage.RemidingTextBlock.Text = message;
             MainWindow.PagesNavigationthree.Navigate(RemindingPage);
-        }
-
-        //初始化
-        public void Initialize()
-        {
-            //创建ini实例
-            var parser = new FileIniDataParser();
-            IniData data;
-            //检测是否有相关配置文件
-            if (!File.Exists(SetPath.CPLPath))
-            {
-                Directory.CreateDirectory(SetPath.CPLPath);
-            }
-            if (!File.Exists(SetPath.pictures_path))
-            {
-                Directory.CreateDirectory(SetPath.pictures_path);
-            }
-            if (!File.Exists(SetPath.temp_path))
-            {
-                Directory.CreateDirectory(SetPath.temp_path);
-            }
-            if (!File.Exists(SetPath.IniPath))
-            {
-                Directory.CreateDirectory(SetPath.IniPath);
-            }
-            if (!File.Exists(SetPath.setupIniPath))
-            {
-                data = new IniData();
-                data["ChmlFrp_Professional_Launcher Setup"]["Versions"] = "0.0.0.5";
-                parser.WriteFile(SetPath.setupIniPath, data);
-            }
-            //创建日志文件
-            for (int i = 1; i < 6; i++)
-            {
-                if (!File.Exists(Path.Combine(SetPath.CPLPath, i + ".logs")))
-                {
-                    File.Create(Path.Combine(SetPath.CPLPath, i + ".logs"));
-                }
-            }
         }
     }
 

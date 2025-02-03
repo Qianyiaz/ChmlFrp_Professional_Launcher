@@ -1,11 +1,12 @@
 # Visual Studio cache files
-/.code/ChmlFrp_Professional_Launcher/.vs
-/.code/.vs
+/ChmlFrp_Professional_Launcher/.vs
+/.vs
 
 # Rider cache files
-/.code/ChmlFrp_Professional_Launcher/.idea
-/.code/.idea
+/ChmlFrp_Professional_Launcher/.idea
+/.idea
 
 # Run the cache
-/.code/ChmlFrp_Professional_Launcher/obj
-/.code/ChmlFrp_Professional_Launcher/bin
+/ChmlFrp_Professional_Launcher/obj
+/ChmlFrp_Professional_Launcher/bin
+

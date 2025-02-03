@@ -9,21 +9,15 @@ namespace ChmlFrp_Professional_Launcher.Pages
     /// </summary>
     public partial class ChmlFrphomePage : Page
     {
-        Downloadfiles Downloadfiles = new();
+        MainWindow MainWindow = Application.Current.MainWindow as MainWindow;
         HomePage HomePage;
         TMAPage TMAPage;
-        public ChmlFrpLoginPage ChmlFrpLoginPage;
 
         public ChmlFrphomePage()
         {
             InitializeComponent();
-            if (!Downloadfiles.GitAPI_Login(false))
-            {
-                MainWindow MainWindow = Application.Current.MainWindow as MainWindow;
-                ChmlFrpLoginPage = new();
-                MainWindow.PagesNavigationtwo.Navigate(ChmlFrpLoginPage);
+            if (MainWindow.SignInBool)
                 return;
-            }
             HomePage = new();
             TMAPage = new();
             rdLaunchPage_Click(null, null);
