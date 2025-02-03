@@ -1,9 +1,9 @@
-﻿using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using IniParser;
+﻿using IniParser;
 using IniParser.Model;
 using Newtonsoft.Json.Linq;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace ChmlFrp_Professional_Launcher.Pages
 {

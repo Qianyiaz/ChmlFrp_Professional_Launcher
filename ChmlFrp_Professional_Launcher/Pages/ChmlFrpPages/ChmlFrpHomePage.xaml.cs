@@ -1,6 +1,6 @@
-﻿using System.Windows;
+﻿using ChmlFrp_Professional_Launcher.Pages.ChmlFrpLoginPages;
+using System.Windows;
 using System.Windows.Controls;
-using ChmlFrp_Professional_Launcher.Pages.ChmlFrpLoginPages;
 
 namespace ChmlFrp_Professional_Launcher.Pages
 {

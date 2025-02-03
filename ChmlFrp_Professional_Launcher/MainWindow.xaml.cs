@@ -49,10 +49,7 @@ namespace ChmlFrp_Professional_Launcher
             LaunchPage = new();
             BlankPage = new();
             if (!Downloadfiles.GetAPItoLogin(false))
-            {
                 SignInBool = true;
-                ChmlFrpLoginPage = new();
-            }
             ChmlFrpHomePage = new();
 
             // 初始化主窗口
@@ -91,7 +88,10 @@ namespace ChmlFrp_Professional_Launcher
         {
             PagesNavigation.Navigate(ChmlFrpHomePage);
             if (SignInBool)
+            {
+                ChmlFrpLoginPage = new();
                 PagesNavigationtwo.Navigate(ChmlFrpLoginPage);
+            }
         }
 
         private void rdLaunchPage_Click(object sender, RoutedEventArgs e)
