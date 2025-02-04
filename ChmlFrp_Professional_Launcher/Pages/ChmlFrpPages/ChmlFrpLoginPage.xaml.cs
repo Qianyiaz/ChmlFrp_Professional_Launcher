@@ -65,32 +65,6 @@ namespace ChmlFrp_Professional_Launcher.Pages
             }
         }
 
-        private void TextBox_Username_GotFocus(object sender, RoutedEventArgs e)
-        {
-            TextBox_Username.TextTwo = "";
-        }
-
-        private void TextBox_password_GotFocus(object sender, RoutedEventArgs e)
-        {
-            TextBox_password.TextTwo = "";
-        }
-
-        private void TextBox_password_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (TextBox_password.Text == "")
-            {
-                TextBox_password.TextTwo = "密码";
-            }
-        }
-
-        private void TextBox_Username_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (TextBox_Username.Text == "")
-            {
-                TextBox_Username.TextTwo = "用户名或邮箱";
-            }
-        }
-
         private void exit(object sender, RoutedEventArgs e)
         {
             MainWindow.ChmlFrpLoginPage.Visibility = Visibility.Collapsed;

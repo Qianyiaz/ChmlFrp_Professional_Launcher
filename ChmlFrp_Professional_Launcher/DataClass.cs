@@ -37,9 +37,9 @@ using IniParser.Model;
 using Newtonsoft.Json.Linq;
 using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Net;
-using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -83,10 +83,20 @@ namespace ChmlFrp_Professional_Launcher
     {
         SetPath SetPath = new();
         Reminding Reminding = new();
+        MainWindow MainWindow = Application.Current.MainWindow as MainWindow;
 
         //初始化
         public void Initialize()
         {
+            // 检测是否有两个ChmlFrp Professional Launcher进程
+            var currentProcess = Process.GetCurrentProcess();
+            var processes = Process.GetProcessesByName(currentProcess.ProcessName);
+            if (processes.Length > 1)
+            {
+                MainWindow.btnClose_Click(null, null);
+                return;
+            }
+
             try
             {
                 //创建ini实例
@@ -112,7 +122,7 @@ namespace ChmlFrp_Professional_Launcher
                 if (!File.Exists(SetPath.setupIniPath))
                 {
                     data = new IniData();
-                    data["ChmlFrp_Professional_Launcher Setup"]["Versions"] = "0.0.0.5";
+                    data["ChmlFrp_Professional_Launcher Setup"]["Versions"] = "0.0.0.6";
                     parser.WriteFile(SetPath.setupIniPath, data);
                 }
                 if (File.Exists(SetPath.logfilePath))
@@ -157,72 +167,51 @@ namespace ChmlFrp_Professional_Launcher
             {
                 using (WebClient client = new())
                 {
+                    client.Encoding = Encoding.UTF8;
                     await client.DownloadFileTaskAsync(new Uri(url), path);
                 }
             }
             catch
             {
                 Reminding.LogsOutputting(
-                    "下载失败：路径或文件占用或网络错误?path=" + path + "&url=" + url
+                    "下载失败：文件占用或网络错误?path=" + path + "&url=" + url
                 );
                 return false;
             }
+
             Reminding.LogsOutputting("下载成功：已下载到" + path);
             return true;
         }
 
-        public bool Download(string url, string path, string fileclass)
+        public bool Download(string url, string path)
         {
             if (url == null)
             {
                 Reminding.LogsOutputting("下载失败：url不能为null。");
                 return false;
             }
-
-            if (fileclass == "txt")
+            if (path == null)
             {
-                using (HttpClient client = new())
-                {
-                    try
-                    {
-                        WebClient webClient = new();
-                        webClient.Encoding = Encoding.UTF8;
-                        File.WriteAllText(path, webClient.DownloadString(url));
-                    }
-                    catch
-                    {
-                        Reminding.LogsOutputting(
-                            "下载失败：路径或文件占用或网络错误?path=" + path + "&url=" + url
-                        );
-                        return false;
-                    }
-                    Reminding.LogsOutputting("下载成功：已下载到" + path);
-                    return true;
-                }
+                Reminding.LogsOutputting("下载失败：path不能为null。");
+                return false;
             }
-            else if (fileclass == "others")
+
+            using (WebClient client = new())
             {
                 try
                 {
-                    using (WebClient client = new())
-                    {
-                        client.DownloadFile(new Uri(url), path);
-                    }
+                    client.Encoding = Encoding.UTF8;
+                    client.DownloadFile(new Uri(url), path);
                 }
                 catch
                 {
                     Reminding.LogsOutputting(
-                        "下载失败：路径或文件占用或网络错误?path=" + path + "&url=" + url
+                        "下载失败：文件占用或网络错误?path=" + path + "&url=" + url
                     );
                     return false;
                 }
                 Reminding.LogsOutputting("下载成功：已下载到" + path);
                 return true;
-            }
-            else
-            {
-                Reminding.LogsOutputting("下载失败：fileclass错误。");
-                return false;
             }
         }
 
@@ -231,15 +220,13 @@ namespace ChmlFrp_Professional_Launcher
             IniData data;
             var parser = new FileIniDataParser();
             data = parser.ReadFile(SetPath.setupIniPath);
-            Downloadfiles Downloadfiles = new();
             if (
-                Downloadfiles.Download(
+                Download(
                     "https://cf-v2.uapis.cn/login?username="
                         + data["ChmlFrp_Professional_Launcher Setup"]["Username"]
                         + "&password="
                         + data["ChmlFrp_Professional_Launcher Setup"]["Password"],
-                    SetPath.temp_api_path,
-                    "txt"
+                    SetPath.temp_api_path
                 )
             )
             {
@@ -370,6 +357,15 @@ namespace ChmlFrp_Professional_Launcher
 
     public class CornerTextBox : TextBox, INotifyPropertyChanged
     {
+        private string TempText;
+
+        public CornerTextBox()
+        {
+            GotFocus += TextBox_GotFocus;
+            LostFocus += TextBox_LostFocus;
+        }
+
+        //CornerRadius
         public static readonly DependencyProperty CornerRadiusProperty =
             DependencyProperty.Register(
                 "CornerRadius",
@@ -383,18 +379,20 @@ namespace ChmlFrp_Professional_Launcher
             set { SetValue(CornerRadiusProperty, value); }
         }
 
-        public static readonly DependencyProperty TextTwoProperty = DependencyProperty.Register(
-            "TextTwo",
+        //Postscript
+        public static readonly DependencyProperty PostscriptProperty = DependencyProperty.Register(
+            "Postscript",
             typeof(string),
             typeof(CornerTextBox)
         );
 
-        public string TextTwo
+        public string Postscript
         {
-            get { return (string)GetValue(TextTwoProperty); }
-            set { SetValue(TextTwoProperty, value); }
+            get { return (string)GetValue(PostscriptProperty); }
+            set { SetValue(PostscriptProperty, value); }
         }
 
+        //Text
         public static new readonly DependencyProperty TextProperty = DependencyProperty.Register(
             "Text",
             typeof(string),
@@ -423,6 +421,27 @@ namespace ChmlFrp_Professional_Launcher
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        //Focus
+        int i;
+
+        private void TextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            i++;
+            if (i == 1)
+            {
+                TempText = Postscript;
+            }
+            Postscript = "";
+        }
+
+        private void TextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (Text == "")
+            {
+                Postscript = TempText;
+            }
         }
     }
 }

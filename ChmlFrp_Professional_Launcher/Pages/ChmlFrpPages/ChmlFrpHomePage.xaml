@@ -15,7 +15,7 @@
         <Grid Grid.Column="0">
             <Border Opacity="0.8"
                     Background="#f9f9f9"
-                    CornerRadius="0,0,0,6" />
+                    CornerRadius="0,0,0,5" />
         </Grid>
         <StackPanel Grid.Column="0"
                     VerticalAlignment="Top"

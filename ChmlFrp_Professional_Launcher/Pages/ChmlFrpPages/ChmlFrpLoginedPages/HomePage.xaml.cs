@@ -57,8 +57,7 @@ namespace ChmlFrp_Professional_Launcher.Pages.ChmlFrpLoginPages
                 !Downloadfiles.Download(
                     "http://cf-v2.uapis.cn/userinfo?token="
                         + data["ChmlFrp_Professional_Launcher Setup"]["Token"],
-                    temp_User,
-                    "txt"
+                    temp_User
                 )
             )
                 Reminding.RemindingShow("用户信息加载失败", "red");
@@ -66,11 +65,7 @@ namespace ChmlFrp_Professional_Launcher.Pages.ChmlFrpLoginPages
             {
                 string jsonContent1 = System.IO.File.ReadAllText(SetPath.temp_api_path);
                 var jsonObject1 = JObject.Parse(jsonContent1);
-                Downloadfiles.Download(
-                    jsonObject1["data"]["userimg"]?.ToString(),
-                    temp_UserImage,
-                    "others"
-                );
+                Downloadfiles.Download(jsonObject1["data"]["userimg"]?.ToString(), temp_UserImage);
             }
 
             string jsonContent = System.IO.File.ReadAllText(SetPath.temp_api_path);

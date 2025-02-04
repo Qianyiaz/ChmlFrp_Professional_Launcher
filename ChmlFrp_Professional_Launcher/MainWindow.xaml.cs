@@ -1,7 +1,6 @@
 ﻿// ChmlFrp_Professional_Launcher/MainWindow.xaml.cs
 using ChmlFrp_Professional_Launcher.Pages;
 using System;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading;
@@ -25,33 +24,33 @@ namespace ChmlFrp_Professional_Launcher
         public LaunchPage LaunchPage;
         public ChmlFrphomePage ChmlFrpHomePage;
         public ChmlFrpLoginPage ChmlFrpLoginPage;
+        public StartWindow StartWindow;
 
         public bool SignInBool;
 
         public MainWindow()
         {
-            // 检测是否有两个ChmlFrp_Professional_Launcher进程
-            var currentProcess = Process.GetCurrentProcess();
-            var processes = Process.GetProcessesByName(currentProcess.ProcessName);
-            if (processes.Length > 1)
-            {
-                btnClose_Click(null, null);
-                return;
-            }
-
             // 弹出加载页
-            StartWindow StartWindow = new();
+            StartWindow = new();
             StartWindow.Show();
             Thread.Sleep(3000);
-            StartWindow.Close();
 
             // 初始化页面
             LaunchPage = new();
             BlankPage = new();
-            if (!Downloadfiles.GetAPItoLogin(false))
-                SignInBool = true;
+            for (int i = 0; i < 3; i++)
+            {
+                if (!Downloadfiles.GetAPItoLogin(false))
+                {
+                    SignInBool = true;
+                    break;
+                }
+                else
+                    SignInBool = false;
+            }
             ChmlFrpHomePage = new();
 
+            StartWindow.Close();
             // 初始化主窗口
             InitializeComponent();
 
@@ -104,7 +103,7 @@ namespace ChmlFrp_Professional_Launcher
             PagesNavigation.Navigate(BlankPage);
         }
 
-        private void btnClose_Click(object sender, RoutedEventArgs e)
+        public void btnClose_Click(object sender, RoutedEventArgs e)
         {
             Reminding.LogsOutputting("退出软件中...");
             Close();

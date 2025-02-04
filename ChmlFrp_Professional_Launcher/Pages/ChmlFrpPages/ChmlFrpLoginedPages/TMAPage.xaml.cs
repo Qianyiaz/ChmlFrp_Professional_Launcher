@@ -34,8 +34,7 @@ namespace ChmlFrp_Professional_Launcher.Pages.ChmlFrpLoginPages
                 Downloadfiles.Download(
                     "http://cf-v2.uapis.cn/tunnel?token="
                         + jsonObject["data"]["usertoken"]?.ToString(),
-                    SetPath.temp_api_tunnel_path,
-                    "txt"
+                    SetPath.temp_api_tunnel_path
                 )
             )
             {

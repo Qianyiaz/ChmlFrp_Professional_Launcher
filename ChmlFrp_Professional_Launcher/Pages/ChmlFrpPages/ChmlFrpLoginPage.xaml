@@ -37,18 +37,14 @@
                                          Height="35"
                                          Width="380"
                                          Margin="0,-25,0,0"
-                                         TextTwo="用户名或邮箱"
-                                         GotFocus="TextBox_Username_GotFocus"
-                                         LostFocus="TextBox_Username_LostFocus"/>
+                                         Postscript="用户名或邮箱"/>
 
                     <local:CornerTextBox x:Name="TextBox_password"
                                          CornerRadius="5"
                                          Height="35"
                                          Width="380"
                                          Margin="0,5,0,0"
-                                         TextTwo="密码" 
-                                         GotFocus="TextBox_password_GotFocus"
-                                         LostFocus="TextBox_password_LostFocus"/>
+                                         Postscript="密码" />
                 </StackPanel>
 
                 <StackPanel Orientation="Vertical">

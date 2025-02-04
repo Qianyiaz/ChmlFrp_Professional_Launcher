@@ -309,7 +309,7 @@
                                      BorderBrush="Transparent"
                                      Background="Transparent"
                                      Foreground="#116fce"
-                                     FontSize="17"                             
+                                     FontSize="17"
                                      HorizontalContentAlignment="Left"
                                      VerticalContentAlignment="Center"/>
 
@@ -317,7 +317,7 @@
                                        Background="Transparent"
                                        FontSize="16"
                                        Foreground="Gray" 
-                                       Text="{TemplateBinding TextTwo}" 
+                                       Text="{TemplateBinding Postscript}" 
                                        IsHitTestVisible="False"
                                        HorizontalAlignment="Center" 
                                        VerticalAlignment="Center" />

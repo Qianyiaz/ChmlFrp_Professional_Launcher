@@ -29,9 +29,10 @@
                                         Content="启动FRPC"
                                         x:Name="LaunchButton"
                                         Click="Launch" />
-                    
+
                     <ComboBox  x:Name="comboBox" 
-                                           Width="80"/>
+                               Width="80"
+                               FontSize="15"/>
                 </StackPanel>
             </Border>
         </Grid>
