@@ -11,6 +11,7 @@ namespace ChmlFrp_Professional_Launcher.Pages
     /// </summary>
     public partial class RemindingthreePage : Page
     {
+        MainWindow MainWindow = Application.Current.MainWindow as MainWindow;
         int PageNumber = 0;
         Downloadfiles Downloadfiles = new();
         Reminding Reminding = new();
@@ -26,13 +27,20 @@ namespace ChmlFrp_Professional_Launcher.Pages
 
         private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            MainWindow MainWindow = Application.Current.MainWindow as MainWindow;
             MainWindow.DragMove();
         }
 
         private void Yes_Button_Click(object sender, RoutedEventArgs e)
         {
             PageNumber++;
+
+            CheckPageNumber();
+        }
+
+        private void No_Button_Click(object sender, RoutedEventArgs e)
+        {
+            PageNumber--;
+
             CheckPageNumber();
         }
 
@@ -49,33 +57,29 @@ namespace ChmlFrp_Professional_Launcher.Pages
             bool downloadSuccess = await Task.Run(async () =>
             {
                 if (isGithubChecked && isX86Checked)
-                {
                     return await Downloadfiles.Downloadasync(
                         "https://raw.githubusercontent.com/Qianyiaz/ChmlFrp_Professional_Launcher/refs/heads/main/.frpc/frpc_86.exe",
                         SetPath.frpExePath
                     );
-                }
+
                 if (isGithubChecked && isAMDChecked)
-                {
                     return await Downloadfiles.Downloadasync(
                         "https://raw.githubusercontent.com/Qianyiaz/ChmlFrp_Professional_Launcher/refs/heads/main/.frpc/frpc_amd.exe",
                         SetPath.frpExePath
                     );
-                }
+
                 if (isGitCodeChecked && isX86Checked)
-                {
                     return await Downloadfiles.Downloadasync(
                         "https://raw.gitcode.com/Qyzgj/ChmlFrp_Professional_Launcher/raw/main/.frpc/frpc_86.exe",
                         SetPath.frpExePath
                     );
-                }
+
                 if (isGitCodeChecked && isAMDChecked)
-                {
                     return await Downloadfiles.Downloadasync(
                         "https://raw.gitcode.com/Qyzgj/ChmlFrp_Professional_Launcher/raw/main/.frpc/frpc_amd.exe",
                         SetPath.frpExePath
                     );
-                }
+
                 return false;
             });
 
@@ -89,13 +93,7 @@ namespace ChmlFrp_Professional_Launcher.Pages
             }
 
             await Task.Delay(1000);
-            this.Visibility = Visibility.Collapsed;
-        }
-
-        private void No_Button_Click(object sender, RoutedEventArgs e)
-        {
-            PageNumber--;
-            CheckPageNumber();
+            Visibility = Visibility.Collapsed;
         }
 
         private void CheckPageNumber()
@@ -103,7 +101,7 @@ namespace ChmlFrp_Professional_Launcher.Pages
             switch (PageNumber)
             {
                 case 0:
-
+                {
                     No_Button.Click -= No_Button_Click;
                     SubjectTextBlock.Text = "下载FRPC路径";
                     No_Button.IsSelected = false;
@@ -114,9 +112,10 @@ namespace ChmlFrp_Professional_Launcher.Pages
                     Yes_Button.Content = "下一步";
 
                     break;
+                }
 
                 case 1:
-
+                {
                     if (
                         PageOne.Github_Butten.IsChecked == false
                         && PageOne.GitCode_Butten.IsChecked == false
@@ -124,6 +123,7 @@ namespace ChmlFrp_Professional_Launcher.Pages
                     {
                         Reminding.RemindingShow("选项未选择。", "red");
                         PageNumber--;
+
                         break;
                     }
                     No_Button.Click += No_Button_Click;
@@ -135,12 +135,14 @@ namespace ChmlFrp_Professional_Launcher.Pages
                     Yes_Button.Content = "下载";
 
                     break;
+                }
 
                 default:
-
-                    this.Visibility = Visibility.Collapsed;
+                {
+                    Visibility = Visibility.Collapsed;
 
                     break;
+                }
             }
         }
     }

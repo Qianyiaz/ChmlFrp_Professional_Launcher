@@ -28,7 +28,7 @@ namespace ChmlFrp_Professional_Launcher.Pages
         {
             DispatcherTimer timer = (DispatcherTimer)sender;
             timer.Stop();
-            this.Visibility = Visibility.Collapsed;
+            Visibility = Visibility.Collapsed;
         }
     }
 }

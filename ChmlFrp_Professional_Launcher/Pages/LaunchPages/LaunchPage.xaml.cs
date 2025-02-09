@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using System;
+using System.Diagnostics;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using Newtonsoft.Json.Linq;
@@ -9,6 +11,7 @@ namespace ChmlFrp_Professional_Launcher.Pages
     {
         private Reminding Reminding = new();
         private SetPath SetPath = new();
+        private Process process;
 
         public LaunchPage()
         {
@@ -24,63 +27,65 @@ namespace ChmlFrp_Professional_Launcher.Pages
             }
         }
 
-        //private int i = 0;
+        int i;
 
         private void Launch(object sender, RoutedEventArgs e)
         {
-            Reminding.RemindingShow("正在施工中...", "yellow");
-            //LaunchButton.Click -= Launch;
-            //if (!File.Exists(SetPath.frpPath))
-            //{
-            //    MainWindow MainWindow = Application.Current.MainWindow as MainWindow;
-            //    RemindingthreePage RemindingthreePage = new();
-            //    MainWindow.PagesNavigationtwo.Navigate(RemindingthreePage);
-            //    LaunchButton.Click += Launch;
-            //    return;
-            //}
-            ////创建ini实例
-            //var parser = new FileIniDataParser();
-            //IniData data = parser.ReadFile(SetPath.frpIniPath);
-            //LaunchButton.Content = "正在启动中...";
-            //if (i == 5)
-            //{
-            //    i = 0;
-            //}
-            //i++;
-            //string logs = Path.Combine(SetPath.CPLPath, i + ".logs");
-            //ProcessStartInfo processInfo = new(
-            //    "cmd.exe",
-            //    "/c " + SetPath.frpPath + " -c " + SetPath.frpIniPath + " >" + logs + " 2>&1"
-            //)
-            //{
-            //    RedirectStandardOutput = true, //重定向标准输出
-            //    UseShellExecute = false, //不使用系统外壳程序启动
-            //    CreateNoWindow = true, //不显示窗口
-            //};
-            //using (Process process = new())
-            //{
-            //    process.StartInfo = processInfo; //设置进程启动信息
-            //    process.Start(); //启动进程
-            //    LaunchButton.Content = "点击关闭 frpc";
-            //    LaunchButton.Click += Killfrp;
-            //}
+            LaunchButton.Click -= Launch;
+
+            string frpciniFilePath =
+                "E:\\Qianyiaz\\ChmlFrp_Professional_Launcher\\ChmlFrp_Professional_Launcher\\bin\\Debug\\CPL\\1.logs";
+
+            i++;
+            i = (i == 6) ? 1 : i;
+            string logFilePath = Path.Combine(SetPath.CPLPath, $"{i}.logs");
+
+            process = new Process();
+
+            ProcessStartInfo processInfo = new(
+                "cmd.exe",
+                $"/c {SetPath.frpExePath} -c {frpciniFilePath} > {logFilePath} 2>&1"
+            ) // 命令
+            {
+                UseShellExecute = false,
+                CreateNoWindow = true,
+            }; // 配置
+            process.StartInfo = processInfo; // 使用
+
+            try
+            {
+                process.Start(); // 启动
+            }
+            catch (Exception ex)
+            {
+                Reminding.RemindingShow($"启动进程失败: {ex.Message}", "red");
+
+                LaunchButton.Click += Launch;
+                return;
+            }
+            Reminding.RemindingShow("启动成功", "green");
+
+            LaunchButton.Click += Killfrp;
+            LaunchButton.Content = "关闭FRPC";
         }
 
-        //private void Killfrp(object sender, RoutedEventArgs e)
-        //{
-        //    LaunchButton.Click -= Killfrp;
-        //    string name = "frpc";
-        //    Process[] processes = Process.GetProcesses();
-        //    foreach (Process process in processes)
-        //    {
-        //        if (process.ProcessName.Equals(name, StringComparison.OrdinalIgnoreCase))
-        //        {
-        //            process.Kill();
-        //            process.WaitForExit();
-        //        }
-        //    }
-        //    LaunchButton.Content = "启动FRP";
-        //    LaunchButton.Click += Launch;
-        //}
+        private void Killfrp(object sender, RoutedEventArgs e)
+        {
+            LaunchButton.Click -= Killfrp;
+
+            if (process.HasExited)
+            {
+                Reminding.RemindingShow("进程已退出", "red");
+            }
+            else
+            {
+                process.Kill(); // 关闭
+                process.Dispose();
+                Reminding.RemindingShow("关闭成功", "green");
+            }
+
+            LaunchButton.Click += Launch;
+            LaunchButton.Content = "启动FRPC";
+        }
     }
 }

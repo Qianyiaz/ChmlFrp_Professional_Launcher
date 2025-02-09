@@ -31,10 +31,6 @@
 //                  不见满街漂亮妹，哪个归得程序员？
 */
 // ChmlFrp_Professional_Launcher/DataClass.cs
-using ChmlFrp_Professional_Launcher.Pages;
-using IniParser;
-using IniParser.Model;
-using Newtonsoft.Json.Linq;
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -45,6 +41,10 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using ChmlFrp_Professional_Launcher.Pages;
+using IniParser;
+using IniParser.Model;
+using Newtonsoft.Json.Linq;
 
 namespace ChmlFrp_Professional_Launcher
 {
@@ -316,6 +316,7 @@ namespace ChmlFrp_Professional_Launcher
 
     public class CornerIconRadioButton : RadioButton
     {
+        //Data
         public object Data
         {
             get { return GetValue(DataProperty); }
@@ -333,6 +334,7 @@ namespace ChmlFrp_Professional_Launcher
 
     public class CornerButten : Button
     {
+        //CornerRadius
         public CornerRadius CornerRadius
         {
             get { return (CornerRadius)GetValue(CornerRadiusProperty); }
@@ -342,6 +344,7 @@ namespace ChmlFrp_Professional_Launcher
         public static readonly DependencyProperty CornerRadiusProperty =
             DependencyProperty.Register("CornerRadius", typeof(CornerRadius), typeof(CornerButten));
 
+        //IsSelected
         public bool IsSelected
         {
             get { return (bool)GetValue(IsSelectedProperty); }
@@ -430,18 +433,30 @@ namespace ChmlFrp_Professional_Launcher
         {
             i++;
             if (i == 1)
-            {
                 TempText = Postscript;
-            }
             Postscript = "";
         }
 
         private void TextBox_LostFocus(object sender, RoutedEventArgs e)
         {
             if (Text == "")
-            {
                 Postscript = TempText;
-            }
         }
+    }
+
+    public class CornerComboBox : ComboBox
+    {
+        //CornerRadius
+        public CornerRadius CornerRadius
+        {
+            get { return (CornerRadius)GetValue(CornerRadiusProperty); }
+            set { SetValue(CornerRadiusProperty, value); }
+        }
+        public static readonly DependencyProperty CornerRadiusProperty =
+            DependencyProperty.Register(
+                "CornerRadius",
+                typeof(CornerRadius),
+                typeof(CornerComboBox)
+            );
     }
 }
