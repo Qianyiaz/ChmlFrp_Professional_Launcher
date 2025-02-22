@@ -3,11 +3,11 @@ name: Build .NET Framework Application
 on:
   push:
     paths:
-      - "ChmlFrp_Professional_Launcher/**"
+      - ".cpl/**"
       - ".github/workflows/Build.yml"
   pull_request:
     paths:
-      - "ChmlFrp_Professional_Launcher/**"
+      - ".cpl/**"
       - ".github/workflows/Build.yml"
   workflow_dispatch:
 
@@ -29,7 +29,7 @@ jobs:
         shell: bash
         run: |
           describe=`git describe --tags --always`
-          version=$(grep 'AssemblyVersion("' "ChmlFrp_Professional_Launcher/Properties/AssemblyInfo.cs" | sed -E 's/.*AssemblyVersion\("([^"]+)".*/\1/')
+          version=$(grep 'AssemblyVersion("' ".cpl/Properties/AssemblyInfo.cs" | sed -E 's/.*AssemblyVersion\("([^"]+)".*/\1/')
           echo "describe=$describe" >> $GITHUB_ENV
           echo "version=$version" >> $GITHUB_ENV
       
@@ -41,7 +41,7 @@ jobs:
 
       - name: Move Executable to Root
         run: |
-          Move-Item -Path "ChmlFrp_Professional_Launcher\bin\${{ matrix.configuration }}\ChmlFrp Professional Launcher.exe" -Destination .\
+          Move-Item -Path ".cpl\bin\${{ matrix.configuration }}\ChmlFrp Professional Launcher.exe" -Destination .\
 
       - name: Upload a Build Artifact to GitHub
         uses: actions/upload-artifact@v4

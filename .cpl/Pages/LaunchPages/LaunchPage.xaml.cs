@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
-using Newtonsoft.Json.Linq;
+
 
 namespace ChmlFrp_Professional_Launcher.Pages
 {
@@ -31,10 +32,11 @@ namespace ChmlFrp_Professional_Launcher.Pages
 
         private void Launch(object sender, RoutedEventArgs e)
         {
-            LaunchButton.Click -= Launch;
+            Reminding.RemindingShow("正在施工...", "yellow");
+            return;
 
-            string frpciniFilePath =
-                "E:\\Qianyiaz\\ChmlFrp_Professional_Launcher\\ChmlFrp_Professional_Launcher\\bin\\Debug\\CPL\\1.logs";
+            LaunchButton.Click -= Launch;
+            string frpciniFilePath = "";
 
             i++;
             i = (i == 6) ? 1 : i;
@@ -74,9 +76,7 @@ namespace ChmlFrp_Professional_Launcher.Pages
             LaunchButton.Click -= Killfrp;
 
             if (process.HasExited)
-            {
                 Reminding.RemindingShow("进程已退出", "red");
-            }
             else
             {
                 process.Kill(); // 关闭

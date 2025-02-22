@@ -1,6 +1,2 @@
-# Declare files that will always have LF line endings on checkout.
-*.cs        eol=lf 
-*.xaml        eol=lf 
-*.sln        eol=crlf
-*.csproj       eol=crlf
-/.github/scrapped        eol=crlf
+# Auto detect text files and perform LF normalization
+* text=auto

@@ -1,8 +1,8 @@
-﻿using System.Threading.Tasks;
+﻿using ChmlFrp_Professional_Launcher.Pages.RemindingPages.Third;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using ChmlFrp_Professional_Launcher.Pages.RemindingPages.Third;
 
 namespace ChmlFrp_Professional_Launcher.Pages
 {
@@ -101,48 +101,48 @@ namespace ChmlFrp_Professional_Launcher.Pages
             switch (PageNumber)
             {
                 case 0:
-                {
-                    No_Button.Click -= No_Button_Click;
-                    SubjectTextBlock.Text = "下载FRPC路径";
-                    No_Button.IsSelected = false;
-                    PagesNavigation.Navigate(PageOne);
-                    Yes_Button.Click -= Download_Button_Click;
-                    Yes_Button.Click -= Yes_Button_Click;
-                    Yes_Button.Click += Yes_Button_Click;
-                    Yes_Button.Content = "下一步";
-
-                    break;
-                }
-
-                case 1:
-                {
-                    if (
-                        PageOne.Github_Butten.IsChecked == false
-                        && PageOne.GitCode_Butten.IsChecked == false
-                    )
                     {
-                        Reminding.RemindingShow("选项未选择。", "red");
-                        PageNumber--;
+                        No_Button.Click -= No_Button_Click;
+                        SubjectTextBlock.Text = "下载FRPC路径";
+                        No_Button.IsSelected = false;
+                        PagesNavigation.Navigate(PageOne);
+                        Yes_Button.Click -= Download_Button_Click;
+                        Yes_Button.Click -= Yes_Button_Click;
+                        Yes_Button.Click += Yes_Button_Click;
+                        Yes_Button.Content = "下一步";
 
                         break;
                     }
-                    No_Button.Click += No_Button_Click;
-                    SubjectTextBlock.Text = "下载FRPC类型";
-                    No_Button.IsSelected = true;
-                    PagesNavigation.Navigate(PageTwo);
-                    Yes_Button.Click -= Yes_Button_Click;
-                    Yes_Button.Click += Download_Button_Click;
-                    Yes_Button.Content = "下载";
 
-                    break;
-                }
+                case 1:
+                    {
+                        if (
+                            PageOne.Github_Butten.IsChecked == false
+                            && PageOne.GitCode_Butten.IsChecked == false
+                        )
+                        {
+                            Reminding.RemindingShow("选项未选择。", "red");
+                            PageNumber--;
+
+                            break;
+                        }
+                        No_Button.Click += No_Button_Click;
+                        SubjectTextBlock.Text = "下载FRPC类型";
+                        No_Button.IsSelected = true;
+                        PagesNavigation.Navigate(PageTwo);
+                        Yes_Button.Click -= Yes_Button_Click;
+                        Yes_Button.Click += Download_Button_Click;
+                        Yes_Button.Content = "下载";
+
+                        break;
+                    }
 
                 default:
-                {
-                    Visibility = Visibility.Collapsed;
+                    {
+                        Visibility = Visibility.Collapsed;
 
-                    break;
-                }
+                        break;
+                    }
             }
         }
     }
