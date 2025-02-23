@@ -7,10 +7,10 @@
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
         Background="Transparent"
+        Width="150"
+        Height="150"
         AllowsTransparency="True"
         ResizeMode="NoResize"
         WindowState="Normal">
-    <Grid>
-        <Image Name="IconImage" Height="150" Width="150" Stretch="Fill" />
-    </Grid>
+    <Path Data="{DynamicResource logo}" Fill="Black" Stretch="Fill"/>
 </Window>

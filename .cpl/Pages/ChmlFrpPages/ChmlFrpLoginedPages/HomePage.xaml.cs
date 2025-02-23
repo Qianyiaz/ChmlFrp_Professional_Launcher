@@ -1,11 +1,11 @@
-﻿using IniParser;
-using IniParser.Model;
-using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
+using IniParser;
+using IniParser.Model;
+using Newtonsoft.Json.Linq;
 using Path = System.IO.Path;
 
 namespace ChmlFrp_Professional_Launcher.Pages.ChmlFrpLoginPages
