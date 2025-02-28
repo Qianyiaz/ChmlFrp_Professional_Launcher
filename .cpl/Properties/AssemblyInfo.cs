@@ -9,13 +9,10 @@ using System.Windows;
 [assembly: AssemblyCompany("无")]
 [assembly: AssemblyProduct("ChmlFrp Professional Launcher")]
 [assembly: AssemblyCopyright("Qusay Diaz©2024~2025")]
-[assembly: AssemblyTrademark("无")]
+[assembly: AssemblyTrademark("Vladimir Kharlampidi")]
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(true)]
-[assembly: ThemeInfo(
-    ResourceDictionaryLocation.None,
-    ResourceDictionaryLocation.SourceAssembly
-)]
+[assembly: ThemeInfo(ResourceDictionaryLocation.None, ResourceDictionaryLocation.SourceAssembly)]
 [assembly: AssemblyVersion("0.0.0.6")]
 [assembly: AssemblyFileVersion("0.0.0.6")]
 [assembly: NeutralResourcesLanguage("zh")]

@@ -12,5 +12,5 @@
         AllowsTransparency="True"
         ResizeMode="NoResize"
         WindowState="Normal">
-    <Path Data="{DynamicResource logo}" Fill="Black" Stretch="Fill"/>
+    <Path Data="{DynamicResource logo}" Fill="#116fce" Stretch="Fill"/>
 </Window>
