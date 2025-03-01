@@ -8,7 +8,7 @@ namespace ChmlFrp_Professional_Launcher.Pages
     public partial class SettingHomePage : Page
     {
         private Reminding Reminding = new();
-        private SetPath SetPath = new();
+        private App App = new();
 
         public SettingHomePage()
         {

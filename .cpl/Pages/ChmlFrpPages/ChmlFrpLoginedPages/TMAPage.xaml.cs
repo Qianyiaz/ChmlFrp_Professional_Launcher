@@ -1,7 +1,7 @@
-﻿using Newtonsoft.Json.Linq;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using Newtonsoft.Json.Linq;
 
 namespace ChmlFrp_Professional_Launcher.Pages.ChmlFrpLoginPages
 {
@@ -12,12 +12,11 @@ namespace ChmlFrp_Professional_Launcher.Pages.ChmlFrpLoginPages
     {
         private int i;
         private int x;
-        private SetPath SetPath = new();
 
         public TMAPage()
         {
             InitializeComponent();
-            InitializesetPaths();
+            InitializeApps();
             NodeTextBlock_1_3_2.IsReadOnly = true;
             Leftbutton.Click -= btnLeft_Click;
             Leftbutton.BorderBrush = Brushes.Gray;
@@ -25,20 +24,20 @@ namespace ChmlFrp_Professional_Launcher.Pages.ChmlFrpLoginPages
             Rightbutton.BorderBrush = Brushes.Gray;
         }
 
-        public void InitializesetPaths()
+        public void InitializeApps()
         {
-            string jsonContent = System.IO.File.ReadAllText(SetPath.temp_api_path);
+            string jsonContent = System.IO.File.ReadAllText(App.temp_api_path);
             var jsonObject = JObject.Parse(jsonContent);
             Downloadfiles Downloadfiles = new();
             if (
                 Downloadfiles.Download(
                     "http://cf-v2.uapis.cn/tunnel?token="
                         + jsonObject["data"]["usertoken"]?.ToString(),
-                    SetPath.temp_api_tunnel_path
+                    App.temp_api_tunnel_path
                 )
             )
             {
-                jsonContent = System.IO.File.ReadAllText(SetPath.temp_api_tunnel_path);
+                jsonContent = System.IO.File.ReadAllText(App.temp_api_tunnel_path);
                 jsonObject = JObject.Parse(jsonContent);
                 if (jsonObject["msg"]?.ToString() == "获取隧道数据成功")
                 {
@@ -164,7 +163,7 @@ namespace ChmlFrp_Professional_Launcher.Pages.ChmlFrpLoginPages
 
         private void btnRefresh_Click(object sender, RoutedEventArgs e)
         {
-            InitializesetPaths();
+            InitializeApps();
         }
 
         private void RemoveBorderName(string name)
@@ -207,7 +206,7 @@ namespace ChmlFrp_Professional_Launcher.Pages.ChmlFrpLoginPages
             RestoreBorderName("Border_name2", 0, 1);
             RestoreBorderName("Border_name3", 1, 0);
             RestoreBorderName("Border_name4", 1, 1);
-            InitializesetPaths();
+            InitializeApps();
         }
 
         private void btnRight_Click(object sender, RoutedEventArgs e)
@@ -219,7 +218,7 @@ namespace ChmlFrp_Professional_Launcher.Pages.ChmlFrpLoginPages
             RestoreBorderName("Border_name2", 0, 1);
             RestoreBorderName("Border_name3", 1, 0);
             RestoreBorderName("Border_name4", 1, 1);
-            InitializesetPaths();
+            InitializeApps();
         }
     }
 }

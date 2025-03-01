@@ -15,7 +15,7 @@ namespace ChmlFrp_Professional_Launcher.Pages
         int PageNumber = 0;
         Downloadfiles Downloadfiles = new();
         Reminding Reminding = new();
-        SetPath SetPath = new();
+        App App = new();
         PageOne PageOne = new();
         PageTwo PageTwo = new();
 
@@ -59,25 +59,25 @@ namespace ChmlFrp_Professional_Launcher.Pages
                 if (isGithubChecked && isX86Checked)
                     return await Downloadfiles.Downloadasync(
                         "https://raw.githubusercontent.com/Qianyiaz/ChmlFrp_Professional_Launcher/refs/heads/main/.frpc/frpc_86.exe",
-                        SetPath.frpExePath
+                        App.frpExePath
                     );
 
                 if (isGithubChecked && isAMDChecked)
                     return await Downloadfiles.Downloadasync(
                         "https://raw.githubusercontent.com/Qianyiaz/ChmlFrp_Professional_Launcher/refs/heads/main/.frpc/frpc_amd.exe",
-                        SetPath.frpExePath
+                        App.frpExePath
                     );
 
                 if (isGitCodeChecked && isX86Checked)
                     return await Downloadfiles.Downloadasync(
                         "https://raw.gitcode.com/Qyzgj/ChmlFrp_Professional_Launcher/raw/main/.frpc/frpc_86.exe",
-                        SetPath.frpExePath
+                        App.frpExePath
                     );
 
                 if (isGitCodeChecked && isAMDChecked)
                     return await Downloadfiles.Downloadasync(
                         "https://raw.gitcode.com/Qyzgj/ChmlFrp_Professional_Launcher/raw/main/.frpc/frpc_amd.exe",
-                        SetPath.frpExePath
+                        App.frpExePath
                     );
 
                 return false;

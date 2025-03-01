@@ -1,6 +1,7 @@
 # Running cache files
 /.cpl/obj
 /.cpl/bin
+*.user
 
 # Rider cache files
 /.code/.idea

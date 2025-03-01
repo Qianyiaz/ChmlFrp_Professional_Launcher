@@ -1,25 +1,23 @@
-﻿using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.Diagnostics;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
-
+using Newtonsoft.Json.Linq;
 
 namespace ChmlFrp_Professional_Launcher.Pages
 {
     public partial class LaunchPage : Page
     {
         private Reminding Reminding = new();
-        private SetPath SetPath = new();
         private Process process;
 
         public LaunchPage()
         {
             InitializeComponent();
-            if (File.Exists(SetPath.temp_api_tunnel_path))
+            if (File.Exists(App.temp_api_tunnel_path))
             {
-                string jsonContent = File.ReadAllText(SetPath.temp_api_tunnel_path);
+                string jsonContent = File.ReadAllText(App.temp_api_tunnel_path);
                 var jsonObject = JObject.Parse(jsonContent);
                 foreach (var tunnel in jsonObject["data"])
                 {
@@ -40,13 +38,13 @@ namespace ChmlFrp_Professional_Launcher.Pages
 
             i++;
             i = (i == 6) ? 1 : i;
-            string logFilePath = Path.Combine(SetPath.CPLPath, $"{i}.logs");
+            string logFilePath = Path.Combine(App.CPLPath, $"{i}.logs");
 
             process = new Process();
 
             ProcessStartInfo processInfo = new(
                 "cmd.exe",
-                $"/c {SetPath.frpExePath} -c {frpciniFilePath} > {logFilePath} 2>&1"
+                $"/c {App.frpExePath} -c {frpciniFilePath} > {logFilePath} 2>&1"
             ) // 命令
             {
                 UseShellExecute = false,

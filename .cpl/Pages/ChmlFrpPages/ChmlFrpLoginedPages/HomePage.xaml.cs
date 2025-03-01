@@ -17,7 +17,6 @@ namespace ChmlFrp_Professional_Launcher.Pages.ChmlFrpLoginPages
     {
         private Downloadfiles Downloadfiles = new();
         private Reminding Reminding = new();
-        private SetPath SetPath = new();
 
         private string temp_UserImage;
         private string temp_User;
@@ -32,12 +31,12 @@ namespace ChmlFrp_Professional_Launcher.Pages.ChmlFrpLoginPages
         {
             InitializeComponent();
             parser = new FileIniDataParser();
-            data = parser.ReadFile(SetPath.setupIniPath);
-            temp_UserImage = Path.Combine(SetPath.temp_path, "temp_userImage.jpg");
-            temp_User = Path.Combine(SetPath.temp_path, "login_user_api.json");
+            data = parser.ReadFile(App.setupIniPath);
+            temp_UserImage = Path.Combine(App.temp_path, "temp_userImage.jpg");
+            temp_User = Path.Combine(App.temp_path, "login_user_api.json");
             usertoken = data["ChmlFrp_Professional_Launcher Setup"]["Token"];
 
-            InitializesetPaths();
+            InitializeApps();
 
             // 设置定时器
             timer = new DispatcherTimer();
@@ -48,10 +47,10 @@ namespace ChmlFrp_Professional_Launcher.Pages.ChmlFrpLoginPages
 
         private void Timer_Tick(object sender, EventArgs e)
         {
-            InitializesetPaths();
+            InitializeApps();
         }
 
-        private void InitializesetPaths()
+        private void InitializeApps()
         {
             if (
                 !Downloadfiles.Download(
@@ -63,12 +62,12 @@ namespace ChmlFrp_Professional_Launcher.Pages.ChmlFrpLoginPages
                 Reminding.RemindingShow("用户信息加载失败", "red");
             if (!System.IO.File.Exists(temp_UserImage))
             {
-                string jsonContent1 = System.IO.File.ReadAllText(SetPath.temp_api_path);
+                string jsonContent1 = System.IO.File.ReadAllText(App.temp_api_path);
                 var jsonObject1 = JObject.Parse(jsonContent1);
                 Downloadfiles.Download(jsonObject1["data"]["userimg"]?.ToString(), temp_UserImage);
             }
 
-            string jsonContent = System.IO.File.ReadAllText(SetPath.temp_api_path);
+            string jsonContent = System.IO.File.ReadAllText(App.temp_api_path);
             var jsonObject = JObject.Parse(jsonContent);
 
             UserImage.ImageSource = new BitmapImage(new Uri(temp_UserImage));

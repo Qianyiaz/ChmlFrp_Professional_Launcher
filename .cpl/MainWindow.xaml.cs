@@ -1,5 +1,4 @@
 ﻿// ChmlFrp_Professional_Launcher/MainWindow.xaml.cs
-using ChmlFrp_Professional_Launcher.Pages;
 using System;
 using System.IO;
 using System.Linq;
@@ -8,6 +7,7 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using ChmlFrp_Professional_Launcher.Pages;
 
 namespace ChmlFrp_Professional_Launcher
 {
@@ -17,7 +17,6 @@ namespace ChmlFrp_Professional_Launcher
     public partial class MainWindow : Window
     {
         Reminding Reminding = new();
-        SetPath SetPath = new();
         Downloadfiles Downloadfiles = new();
 
         BlankPage BlankPage;
@@ -56,7 +55,7 @@ namespace ChmlFrp_Professional_Launcher
 
             // 显示背景图片
             string[] imageFiles = Directory
-                .GetFiles(SetPath.pictures_path, "*.*")
+                .GetFiles(App.pictures_path, "*.*")
                 .Where(file =>
                     file.EndsWith(".jpg", StringComparison.OrdinalIgnoreCase)
                     || file.EndsWith(".png", StringComparison.OrdinalIgnoreCase)
@@ -76,7 +75,7 @@ namespace ChmlFrp_Professional_Launcher
 
             // 进入启动页
             rdLaunchPage_Click(this, new RoutedEventArgs());
-            if (!File.Exists(SetPath.frpExePath))
+            if (!File.Exists(App.frpExePath))
             {
                 RemindingthreePage RemindingthreePage = new();
                 PagesNavigationtwo.Navigate(RemindingthreePage);

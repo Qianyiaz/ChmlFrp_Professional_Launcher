@@ -31,10 +31,6 @@
 //                  不见满街漂亮妹，哪个归得程序员？
 */
 // ChmlFrp_Professional_Launcher/MainClass.cs
-using ChmlFrp_Professional_Launcher.Pages;
-using IniParser;
-using IniParser.Model;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -43,43 +39,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
+using ChmlFrp_Professional_Launcher.Pages;
+using IniParser;
+using IniParser.Model;
+using Newtonsoft.Json.Linq;
 
 namespace ChmlFrp_Professional_Launcher
 {
-    internal class SetPath
-    {
-        //定义路径
-        public string directoryPath;
-        public string IniPath;
-        public string frpExePath;
-        public string setupIniPath;
-        public string temp_path;
-        public string temp_api_path;
-        public string CPLPath;
-        public string pictures_path;
-        public string logfilePath;
-        public string temp_api_tunnel_path;
-
-        public SetPath()
-        {
-            directoryPath = Directory.GetCurrentDirectory();
-            //文件夹路径
-            CPLPath = Path.Combine(directoryPath, "CPL");
-            IniPath = Path.Combine(CPLPath, "Ini");
-            temp_path = Path.Combine(CPLPath, "Temp");
-            pictures_path = Path.Combine(CPLPath, "Pictures");
-            //文件路径
-            frpExePath = Path.Combine(CPLPath, "frpc.exe");
-            logfilePath = Path.Combine(CPLPath, "Debug.logs");
-            setupIniPath = Path.Combine(CPLPath, "Setup.ini");
-            temp_api_path = Path.Combine(temp_path, "login_chmlfrp_api.json");
-            temp_api_tunnel_path = Path.Combine(temp_path, "temp_api_tunnel.json");
-        }
-    }
-
     internal class InitializeClass
     {
-        SetPath SetPath = new();
         Reminding Reminding = new();
         MainWindow MainWindow = Application.Current.MainWindow as MainWindow;
 
@@ -101,38 +69,38 @@ namespace ChmlFrp_Professional_Launcher
                 var parser = new FileIniDataParser();
                 IniData data;
                 //检测是否有相关配置文件
-                if (!File.Exists(SetPath.CPLPath))
+                if (!File.Exists(App.CPLPath))
                 {
-                    Directory.CreateDirectory(SetPath.CPLPath);
+                    Directory.CreateDirectory(App.CPLPath);
                 }
-                if (!File.Exists(SetPath.pictures_path))
+                if (!File.Exists(App.pictures_path))
                 {
-                    Directory.CreateDirectory(SetPath.pictures_path);
+                    Directory.CreateDirectory(App.pictures_path);
                 }
-                if (!File.Exists(SetPath.temp_path))
+                if (!File.Exists(App.temp_path))
                 {
-                    Directory.CreateDirectory(SetPath.temp_path);
+                    Directory.CreateDirectory(App.temp_path);
                 }
-                if (!File.Exists(SetPath.IniPath))
+                if (!File.Exists(App.IniPath))
                 {
-                    Directory.CreateDirectory(SetPath.IniPath);
+                    Directory.CreateDirectory(App.IniPath);
                 }
-                if (!File.Exists(SetPath.setupIniPath))
+                if (!File.Exists(App.setupIniPath))
                 {
                     data = new IniData();
                     data["ChmlFrp_Professional_Launcher Setup"]["Versions"] = "0.0.0.6";
-                    parser.WriteFile(SetPath.setupIniPath, data);
+                    parser.WriteFile(App.setupIniPath, data);
                 }
-                if (File.Exists(SetPath.logfilePath))
+                if (File.Exists(App.logfilePath))
                 {
-                    File.WriteAllText(SetPath.logfilePath, string.Empty);
+                    File.WriteAllText(App.logfilePath, string.Empty);
                 }
                 //创建日志文件
                 for (int i = 1; i < 6; i++)
                 {
-                    if (!File.Exists(Path.Combine(SetPath.CPLPath, i + ".logs")))
+                    if (!File.Exists(Path.Combine(App.CPLPath, i + ".logs")))
                     {
-                        File.Create(Path.Combine(SetPath.CPLPath, i + ".logs"));
+                        File.Create(Path.Combine(App.CPLPath, i + ".logs"));
                     }
                 }
             }
@@ -146,7 +114,6 @@ namespace ChmlFrp_Professional_Launcher
     internal class Downloadfiles
     {
         private Reminding Reminding = new();
-        private SetPath SetPath = new();
 
         public async Task<bool> Downloadasync(string url, string path)
         {
@@ -217,18 +184,18 @@ namespace ChmlFrp_Professional_Launcher
         {
             IniData data;
             var parser = new FileIniDataParser();
-            data = parser.ReadFile(SetPath.setupIniPath);
+            data = parser.ReadFile(App.setupIniPath);
             if (
                 Download(
                     "https://cf-v2.uapis.cn/login?username="
                         + data["ChmlFrp_Professional_Launcher Setup"]["Username"]
                         + "&password="
                         + data["ChmlFrp_Professional_Launcher Setup"]["Password"],
-                    SetPath.temp_api_path
+                    App.temp_api_path
                 )
             )
             {
-                var jsonObject = JObject.Parse(File.ReadAllText(SetPath.temp_api_path));
+                var jsonObject = JObject.Parse(File.ReadAllText(App.temp_api_path));
                 string msg = jsonObject["msg"]?.ToString();
                 Reminding.LogsOutputting("API提醒：" + msg);
                 if (msg == "登录成功" && Remind == false)
@@ -257,14 +224,13 @@ namespace ChmlFrp_Professional_Launcher
 
     internal class Reminding
     {
-        private SetPath SetPath = new();
         MainWindow MainWindow = Application.Current.MainWindow as MainWindow;
 
         public void LogsOutputting(string logEntry)
         {
             logEntry = $"[{DateTime.Now}] " + logEntry;
             Console.WriteLine(logEntry);
-            File.AppendAllText(SetPath.logfilePath, logEntry + Environment.NewLine);
+            File.AppendAllText(App.logfilePath, logEntry + Environment.NewLine);
         }
 
         public void RemindingtwoShow(string subject, string message)
