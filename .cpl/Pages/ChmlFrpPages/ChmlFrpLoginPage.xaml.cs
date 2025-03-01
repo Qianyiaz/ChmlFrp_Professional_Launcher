@@ -1,9 +1,9 @@
-﻿using IniParser;
-using IniParser.Model;
-using Newtonsoft.Json.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using IniParser;
+using IniParser.Model;
+using Newtonsoft.Json.Linq;
 
 namespace ChmlFrp_Professional_Launcher.Pages
 {
@@ -13,7 +13,6 @@ namespace ChmlFrp_Professional_Launcher.Pages
     public partial class ChmlFrpLoginPage : Page
     {
         MainWindow MainWindow = Application.Current.MainWindow as MainWindow;
-        private App App = new();
         private Downloadfiles Downloadfiles = new();
         private IniData data;
         private FileIniDataParser parser = new();
