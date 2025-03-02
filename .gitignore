@@ -1,12 +1,10 @@
 # Running cache files
-/.cpl/obj
-/.cpl/bin
 *.user
+*obj
+*bin
 
 # Rider cache files
-/.code/.idea
-/.idea
+*.idea
 
 # VS cache files
-/.cpl/.vs
-/.vs
+*.vs
