@@ -89,6 +89,7 @@ namespace ChmlFrp_Professional_Launcher.Pages
             else
             {
                 Reminding.RemindingShow("下载失败", "red");
+                return;
             }
 
             await Task.Delay(1000);

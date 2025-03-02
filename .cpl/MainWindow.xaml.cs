@@ -1,5 +1,4 @@
-﻿// ChmlFrp_Professional_Launcher/MainWindow.xaml.cs
-using System;
+﻿using System;
 using System.IO;
 using System.Linq;
 using System.Threading;
@@ -23,33 +22,25 @@ namespace ChmlFrp_Professional_Launcher
         public LaunchPage LaunchPage;
         public ChmlFrphomePage ChmlFrpHomePage;
         public ChmlFrpLoginPage ChmlFrpLoginPage;
-        public StartWindow StartWindow;
 
         public bool SignInBool;
 
         public MainWindow()
         {
             // 弹出加载页
-            StartWindow = new();
+            StartWindow StartWindow = new();
             StartWindow.Show();
             Thread.Sleep(3000);
+            StartWindow.Close();
 
+            if (!Downloadfiles.GetAPItoLogin(false))
+                SignInBool = true;
+            else
+                SignInBool = false;
             // 初始化页面
             LaunchPage = new();
             BlankPage = new();
-            for (int i = 0; i < 3; i++)
-            {
-                if (!Downloadfiles.GetAPItoLogin(false))
-                {
-                    SignInBool = true;
-                    break;
-                }
-                else
-                    SignInBool = false;
-            }
             ChmlFrpHomePage = new();
-
-            StartWindow.Close();
             // 初始化主窗口
             InitializeComponent();
 
