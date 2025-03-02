@@ -32,9 +32,6 @@ namespace ChmlFrp_Professional_Launcher
 
             try
             {
-                //创建ini实例
-                var parser = new FileIniDataParser();
-                IniData data;
                 //检测是否有相关配置文件
                 if (!File.Exists(App.CPLPath))
                 {
@@ -54,13 +51,10 @@ namespace ChmlFrp_Professional_Launcher
                 }
                 if (!File.Exists(App.setupIniPath))
                 {
-                    data = new IniData();
+                    IniData data = new();
+                    FileIniDataParser parser = new();
                     data["ChmlFrp_Professional_Launcher Setup"]["Versions"] = "0.0.0.6";
                     parser.WriteFile(App.setupIniPath, data);
-                }
-                if (File.Exists(App.logfilePath))
-                {
-                    File.WriteAllText(App.logfilePath, string.Empty);
                 }
                 //创建日志文件
                 for (int i = 1; i < 6; i++)
@@ -82,6 +76,34 @@ namespace ChmlFrp_Professional_Launcher
     {
         private Reminding Reminding = new();
 
+        public bool Download(string url, string path)
+        {
+            if (url == null)
+            {
+                Reminding.LogsOutputting("下载失败：url不能为null。");
+                return false;
+            }
+            if (path == null)
+            {
+                Reminding.LogsOutputting("下载失败：path不能为null。");
+                return false;
+            }
+
+            try
+            {
+                using WebClient client = new();
+                client.Encoding = Encoding.UTF8;
+                client.DownloadFile(new Uri(url), path);
+            }
+            catch
+            {
+                Reminding.LogsOutputting($"下载失败：文件占用或网络错误?path={path}&url={url}");
+                return false;
+            }
+            Reminding.LogsOutputting($"下载成功：已下载?path={path}");
+            return true;
+        }
+
         public async Task<bool> Downloadasync(string url, string path)
         {
             if (url == null)
@@ -97,88 +119,46 @@ namespace ChmlFrp_Professional_Launcher
 
             try
             {
-                using (WebClient client = new())
-                {
-                    client.Encoding = Encoding.UTF8;
-                    await client.DownloadFileTaskAsync(new Uri(url), path);
-                }
+                using WebClient client = new();
+                client.Encoding = Encoding.UTF8;
+                await client.DownloadFileTaskAsync(new Uri(url), path);
             }
             catch
             {
-                Reminding.LogsOutputting(
-                    "下载失败：文件占用或网络错误?path=" + path + "&url=" + url
-                );
+                Reminding.LogsOutputting($"下载失败：文件占用或网络错误?path={path}&url={url}");
                 return false;
             }
-
-            Reminding.LogsOutputting("下载成功：已下载到" + path);
+            Reminding.LogsOutputting($"下载成功：已下载?path={path}");
             return true;
-        }
-
-        public bool Download(string url, string path)
-        {
-            if (url == null)
-            {
-                Reminding.LogsOutputting("下载失败：url不能为null。");
-                return false;
-            }
-            if (path == null)
-            {
-                Reminding.LogsOutputting("下载失败：path不能为null。");
-                return false;
-            }
-
-            using (WebClient client = new())
-            {
-                try
-                {
-                    client.Encoding = Encoding.UTF8;
-                    client.DownloadFile(new Uri(url), path);
-                }
-                catch
-                {
-                    Reminding.LogsOutputting(
-                        "下载失败：文件占用或网络错误?path=" + path + "&url=" + url
-                    );
-                    return false;
-                }
-                Reminding.LogsOutputting("下载成功：已下载到" + path);
-                return true;
-            }
         }
 
         public bool GetAPItoLogin(bool Remind)
         {
-            IniData data;
-            var parser = new FileIniDataParser();
-            data = parser.ReadFile(App.setupIniPath);
+            var data = new FileIniDataParser().ReadFile(App.setupIniPath);
+            string username = data["ChmlFrp_Professional_Launcher Setup"]["Username"];
+            string password = data["ChmlFrp_Professional_Launcher Setup"]["Password"];
+
             if (
                 Download(
-                    "https://cf-v2.uapis.cn/login?username="
-                        + data["ChmlFrp_Professional_Launcher Setup"]["Username"]
-                        + "&password="
-                        + data["ChmlFrp_Professional_Launcher Setup"]["Password"],
+                    $"https://cf-v2.uapis.cn/login?username={username}&password={password}",
                     App.temp_api_path
                 )
             )
             {
-                var jsonObject = JObject.Parse(File.ReadAllText(App.temp_api_path));
-                string msg = jsonObject["msg"]?.ToString();
+                string msg = JObject.Parse(File.ReadAllText(App.temp_api_path))["msg"]?.ToString();
                 Reminding.LogsOutputting("API提醒：" + msg);
-                if (msg == "登录成功" && Remind == false)
-                    return true;
-                else if (Remind && msg == "登录成功")
+                if (msg == "登录成功")
                 {
-                    Reminding.RemindingShow(msg, "green");
+                    if (Remind)
+                        Reminding.RemindingShow(msg, "green");
                     return true;
-                }
-                else if (Remind)
-                {
-                    Reminding.RemindingShow(msg, "red");
-                    return false;
                 }
                 else
+                {
+                    if (Remind)
+                        Reminding.RemindingShow(msg, "red");
                     return false;
+                }
             }
             else
             {

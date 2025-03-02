@@ -29,7 +29,7 @@
                      MouseLeftButtonDown="Border_MouseLeftButtonDown"
                      Grid.Row="0"
                      Height="50"
-                     Background="#116fce">
+                     Background="{DynamicResource ThemeColor}">
                     <Grid>
                         <Path Data="{DynamicResource logo}"
                               Stretch="Fill"

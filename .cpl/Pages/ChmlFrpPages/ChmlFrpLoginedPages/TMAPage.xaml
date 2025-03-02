@@ -28,7 +28,7 @@
                                 HorizontalAlignment="Right"
                                 VerticalAlignment="Center">
                         <Button Margin="25"
-                                BorderBrush="#5B7FFF"
+                                BorderBrush="{DynamicResource ThemeColor}"
                                 Style="{StaticResource IconButtonsStyletwo}"
                                 Content="{DynamicResource refresh}"
                                 Click="btnRefresh_Click" />
@@ -40,7 +40,7 @@
                                 Content="{DynamicResource Left}"
                                 Click="btnLeft_Click"
                                 x:Name="Leftbutton"
-                                BorderBrush="#5B7FFF"
+                                BorderBrush="{DynamicResource ThemeColor}"
                                 Height="25"
                                 Width="25"
                                 Margin="5" />
@@ -48,7 +48,7 @@
                                 Content="{DynamicResource Right}"
                                 Click="btnRight_Click"
                                 x:Name="Rightbutton"
-                                BorderBrush="#5B7FFF"
+                                BorderBrush="{DynamicResource ThemeColor}"
                                 Height="25"
                                 Width="25"
                                 Margin="5" />

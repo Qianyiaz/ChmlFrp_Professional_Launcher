@@ -9,6 +9,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Icons/SGY/Icons.xaml" />
                 <ResourceDictionary Source="/Style/Style.xaml" />
+                <ResourceDictionary Source="/Themes/Theme.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

@@ -16,7 +16,7 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="{DynamicResource SecundaryBackgroundColor}" />
+                            <Setter Property="Background" Value="{DynamicResource WhiteColorLiglt}" />
                         </Trigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
@@ -24,10 +24,10 @@
                                 <Condition Property="Tag" Value="IsCloseButton" />
                             </MultiTrigger.Conditions>
                             <Setter Property="Background" Value="#F72626" />
-                            <Setter TargetName="ico" Property="Fill" Value="#f3f3f3" />
+                            <Setter TargetName="ico" Property="Fill" Value="{DynamicResource WhiteColorLiglt}" />
                         </MultiTrigger>
                         <Trigger Property="IsPressed" Value="True">
-                            <Setter TargetName="ico" Property="Fill" Value="#f3f3f3" />
+                            <Setter TargetName="ico" Property="Fill" Value="{DynamicResource WhiteColorLiglt}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -49,7 +49,7 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsPressed" Value="True">
-                            <Setter TargetName="ico" Property="Fill" Value="#f3f3f3" />
+                            <Setter TargetName="ico" Property="Fill" Value="{DynamicResource WhiteColorLiglt}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -57,43 +57,6 @@
         </Setter>
     </Style>
 
-    <!-- Start: Menu Icon -->
-    <Style x:Key="MenuIconStyle" TargetType="{x:Type ToggleButton}">
-        <Setter Property="Width" Value="30" />
-        <Setter Property="Height" Value="30" />
-        <Setter Property="Cursor" Value="Hand" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type ToggleButton}">
-                    <Border x:Name="border" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
-                        <Viewbox Height="20" Width="20" Margin="0 6 0 0" Stretch="UniformToFill">
-                            <Canvas Height="512" Width="512">
-                                <Path x:Name="ico" Data="m32 0h448c17.671875 0 32 14.328125 32 32s-14.328125 32-32 32h-448c-17.671875 0-32-14.328125-32-32s14.328125-32 32-32zm0 0" Fill="#EEEEEE" Margin="0 0 0 0" />
-                                <Path x:Name="ico1" Data="m32 128h448c17.671875 0 32 14.328125 32 32s-14.328125 32-32 32h-448c-17.671875 0-32-14.328125-32-32s14.328125-32 32-32zm0 0" Fill="#EEEEEE" Margin="0 20 0 0" />
-                                <Path x:Name="ico2" Data="m32 256h448c17.671875 0 32 14.328125 32 32s-14.328125 32-32 32h-448c-17.671875 0-32-14.328125-32-32s14.328125-32 32-32zm0 0" Fill="#EEEEEE" Margin="0 40 0 0" />
-                            </Canvas>
-                        </Viewbox>
-                    </Border>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" TargetName="border" Value="Transparent" />
-                            <Setter Property="BorderBrush" TargetName="border" Value="#FFFFFF" />
-                            <Setter Property="Fill" TargetName="ico" Value="#5B7FFF" />
-                            <Setter Property="Fill" TargetName="ico1" Value="#5B7FFF" />
-                            <Setter Property="Fill" TargetName="ico2" Value="#5B7FFF" />
-                        </Trigger>
-                        <Trigger Property="IsChecked" Value="True">
-                            <Setter Property="Background" TargetName="border" Value="Transparent" />
-                            <Setter Property="BorderBrush" TargetName="border" Value="#FFFFFF" />
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-    <!-- End: Menu Icon -->
-
-    <!-- Start: VerticalMenuStyle -->
     <Style x:Key="MenuRadioButtonStyle" TargetType="{x:Type RadioButton}">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Foreground" Value="LightSteelBlue" />
@@ -129,18 +92,18 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="txtName" Property="Foreground" Value="#5B7FFF" />
-                            <Setter TargetName="Icon" Property="Fill" Value="#5B7FFF" />
+                            <Setter TargetName="txtName" Property="Foreground" Value="{DynamicResource ThemeColor}" />
+                            <Setter TargetName="Icon" Property="Fill" Value="{DynamicResource ThemeColor}" />
                             <!-- Optional
                             <Setter TargetName="Indicator" Property="Fill" Value="red" />
                             <Setter TargetName="Indicator" Property="Height" Value="20" />-->
                         </Trigger>
                         <Trigger Property="IsChecked" Value="True">
-                            <Setter TargetName="Icon" Property="Fill" Value="#5B7FFF" />
-                            <Setter TargetName="Indicator" Property="Fill" Value="#5B7FFF" />
+                            <Setter TargetName="Icon" Property="Fill" Value="{DynamicResource ThemeColor}" />
+                            <Setter TargetName="Indicator" Property="Fill" Value="{DynamicResource ThemeColor}" />
                             <Setter TargetName="Indicator" Property="Height" Value="20" />
                             <Setter TargetName="btnSelected" Property="Background" Value="#f9f9f9" />
-                            <Setter TargetName="txtName" Property="Foreground" Value="#5B7FFF" />
+                            <Setter TargetName="txtName" Property="Foreground" Value="{DynamicResource ThemeColor}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -152,7 +115,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:CornerIconRadioButton}">
-                    <Border Width="75" Height="26.5" BorderThickness="0" x:Name="border" Background="#116fce" CornerRadius="15">
+                    <Border Width="75" Height="26.5" BorderThickness="0" x:Name="border" Background="{DynamicResource ThemeColor}" CornerRadius="15">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                             <Path x:Name="path" Data="{TemplateBinding Data}" Fill="#f9f9f9" Height="15" Width="15" Stretch="Uniform" Margin="0,0,5,0" />
                             <TextBlock Margin="5,0,0,0" FontSize="13" x:Name="borderTextBlock" Foreground="#f9f9f9" Text="{TemplateBinding Content}" HorizontalAlignment="Right" VerticalAlignment="Center" />
@@ -165,16 +128,16 @@
                                 <Condition Property="IsMouseOver" Value="False" />
                             </MultiTrigger.Conditions>
                             <Setter TargetName="border" Property="Background" Value="#f9f9f9" />
-                            <Setter TargetName="path" Property="Fill" Value="#116fce" />
-                            <Setter TargetName="borderTextBlock" Property="Foreground" Value="#116fce" />
+                            <Setter TargetName="path" Property="Fill" Value="{DynamicResource ThemeColor}" />
+                            <Setter TargetName="borderTextBlock" Property="Foreground" Value="{DynamicResource ThemeColor}" />
                         </MultiTrigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
                                 <Condition Property="IsChecked" Value="True" />
                                 <Condition Property="IsMouseOver" Value="True" />
                             </MultiTrigger.Conditions>
-                            <Setter TargetName="path" Property="Fill" Value="#116fce" />
-                            <Setter TargetName="borderTextBlock" Property="Foreground" Value="#116fce" />
+                            <Setter TargetName="path" Property="Fill" Value="{DynamicResource ThemeColor}" />
+                            <Setter TargetName="borderTextBlock" Property="Foreground" Value="{DynamicResource ThemeColor}" />
                             <Setter TargetName="border" Property="Background" Value="#f9f9f9" />
                         </MultiTrigger>
                         <MultiTrigger>
@@ -197,12 +160,12 @@
                     <Border x:Name="border" 
                             Background="Transparent" 
                             BorderThickness="1" 
-                            BorderBrush="#116fce" 
+                            BorderBrush="{DynamicResource ThemeColor}" 
                             CornerRadius="{TemplateBinding CornerRadius}">
                         
                         <TextBlock FontSize="{TemplateBinding FontSize}" 
                                    x:Name="borderTextBlock" 
-                                   Foreground="#116fce" 
+                                   Foreground="{DynamicResource ThemeColor}" 
                                    Text="{TemplateBinding Content}" 
                                    HorizontalAlignment="Center" 
                                    VerticalAlignment="Center" />
@@ -222,9 +185,9 @@
                                 <Condition Property="IsSelected" Value="True" />
                             </MultiTrigger.Conditions>
 
-                            <Setter TargetName="border" Property="BorderBrush" Value="#116fce" />
+                            <Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource ThemeColor}" />
                             <Setter TargetName="border" Property="Background" Value="#ADD8E6" />
-                            <Setter TargetName="borderTextBlock" Property="Foreground" Value="#116fce" />
+                            <Setter TargetName="borderTextBlock" Property="Foreground" Value="{DynamicResource ThemeColor}" />
                         </MultiTrigger>
                         
                         <MultiTrigger>
@@ -301,14 +264,14 @@
                 <ControlTemplate TargetType="{x:Type local:CornerTextBox}">
                     <Border Background="Transparent" 
                             BorderThickness="2" 
-                            BorderBrush="#116fce" 
+                            BorderBrush="{DynamicResource ThemeColor}" 
                             CornerRadius="{TemplateBinding CornerRadius}">
                         <Grid>
                             <TextBox Text="{Binding Text, RelativeSource={RelativeSource TemplatedParent}, UpdateSourceTrigger=PropertyChanged}"
                                      Padding="5,0,0,0"
                                      BorderBrush="Transparent"
                                      Background="Transparent"
-                                     Foreground="#116fce"
+                                     Foreground="{DynamicResource ThemeColor}"
                                      FontSize="17"
                                      HorizontalContentAlignment="Left"
                                      VerticalContentAlignment="Center"/>
@@ -325,10 +288,10 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="borderTextBlock" Property="Foreground" Value="#116fce" />
+                            <Setter TargetName="borderTextBlock" Property="Foreground" Value="{DynamicResource ThemeColor}" />
                         </Trigger>
                         <Trigger Property="IsFocused" Value="True">
-                            <Setter TargetName="borderTextBlock" Property="Foreground" Value="#116fce" />
+                            <Setter TargetName="borderTextBlock" Property="Foreground" Value="{DynamicResource ThemeColor}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -357,7 +320,7 @@
                                         <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1" CornerRadius="4">
                                             <Path x:Name="path"
                                                   Data="M11.65 14.65q.15.15.35.15t.35-.15l2.8-2.8q.25-.25.125-.55T14.8 11H9.2q-.35 0-.475.3t.125.55zM12 22q-2.075 0-3.9-.788t-3.175-2.137T2.788 15.9T2 12t.788-3.9t2.137-3.175T8.1 2.788T12 2t3.9.788t3.175 2.137T21.213 8.1T22 12t-.788 3.9t-2.137 3.175t-3.175 2.138T12 22" 
-                                                  Fill="#116fce" 
+                                                  Fill="{DynamicResource ThemeColor}" 
                                                   Width="35" Height="35"
                                                   Stretch="Fill"
                                                   HorizontalAlignment="Left" VerticalAlignment="Center"/>
@@ -407,7 +370,7 @@
 
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="border" Property="BorderBrush" Value="#116fce" />
+                            <Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource ThemeColor}" />
                         </Trigger>
 
                     </ControlTemplate.Triggers>
@@ -438,7 +401,7 @@
                                     </Trigger>
 
                                     <Trigger Property="IsSelected" Value="True">
-                                        <Setter TargetName="border" Property="Background" Value="#116fce" />
+                                        <Setter TargetName="border" Property="Background" Value="{DynamicResource ThemeColor}" />
 
                                         <Setter TargetName="border" Property="Opacity" Value="0.8"/>
                                     </Trigger>
