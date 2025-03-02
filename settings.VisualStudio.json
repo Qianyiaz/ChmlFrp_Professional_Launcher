@@ -1,0 +1,25 @@
+/* Visual Studio Settings File */
+{
+  "previewFeatures.vSCoreNewSettingsExperience": true,
+  "textEditor.general.imageHoverPreview": false,
+  "textEditor.general.stickyScroll.enable": false,
+  "textEditor.general.display.bracePairColorization": false,
+  "textEditor.general.display.autoBraceSurround": false,
+  "languages.defaults.general.lineNumbers": true,
+  "languages.xml.general.lineNumbers": false,
+  "languages.defaults.scrollbars.verticalScrollBarMode": "map",
+  "languages.xaml.general.singleClickUrlNavigation": false,
+  "languages.fsharp.general.navigationBar": false,
+  "previewFeatures.shellClassicStyles": false,
+  "languages.fsharp.tabs.indenting": "block",
+  "languages.json.tabs.tabSize": 2,
+  "languages.rest.tabs.tabSize": 2,
+  "languages.json.tabs.indentSize": 2,
+  "languages.rest.tabs.indentSize": 2,
+  "projectsAndSolutions.general.showOutputWindow": false,
+  "environment.general.disableTouch": true,
+  "environment.tabs.documentTabs.multiRowTabs": true,
+  "languages.typeScript.general.wordWrapVisualGlyphs": false,
+  "languages.xml.general.wordWrapVisualGlyphs": false,
+  "languages.defaults.general.wordWrapVisualGlyphs": true
+}
