@@ -2,23 +2,23 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using ChmlFrp_Professional_Launcher.Pages.RemindingPages.Third;
+using ChmlFrp_Professional_Launcher.Pages.RemindersPages.Third;
 
 namespace ChmlFrp_Professional_Launcher.Pages
 {
     /// <summary>
-    /// RemindingthreePage.xaml 的交互逻辑
+    /// RemindersPageThree.xaml 的交互逻辑
     /// </summary>
-    public partial class RemindingthreePage : Page
+    public partial class RemindersPageThree : Page
     {
         MainWindow MainWindow = Application.Current.MainWindow as MainWindow;
         int PageNumber = 0;
         Downloadfiles Downloadfiles = new();
-        Reminding Reminding = new();
+        Reminders Reminders = new();
         PageOne PageOne = new();
         PageTwo PageTwo = new();
 
-        public RemindingthreePage()
+        public RemindersPageThree()
         {
             InitializeComponent();
             CheckPageNumber();
@@ -45,7 +45,7 @@ namespace ChmlFrp_Professional_Launcher.Pages
 
         private async void Download_Button_Click(object sender, RoutedEventArgs e)
         {
-            Reminding.RemindingShow("正在下载中...", "green");
+            Reminders.Reminder_Box_Show("正在下载中...", "green");
             PageTwo.PorgressBar.IsIndeterminate = true;
 
             bool isGithubChecked = PageOne.Github_Butten.IsChecked == true;
@@ -84,11 +84,11 @@ namespace ChmlFrp_Professional_Launcher.Pages
 
             if (downloadSuccess)
             {
-                Reminding.RemindingShow("下载成功", "green");
+                Reminders.Reminder_Box_Show("下载成功", "green");
             }
             else
             {
-                Reminding.RemindingShow("下载失败", "red");
+                Reminders.Reminder_Box_Show("下载失败", "red");
                 return;
             }
 
@@ -121,7 +121,7 @@ namespace ChmlFrp_Professional_Launcher.Pages
                         && PageOne.GitCode_Butten.IsChecked == false
                     )
                     {
-                        Reminding.RemindingShow("选项未选择。", "red");
+                        Reminders.Reminder_Box_Show("选项未选择。", "red");
                         PageNumber--;
 
                         break;

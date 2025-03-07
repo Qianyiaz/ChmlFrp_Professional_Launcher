@@ -7,13 +7,15 @@ namespace ChmlFrp_Professional_Launcher.Pages
 {
     public partial class LaunchPage : Page
     {
-        private Reminding Reminding = new();
+        private Reminders Reminders = new();
+        MainWindow MainWindow = Application.Current.MainWindow as MainWindow;
 
         //private Process process;
 
         public LaunchPage()
         {
             InitializeComponent();
+
             if (File.Exists(App.temp_api_tunnel_path))
             {
                 string jsonContent = File.ReadAllText(App.temp_api_tunnel_path);
@@ -29,7 +31,7 @@ namespace ChmlFrp_Professional_Launcher.Pages
 
         private void Launch(object sender, RoutedEventArgs e)
         {
-            Reminding.RemindingShow("正在施工...", "yellow");
+            Reminders.Reminder_Box_Show("正在施工...", "yellow");
             return;
 
             //LaunchButton.Click -= Launch;
@@ -57,12 +59,12 @@ namespace ChmlFrp_Professional_Launcher.Pages
             //}
             //catch (Exception ex)
             //{
-            //    Reminding.RemindingShow($"启动进程失败: {ex.Message}", "red");
+            //    Reminders.Reminder_Box_Show($"启动进程失败: {ex.Message}", "red");
 
             //    LaunchButton.Click += Launch;
             //    return;
             //}
-            //Reminding.RemindingShow("启动成功", "green");
+            //Reminders.Reminder_Box_Show("启动成功", "green");
 
             //LaunchButton.Click += Killfrp;
             //LaunchButton.Content = "关闭FRPC";
@@ -73,12 +75,12 @@ namespace ChmlFrp_Professional_Launcher.Pages
         //    LaunchButton.Click -= Killfrp;
 
         //    if (process.HasExited)
-        //        Reminding.RemindingShow("进程已退出", "red");
+        //        Reminders.Reminder_Box_Show("进程已退出", "red");
         //    else
         //    {
         //        process.Kill(); // 关闭
         //        process.Dispose();
-        //        Reminding.RemindingShow("关闭成功", "green");
+        //        Reminders.Reminder_Box_Show("关闭成功", "green");
         //    }
 
         //    LaunchButton.Click += Launch;

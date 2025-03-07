@@ -16,7 +16,7 @@ namespace ChmlFrp_Professional_Launcher.Pages.ChmlFrpLoginPages
     public partial class HomePage : Page
     {
         private Downloadfiles Downloadfiles = new();
-        private Reminding Reminding = new();
+        private Reminders Reminders = new();
 
         private string temp_UserImage;
         private string temp_User;
@@ -59,7 +59,7 @@ namespace ChmlFrp_Professional_Launcher.Pages.ChmlFrpLoginPages
                     temp_User
                 )
             )
-                Reminding.RemindingShow("用户信息加载失败", "red");
+                Reminders.Reminder_Box_Show("用户信息加载失败", "red");
             if (!System.IO.File.Exists(temp_UserImage))
             {
                 string jsonContent1 = System.IO.File.ReadAllText(App.temp_api_path);
@@ -97,11 +97,11 @@ namespace ChmlFrp_Professional_Launcher.Pages.ChmlFrpLoginPages
             i++;
 
             if (i == 1)
-                Reminding.RemindingShow(usertoken, "green");
+                Reminders.Reminder_Box_Show(usertoken, "green");
             if (i == 2)
             {
                 Clipboard.SetDataObject(usertoken);
-                Reminding.RemindingShow("Token已复制到的剪切板点击重新显示", "green");
+                Reminders.Reminder_Box_Show("Token已复制到的剪切板点击重新显示", "green");
                 Token.Content = "点击查看Token";
                 i = 0;
             }

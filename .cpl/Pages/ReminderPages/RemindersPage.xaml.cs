@@ -6,17 +6,17 @@ using System.Windows.Threading;
 namespace ChmlFrp_Professional_Launcher.Pages
 {
     /// <summary>
-    /// RemindingPage.xaml 的交互逻辑
+    /// RemindersPage.xaml 的交互逻辑
     /// </summary>
-    public partial class RemindingPage : Page
+    public partial class RemindersPage : Page
     {
-        public RemindingPage()
+        public RemindersPage()
         {
             InitializeComponent();
-            Loaded += RemindingPage_Loaded;
+            Loaded += RemindersPage_Loaded;
         }
 
-        private void RemindingPage_Loaded(object sender, RoutedEventArgs e)
+        private void RemindersPage_Loaded(object sender, RoutedEventArgs e)
         {
             DispatcherTimer timer = new();
             timer.Interval = TimeSpan.FromSeconds(3);

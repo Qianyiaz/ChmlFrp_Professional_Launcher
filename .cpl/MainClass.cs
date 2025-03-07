@@ -15,7 +15,7 @@ namespace ChmlFrp_Professional_Launcher
 {
     internal class InitializeClass
     {
-        Reminding Reminding = new();
+        Reminders Reminders = new();
         MainWindow MainWindow = Application.Current.MainWindow as MainWindow;
 
         //初始化
@@ -67,25 +67,25 @@ namespace ChmlFrp_Professional_Launcher
             }
             catch
             {
-                Reminding.LogsOutputting("文件占用无法创建");
+                Reminders.LogsOutputting("文件占用无法创建");
             }
         }
     }
 
     internal class Downloadfiles
     {
-        private Reminding Reminding = new();
+        private Reminders Reminders = new();
 
         public bool Download(string url, string path)
         {
             if (url == null)
             {
-                Reminding.LogsOutputting("下载失败：url不能为null。");
+                Reminders.LogsOutputting("下载失败：url不能为null。");
                 return false;
             }
             if (path == null)
             {
-                Reminding.LogsOutputting("下载失败：path不能为null。");
+                Reminders.LogsOutputting("下载失败：path不能为null。");
                 return false;
             }
 
@@ -97,10 +97,10 @@ namespace ChmlFrp_Professional_Launcher
             }
             catch
             {
-                Reminding.LogsOutputting($"下载失败：文件占用或网络错误?path={path}&url={url}");
+                Reminders.LogsOutputting($"下载失败：文件占用或网络错误?path={path}&url={url}");
                 return false;
             }
-            Reminding.LogsOutputting($"下载成功：已下载?path={path}");
+            Reminders.LogsOutputting($"下载成功：已下载?path={path}");
             return true;
         }
 
@@ -108,12 +108,12 @@ namespace ChmlFrp_Professional_Launcher
         {
             if (url == null)
             {
-                Reminding.LogsOutputting("下载失败：url不能为null。");
+                Reminders.LogsOutputting("下载失败：url不能为null。");
                 return false;
             }
             if (path == null)
             {
-                Reminding.LogsOutputting("下载失败：path不能为null。");
+                Reminders.LogsOutputting("下载失败：path不能为null。");
                 return false;
             }
 
@@ -125,10 +125,10 @@ namespace ChmlFrp_Professional_Launcher
             }
             catch
             {
-                Reminding.LogsOutputting($"下载失败：文件占用或网络错误?path={path}&url={url}");
+                Reminders.LogsOutputting($"下载失败：文件占用或网络错误?path={path}&url={url}");
                 return false;
             }
-            Reminding.LogsOutputting($"下载成功：已下载?path={path}");
+            Reminders.LogsOutputting($"下载成功：已下载?path={path}");
             return true;
         }
 
@@ -146,30 +146,30 @@ namespace ChmlFrp_Professional_Launcher
             )
             {
                 string msg = JObject.Parse(File.ReadAllText(App.temp_api_path))["msg"]?.ToString();
-                Reminding.LogsOutputting("API提醒：" + msg);
+                Reminders.LogsOutputting("API提醒：" + msg);
                 if (msg == "登录成功")
                 {
                     if (Remind)
-                        Reminding.RemindingShow(msg, "green");
+                        Reminders.Reminder_Box_Show(msg, "green");
                     return true;
                 }
                 else
                 {
                     if (Remind)
-                        Reminding.RemindingShow(msg, "red");
+                        Reminders.Reminder_Box_Show(msg, "red");
                     return false;
                 }
             }
             else
             {
                 if (Remind)
-                    Reminding.RemindingShow("网络错误", "red");
+                    Reminders.Reminder_Box_Show("网络错误", "red");
                 return false;
             }
         }
     }
 
-    internal class Reminding
+    internal class Reminders
     {
         MainWindow MainWindow = Application.Current.MainWindow as MainWindow;
 
@@ -180,46 +180,51 @@ namespace ChmlFrp_Professional_Launcher
             File.AppendAllText(App.logfilePath, logEntry + Environment.NewLine);
         }
 
-        public void RemindingtwoShow(string subject, string message)
+        public void Reminder_Box_Show(string message, string color)
         {
-            RemindingtwoPage RemindingtwoPage = new();
-            RemindingtwoPage.SubjectTextBlock.Text = subject;
-            RemindingtwoPage.TextTextBlock.Text = message;
-            MainWindow.PagesNavigationtwo.Navigate(RemindingtwoPage);
+            RemindersPage RemindersPage = new();
+
+                RemindersPage.RemidingTextBlock.Foreground = new SolidColorBrush(Colors.White);
+
+                if (color == "green")
+                {
+                    RemindersPage.RemindersBorder.Background = new SolidColorBrush(
+                        (Color)ColorConverter.ConvertFromString("#3DB43E")
+                    );
+                }
+                else if (color == "blue")
+                {
+                    RemindersPage.RemindersBorder.Background = new SolidColorBrush(
+                        (Color)ColorConverter.ConvertFromString("#349EF7")
+                    );
+                }
+                else if (color == "red")
+                {
+                    RemindersPage.RemindersBorder.Background = new SolidColorBrush(
+                        (Color)ColorConverter.ConvertFromString("#FF0000")
+                    );
+                }
+                else if (color == "yellow")
+                {
+                    RemindersPage.RemidingTextBlock.Foreground = new SolidColorBrush(Colors.Green);
+                    RemindersPage.RemindersBorder.Background = new SolidColorBrush(Colors.Yellow);
+                }
+                else
+                {
+                    LogsOutputting("Reminder_Box_Show颜色参数错误");
+                    return;
+                }
+
+                RemindersPage.RemidingTextBlock.Text = message;
+                MainWindow.RemindersNavigationTwo.Navigate(RemindersPage);
         }
 
-        public void RemindingShow(string message, string color)
+        public void Reminder_interface_Show(string subject, string message)
         {
-            RemindingPage RemindingPage = new();
-            if (color == "green")
-            {
-                RemindingPage.RemindingBorder.Background = new SolidColorBrush(
-                    (Color)ColorConverter.ConvertFromString("#3DB43E")
-                );
-            }
-            else if (color == "blue")
-            {
-                RemindingPage.RemindingBorder.Background = new SolidColorBrush(
-                    (Color)ColorConverter.ConvertFromString("#349EF7")
-                );
-            }
-            else if (color == "red")
-            {
-                RemindingPage.RemindingBorder.Background = new SolidColorBrush(
-                    (Color)ColorConverter.ConvertFromString("#FF0000")
-                );
-            }
-            else if (color == "yellow")
-            {
-                RemindingPage.RemindingBorder.Background = new SolidColorBrush(Colors.Yellow);
-            }
-            else
-            {
-                LogsOutputting("RemindingShow颜色参数错误");
-                return;
-            }
-            RemindingPage.RemidingTextBlock.Text = message;
-            MainWindow.PagesNavigationthree.Navigate(RemindingPage);
+            RemindersPageTwo RemindersPageTwo = new();
+            RemindersPageTwo.SubjectTextBlock.Text = subject;
+            RemindersPageTwo.TextTextBlock.Text = message;
+            MainWindow.RemindersNavigation.Navigate(RemindersPageTwo);
         }
     }
 }

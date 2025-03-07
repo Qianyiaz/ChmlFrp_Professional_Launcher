@@ -5,11 +5,11 @@ using System.Windows.Input;
 namespace ChmlFrp_Professional_Launcher.Pages
 {
     /// <summary>
-    /// RemindingtwoPage.xaml 的交互逻辑
+    /// RemindersPageTwo.xaml 的交互逻辑
     /// </summary>
-    public partial class RemindingtwoPage : Page
+    public partial class RemindersPageTwo : Page
     {
-        public RemindingtwoPage()
+        public RemindersPageTwo()
         {
             InitializeComponent();
         }

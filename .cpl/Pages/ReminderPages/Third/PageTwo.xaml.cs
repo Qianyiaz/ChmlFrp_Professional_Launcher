@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace ChmlFrp_Professional_Launcher.Pages.RemindingPages.Third
+namespace ChmlFrp_Professional_Launcher.Pages.RemindersPages.Third
 {
     /// <summary>
     /// PageTwo.xaml 的交互逻辑

@@ -1,4 +1,4 @@
-﻿<Page x:Class="ChmlFrp_Professional_Launcher.Pages.RemindingPage"
+﻿<Page x:Class="ChmlFrp_Professional_Launcher.Pages.RemindersPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -6,12 +6,13 @@
       mc:Ignorable="d"
       d:DesignHeight="430"
       d:DesignWidth="780"
-      Title="RemindingPage">
+      Title="RemindersPage">
 
     <Grid>
-        <Border x:Name="RemindingBorder"
+        <Border x:Name="RemindersBorder"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Bottom"
+                Background="Transparent"
                 CornerRadius="0,5,5,0"
                 Opacity="0.8"
                 Margin="0,0,0,45">
@@ -20,7 +21,7 @@
                      BorderThickness="0"
                      x:Name="RemidingTextBlock"
                      Background="Transparent"
-                     Foreground="White"
+                     Foreground="Transparent"
                      Text="我是擎天柱"
                      VerticalAlignment="Center"
                      IsReadOnly="True"

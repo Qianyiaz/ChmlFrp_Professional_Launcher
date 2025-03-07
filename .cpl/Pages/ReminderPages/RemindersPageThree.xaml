@@ -1,4 +1,4 @@
-﻿<Page x:Class="ChmlFrp_Professional_Launcher.Pages.RemindingthreePage"
+﻿<Page x:Class="ChmlFrp_Professional_Launcher.Pages.RemindersPageThree"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:ChmlFrp_Professional_Launcher"
       mc:Ignorable="d"
       d:DesignHeight="430" d:DesignWidth="780"
-      Title="RemindingthreePage">
+      Title="RemindersPageThree">
 
     <Grid>
         <Border CornerRadius="6,6,6,6"

@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System.Windows;
+using System.Windows.Controls;
 
 namespace ChmlFrp_Professional_Launcher.Pages
 {
@@ -7,6 +8,7 @@ namespace ChmlFrp_Professional_Launcher.Pages
     /// </summary>
     public partial class BlankPage : Page
     {
+        MainWindow MainWindow = Application.Current.MainWindow as MainWindow;
         public BlankPage()
         {
             InitializeComponent();

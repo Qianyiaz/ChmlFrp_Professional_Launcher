@@ -116,19 +116,19 @@
     <Compile Include="Pages\ChmlFrpPages\ChmlFrpLoginedPages\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\RemindingPages\RemindingPage.xaml.cs">
-      <DependentUpon>RemindingPage.xaml</DependentUpon>
+    <Compile Include="Pages\ReminderPages\RemindersPage.xaml.cs">
+      <DependentUpon>RemindersPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\RemindingPages\RemindingtwoPage.xaml.cs">
-      <DependentUpon>RemindingtwoPage.xaml</DependentUpon>
+    <Compile Include="Pages\ReminderPages\RemindersPageTwo.xaml.cs">
+      <DependentUpon>RemindersPageTwo.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\RemindingPages\RemindingthreePage.xaml.cs">
-      <DependentUpon>RemindingthreePage.xaml</DependentUpon>
+    <Compile Include="Pages\ReminderPages\RemindersPageThree.xaml.cs">
+      <DependentUpon>RemindersPageThree.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\RemindingPages\Third\PageOne.xaml.cs">
+    <Compile Include="Pages\ReminderPages\Third\PageOne.xaml.cs">
       <DependentUpon>PageOne.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\RemindingPages\Third\PageTwo.xaml.cs">
+    <Compile Include="Pages\ReminderPages\Third\PageTwo.xaml.cs">
       <DependentUpon>PageTwo.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\SettingPages\SettingHomePage.xaml.cs">
@@ -162,23 +162,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\RemindingPages\RemindingPage.xaml">
+    <Page Include="Pages\ReminderPages\RemindersPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\RemindingPages\RemindingtwoPage.xaml">
+    <Page Include="Pages\ReminderPages\RemindersPageTwo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\RemindingPages\RemindingthreePage.xaml">
+    <Page Include="Pages\ReminderPages\RemindersPageThree.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Pages\RemindingPages\Third\PageOne.xaml">
+    <Page Include="Pages\ReminderPages\Third\PageOne.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\RemindingPages\Third\PageTwo.xaml">
+    <Page Include="Pages\ReminderPages\Third\PageTwo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
