@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.IO;
 using System.Net;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -52,7 +53,10 @@ namespace ChmlFrp_Professional_Launcher
                 {
                     IniData data = new();
                     FileIniDataParser parser = new();
-                    data["ChmlFrp_Professional_Launcher Setup"]["Versions"] = "0.0.0.6";
+                    data["ChmlFrp_Professional_Launcher Setup"]["Versions"] = Assembly
+                        .GetExecutingAssembly()
+                        .GetName()
+                        .Version.ToString();
                     parser.WriteFile(Paths.setupIniPath, data);
                 }
                 //创建日志文件
@@ -250,7 +254,7 @@ namespace ChmlFrp_Professional_Launcher
                 MainWindow.RemindersNavigationTwo.Navigate(RemindersPage);
             }
 
-            public static void Reminder_interface_Show(string subject, string message)
+            public static void Reminder_Interface_Show(string subject, string message)
             {
                 RemindersPageTwo RemindersPageTwo = new();
                 RemindersPageTwo.SubjectTextBlock.Text = subject;
