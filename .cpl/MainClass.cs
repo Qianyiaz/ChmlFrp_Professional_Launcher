@@ -18,7 +18,7 @@ namespace ChmlFrp_Professional_Launcher
         static MainWindow MainWindow = Application.Current.MainWindow as MainWindow;
 
         //初始化
-        public void Initialize()
+        public static void Initialize()
         {
             // 检测是否有两个ChmlFrp Professional Launcher进程
             var currentProcess = Process.GetCurrentProcess();

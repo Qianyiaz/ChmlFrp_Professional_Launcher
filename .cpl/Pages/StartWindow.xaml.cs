@@ -10,6 +10,7 @@ namespace ChmlFrp_Professional_Launcher
         {
             InitializeComponent();
             Loaded += StartWindow_Loaded;
+            MainClass.Initialize();
         }
 
         private void StartWindow_Loaded(object sender, RoutedEventArgs e)
