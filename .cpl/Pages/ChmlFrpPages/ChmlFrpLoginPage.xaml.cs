@@ -13,14 +13,13 @@ namespace ChmlFrp_Professional_Launcher.Pages
     public partial class ChmlFrpLoginPage : Page
     {
         MainWindow MainWindow = Application.Current.MainWindow as MainWindow;
-        private Downloadfiles Downloadfiles = new();
         private IniData data;
         private FileIniDataParser parser = new();
 
         public ChmlFrpLoginPage()
         {
             InitializeComponent();
-            data = parser.ReadFile(App.setupIniPath);
+            data = parser.ReadFile(MainClass.Paths.setupIniPath);
         }
 
         private void Border_MouseLeftButtonDown(
@@ -35,19 +34,19 @@ namespace ChmlFrp_Professional_Launcher.Pages
         {
             logonButton.Click -= logon;
             data["ChmlFrp_Professional_Launcher Setup"]["Password"] = TextBox_password.Text;
-            parser.WriteFile(App.setupIniPath, data);
+            parser.WriteFile(MainClass.Paths.setupIniPath, data);
             data["ChmlFrp_Professional_Launcher Setup"]["Username"] = TextBox_Username.Text;
-            parser.WriteFile(App.setupIniPath, data);
-            if (Downloadfiles.GetAPItoLogin(true))
+            parser.WriteFile(MainClass.Paths.setupIniPath, data);
+            if (MainClass.Downloadfiles.GetAPItoLogin(true))
             {
                 MainWindow.SignInBool = false;
 
-                string jsonContent = System.IO.File.ReadAllText(App.temp_api_path);
+                string jsonContent = System.IO.File.ReadAllText(MainClass.Paths.temp_api_path);
                 var jsonObject = JObject.Parse(jsonContent);
                 data["ChmlFrp_Professional_Launcher Setup"]["Token"] = jsonObject["data"]
                     ["usertoken"]
                     ?.ToString();
-                parser.WriteFile(App.setupIniPath, data);
+                parser.WriteFile(MainClass.Paths.setupIniPath, data);
 
                 await Task.Delay(1000);
 

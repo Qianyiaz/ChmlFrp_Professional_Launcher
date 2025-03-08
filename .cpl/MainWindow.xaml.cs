@@ -15,9 +15,6 @@ namespace ChmlFrp_Professional_Launcher
     /// </summary>
     public partial class MainWindow : Window
     {
-        Reminders Reminders = new();
-        Downloadfiles Downloadfiles = new();
-
         BlankPage BlankPage;
         public LaunchPage LaunchPage;
         public ChmlFrphomePage ChmlFrpHomePage;
@@ -33,7 +30,7 @@ namespace ChmlFrp_Professional_Launcher
             Thread.Sleep(3000);
             StartWindow.Close();
 
-            if (!Downloadfiles.GetAPItoLogin(false))
+            if (!MainClass.Downloadfiles.GetAPItoLogin(false))
                 SignInBool = true;
             else
                 SignInBool = false;
@@ -46,7 +43,7 @@ namespace ChmlFrp_Professional_Launcher
 
             // 显示背景图片
             string[] imageFiles = Directory
-                .GetFiles(App.pictures_path, "*.*")
+                .GetFiles(MainClass.Paths.pictures_path, "*.*")
                 .Where(file =>
                     file.EndsWith(".jpg", StringComparison.OrdinalIgnoreCase)
                     || file.EndsWith(".png", StringComparison.OrdinalIgnoreCase)
@@ -62,11 +59,11 @@ namespace ChmlFrp_Professional_Launcher
                 );
                 Imagewallpaper.Stretch = Stretch.UniformToFill;
             }
-            Reminders.LogsOutputting("背景图片或默认加载成功");
+            MainClass.Reminders.LogsOutputting("背景图片或默认加载成功");
 
             // 进入启动页
             rdLaunchPage_Click(this, new RoutedEventArgs());
-            if (!File.Exists(App.frpExePath))
+            if (!File.Exists(MainClass.Paths.frpExePath))
             {
                 RemindersPageThree RemindersPageThree = new();
                 RemindersNavigation.Navigate(RemindersPageThree);
@@ -95,7 +92,7 @@ namespace ChmlFrp_Professional_Launcher
 
         public void btnClose_Click(object sender, RoutedEventArgs e)
         {
-            Reminders.LogsOutputting("退出软件中...");
+            MainClass.Reminders.LogsOutputting("退出软件中...");
             Close();
         }
 

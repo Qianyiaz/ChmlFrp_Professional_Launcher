@@ -7,12 +7,10 @@ namespace ChmlFrp_Professional_Launcher.Pages
     /// </summary>
     public partial class SettingHomePage : Page
     {
-        private Reminders Reminders = new();
-
         public SettingHomePage()
         {
             InitializeComponent();
-            Reminders.LogsOutputting("进入SettingHomePage");
+            MainClass.Reminders.LogsOutputting("进入SettingHomePage");
         }
     }
 }

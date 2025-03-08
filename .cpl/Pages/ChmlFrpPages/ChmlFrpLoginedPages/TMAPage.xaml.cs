@@ -26,18 +26,17 @@ namespace ChmlFrp_Professional_Launcher.Pages.ChmlFrpLoginPages
 
         public void InitializeApps()
         {
-            string jsonContent = System.IO.File.ReadAllText(App.temp_api_path);
+            string jsonContent = System.IO.File.ReadAllText(MainClass.Paths.temp_api_path);
             var jsonObject = JObject.Parse(jsonContent);
-            Downloadfiles Downloadfiles = new();
             if (
-                Downloadfiles.Download(
+                MainClass.Downloadfiles.Download(
                     "http://cf-v2.uapis.cn/tunnel?token="
                         + jsonObject["data"]["usertoken"]?.ToString(),
-                    App.temp_api_tunnel_path
+                    MainClass.Paths.temp_api_tunnel_path
                 )
             )
             {
-                jsonContent = System.IO.File.ReadAllText(App.temp_api_tunnel_path);
+                jsonContent = System.IO.File.ReadAllText(MainClass.Paths.temp_api_tunnel_path);
                 jsonObject = JObject.Parse(jsonContent);
                 if (jsonObject["msg"]?.ToString() == "获取隧道数据成功")
                 {

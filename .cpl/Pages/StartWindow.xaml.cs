@@ -6,13 +6,10 @@ namespace ChmlFrp_Professional_Launcher
 {
     public partial class StartWindow : Window
     {
-        private InitializeClass InitializeClass = new();
-
         public StartWindow()
         {
             InitializeComponent();
             Loaded += StartWindow_Loaded;
-            InitializeClass.Initialize();
         }
 
         private void StartWindow_Loaded(object sender, RoutedEventArgs e)

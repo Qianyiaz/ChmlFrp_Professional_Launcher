@@ -15,9 +15,6 @@ namespace ChmlFrp_Professional_Launcher.Pages.ChmlFrpLoginPages
     /// </summary>
     public partial class HomePage : Page
     {
-        private Downloadfiles Downloadfiles = new();
-        private Reminders Reminders = new();
-
         private string temp_UserImage;
         private string temp_User;
         private string usertoken;
@@ -31,9 +28,9 @@ namespace ChmlFrp_Professional_Launcher.Pages.ChmlFrpLoginPages
         {
             InitializeComponent();
             parser = new FileIniDataParser();
-            data = parser.ReadFile(App.setupIniPath);
-            temp_UserImage = Path.Combine(App.temp_path, "temp_userImage.jpg");
-            temp_User = Path.Combine(App.temp_path, "login_user_api.json");
+            data = parser.ReadFile(MainClass.Paths.setupIniPath);
+            temp_UserImage = Path.Combine(MainClass.Paths.temp_path, "temp_userImage.jpg");
+            temp_User = Path.Combine(MainClass.Paths.temp_path, "login_user_api.json");
             usertoken = data["ChmlFrp_Professional_Launcher Setup"]["Token"];
 
             InitializeApps();
@@ -53,21 +50,24 @@ namespace ChmlFrp_Professional_Launcher.Pages.ChmlFrpLoginPages
         private void InitializeApps()
         {
             if (
-                !Downloadfiles.Download(
+                !MainClass.Downloadfiles.Download(
                     "http://cf-v2.uapis.cn/userinfo?token="
                         + data["ChmlFrp_Professional_Launcher Setup"]["Token"],
                     temp_User
                 )
             )
-                Reminders.Reminder_Box_Show("用户信息加载失败", "red");
+                MainClass.Reminders.Reminder_Box_Show("用户信息加载失败", "red");
             if (!System.IO.File.Exists(temp_UserImage))
             {
-                string jsonContent1 = System.IO.File.ReadAllText(App.temp_api_path);
+                string jsonContent1 = System.IO.File.ReadAllText(MainClass.Paths.temp_api_path);
                 var jsonObject1 = JObject.Parse(jsonContent1);
-                Downloadfiles.Download(jsonObject1["data"]["userimg"]?.ToString(), temp_UserImage);
+                MainClass.Downloadfiles.Download(
+                    jsonObject1["data"]["userimg"]?.ToString(),
+                    temp_UserImage
+                );
             }
 
-            string jsonContent = System.IO.File.ReadAllText(App.temp_api_path);
+            string jsonContent = System.IO.File.ReadAllText(MainClass.Paths.temp_api_path);
             var jsonObject = JObject.Parse(jsonContent);
 
             UserImage.ImageSource = new BitmapImage(new Uri(temp_UserImage));
@@ -97,11 +97,11 @@ namespace ChmlFrp_Professional_Launcher.Pages.ChmlFrpLoginPages
             i++;
 
             if (i == 1)
-                Reminders.Reminder_Box_Show(usertoken, "green");
+                MainClass.Reminders.Reminder_Box_Show(usertoken, "green");
             if (i == 2)
             {
                 Clipboard.SetDataObject(usertoken);
-                Reminders.Reminder_Box_Show("Token已复制到的剪切板点击重新显示", "green");
+                MainClass.Reminders.Reminder_Box_Show("Token已复制到的剪切板点击重新显示", "green");
                 Token.Content = "点击查看Token";
                 i = 0;
             }

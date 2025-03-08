@@ -7,7 +7,6 @@ namespace ChmlFrp_Professional_Launcher.Pages
 {
     public partial class LaunchPage : Page
     {
-        private Reminders Reminders = new();
         MainWindow MainWindow = Application.Current.MainWindow as MainWindow;
 
         //private Process process;
@@ -16,9 +15,9 @@ namespace ChmlFrp_Professional_Launcher.Pages
         {
             InitializeComponent();
 
-            if (File.Exists(App.temp_api_tunnel_path))
+            if (File.Exists(MainClass.Paths.temp_api_tunnel_path))
             {
-                string jsonContent = File.ReadAllText(App.temp_api_tunnel_path);
+                string jsonContent = File.ReadAllText(MainClass.Paths.temp_api_tunnel_path);
                 var jsonObject = JObject.Parse(jsonContent);
                 foreach (var tunnel in jsonObject["data"])
                 {
@@ -31,7 +30,7 @@ namespace ChmlFrp_Professional_Launcher.Pages
 
         private void Launch(object sender, RoutedEventArgs e)
         {
-            Reminders.Reminder_Box_Show("正在施工...", "yellow");
+            MainClass.Reminders.Reminder_Box_Show("正在施工...", "yellow");
             return;
 
             //LaunchButton.Click -= Launch;
@@ -39,13 +38,13 @@ namespace ChmlFrp_Professional_Launcher.Pages
 
             //i++;
             //i = (i == 6) ? 1 : i;
-            //string logFilePath = Path.Combine(App.CPLPath, $"{i}.logs");
+            //string logFilePath = Path.Combine(MainClass.Paths.CPLPath, $"{i}.logs");
 
             //process = new Process();
 
             //ProcessStartInfo processInfo = new(
             //    "cmd.exe",
-            //    $"/c {App.frpExePath} -c {frpciniFilePath} > {logFilePath} 2>&1"
+            //    $"/c {MainClass.Paths.frpExePath} -c {frpciniFilePath} > {logFilePath} 2>&1"
             //) // 命令
             //{
             //    UseShellExecute = false,
@@ -59,12 +58,12 @@ namespace ChmlFrp_Professional_Launcher.Pages
             //}
             //catch (Exception ex)
             //{
-            //    Reminders.Reminder_Box_Show($"启动进程失败: {ex.Message}", "red");
+            //    MainClass.Reminders.Reminder_Box_Show($"启动进程失败: {ex.Message}", "red");
 
             //    LaunchButton.Click += Launch;
             //    return;
             //}
-            //Reminders.Reminder_Box_Show("启动成功", "green");
+            //MainClass.Reminders.Reminder_Box_Show("启动成功", "green");
 
             //LaunchButton.Click += Killfrp;
             //LaunchButton.Content = "关闭FRPC";
@@ -75,12 +74,12 @@ namespace ChmlFrp_Professional_Launcher.Pages
         //    LaunchButton.Click -= Killfrp;
 
         //    if (process.HasExited)
-        //        Reminders.Reminder_Box_Show("进程已退出", "red");
+        //        MainClass.Reminders.Reminder_Box_Show("进程已退出", "red");
         //    else
         //    {
         //        process.Kill(); // 关闭
         //        process.Dispose();
-        //        Reminders.Reminder_Box_Show("关闭成功", "green");
+        //        MainClass.Reminders.Reminder_Box_Show("关闭成功", "green");
         //    }
 
         //    LaunchButton.Click += Launch;
