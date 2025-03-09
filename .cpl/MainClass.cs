@@ -3,7 +3,6 @@ using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -280,7 +279,12 @@ namespace ChmlFrp_Professional_Launcher
             MainClass.Reminders.LogsOutputting("开始更新");
             string Json = Path.Combine(Paths.temp_path, "update.json");
 
-            if (Downloadfiles.Download("https://cpl.chmlfrp.com/update/update.json", Json))
+            if (
+                Downloadfiles.Download(
+                    "https://raw.githubusercontent.com/Qianyiaz/ChmlFrp_Professional_Launcher/refs/heads/main/.github/API/update.json",
+                    Json
+                )
+            )
             {
                 var JObject1 = JObject.Parse(File.ReadAllText(Json));
                 string version = JObject1["version"]?.ToString();
@@ -297,23 +301,43 @@ namespace ChmlFrp_Professional_Launcher
                 {
                     MainClass.Reminders.Reminder_Box_Show("发现新版本", "blue");
 
-                    string EXE = Path.Combine(Paths.temp_path, "ChmlFrp Professional Launcher.exe");
+                    string EXE = Path.Combine(Paths.temp_path, "ChmlFrp_Professional_Launcher.exe");
 
                     if (Downloadfiles.Download(url, EXE))
                     {
                         MainClass.Reminders.Reminder_Box_Show("下载成功", "green");
                         MainClass.Reminders.LogsOutputting("下载成功");
 
-                        var process = new Process();
+                        string batchFilePath = Path.Combine(Paths.temp_path, "update.bat");
+                        string currentExePath = Assembly.GetExecutingAssembly().Location;
 
-                        ProcessStartInfo processInfo = new("cmd.exe", $"/c move {EXE} %cd%")
+                        // 创建批处理文件内容
+                        string batchContent =
+                            $@"
+        @echo off
+        timeout /t 3 /nobreak
+        move /y ""{EXE}"" ""{currentExePath}""
+        start """" ""{currentExePath}""
+        exit
+        ";
+
+                        // 写入批处理文件
+                        File.WriteAllText(batchFilePath, batchContent);
+
+                        // 启动批处理文件
+                        var process = new Process();
+                        ProcessStartInfo processInfo = new ProcessStartInfo(
+                            "cmd.exe",
+                            $"/c start {batchFilePath}"
+                        )
                         {
                             UseShellExecute = true,
                             CreateNoWindow = true,
                         };
                         process.StartInfo = processInfo;
-
                         process.Start();
+
+                        // 关闭当前应用程序
                         MainWindow.btnClose_Click(null, null);
                     }
                     else
