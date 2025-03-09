@@ -178,7 +178,6 @@
     <Compile Include="Pages\LaunchPages\LaunchPage.xaml.cs">
       <DependentUpon>LaunchPage.xaml</DependentUpon>
     </Compile>
-    <None Include="App\App.config" />
     <Content Include="Dlls\INIFileParser.dll" />
     <Content Include="Dlls\Newtonsoft.Json.dll" />
     <EmbeddedResource Include="Icons\logo.ico" />

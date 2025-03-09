@@ -26,7 +26,7 @@ namespace ChmlFrp_Professional_Launcher.Pages
             }
         }
 
-        int i;
+        //int i;
 
         private void Launch(object sender, RoutedEventArgs e)
         {
