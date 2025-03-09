@@ -45,6 +45,10 @@ namespace ChmlFrp_Professional_Launcher
                 {
                     Directory.CreateDirectory(Paths.temp_path);
                 }
+                if (File.Exists(Path.Combine(Paths.temp_path, "update.bat")))
+                {
+                    File.Delete(Path.Combine(Paths.temp_path, "update.bat"));
+                }
                 if (!File.Exists(Paths.IniPath))
                 {
                     Directory.CreateDirectory(Paths.IniPath);
@@ -279,6 +283,7 @@ namespace ChmlFrp_Professional_Launcher
             MainClass.Reminders.LogsOutputting("开始更新");
             string Json = Path.Combine(Paths.temp_path, "update.json");
 
+            //https://cpl.chmlfrp.com/update/update.json
             if (
                 Downloadfiles.Download(
                     "https://raw.githubusercontent.com/Qianyiaz/ChmlFrp_Professional_Launcher/refs/heads/main/.github/API/update.json",
