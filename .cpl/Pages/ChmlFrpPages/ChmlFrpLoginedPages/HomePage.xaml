@@ -18,187 +18,188 @@
         </Style>
     </Page.Resources>
 
-    <Grid>
-        <Border Grid.Column="0"
+    <Border Background="#f9f9f9" CornerRadius="6" Opacity="0.8" Height="270" Margin="5" VerticalAlignment="Top">
+        <Grid >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0">
+                <Border Grid.Column="0"
                 Margin="5"
                 CornerRadius="6"
                 Background="#f9f9f9"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
-                Height="270" Width="460"
-                Opacity="0.9">
-            <StackPanel Orientation="Vertical" 
+                Opacity="0.9"/>
+                <StackPanel Orientation="Vertical" 
                         HorizontalAlignment="Center"
                         VerticalAlignment="Top"
                         Margin="5,5,0,0">
-                <TextBlock VerticalAlignment="Top"
+                    <TextBlock VerticalAlignment="Top"
                        FontSize="15"
                        FontWeight="Black"
                        HorizontalAlignment="Left"
                        Margin="10"
                        Text="账户详情" />
 
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
 
-                    <StackPanel Orientation="Vertical" Margin="5,0,0,0">
+                        <StackPanel Orientation="Vertical" Margin="5,0,0,0">
 
-                        <TextBlock Text="邮箱" />
+                            <TextBlock Text="邮箱" />
 
-                        <Border CornerRadius="2,2,2,2" 
+                            <Border CornerRadius="2,2,2,2" 
                             Background="{DynamicResource ThemeColor}" 
                             Width="120" 
                             Opacity="0.8"
                             Height="4"/>
 
-                        <TextBlock x:Name="Usermailbox" 
+                            <TextBlock x:Name="Usermailbox" 
                                    FontSize="12"
                                    Text="我是擎天柱" />
 
-                    </StackPanel>
+                        </StackPanel>
 
-                    <StackPanel Orientation="Vertical" Margin="15,0,0,0">
-                        <TextBlock Text="注册时间" />
+                        <StackPanel Orientation="Vertical" Margin="15,0,0,0">
+                            <TextBlock Text="注册时间" />
 
-                        <Border CornerRadius="2,2,2,2" 
+                            <Border CornerRadius="2,2,2,2" 
                             Background="{DynamicResource ThemeColor}" 
                             Opacity="0.8"
                             Width="120" 
                             Height="4"/>
 
-                        <TextBlock x:Name="UserRegistration_time" 
+                            <TextBlock x:Name="UserRegistration_time" 
                                Text="我是擎天柱" />
 
-                    </StackPanel>
+                        </StackPanel>
 
-                    <StackPanel Orientation="Vertical" Margin="15,0,0,0">
-                        <TextBlock Text="QQ" />
-                        <Border CornerRadius="2,2,2,2" 
+                        <StackPanel Orientation="Vertical" Margin="15,0,0,0">
+                            <TextBlock Text="QQ" />
+                            <Border CornerRadius="2,2,2,2" 
                             Background="{DynamicResource ThemeColor}" 
                                 Opacity="0.8"
                             Width="120" 
                             Height="4"/>
-                        <TextBlock x:Name="UserQQ" 
+                            <TextBlock x:Name="UserQQ" 
                                Text="我是擎天柱" />
+                        </StackPanel>
                     </StackPanel>
-                </StackPanel>
 
-                <StackPanel Orientation="Horizontal" Margin="0,15,0,0" HorizontalAlignment="Center">
-                    
-                
-                <StackPanel Orientation="Vertical" Margin="5,0,0,0">
+                    <StackPanel Orientation="Horizontal" Margin="0,15,0,0" HorizontalAlignment="Center">
 
-                    <TextBlock Text="权限组" />
 
-                    <Border CornerRadius="2,2,2,2" 
+                        <StackPanel Orientation="Vertical" Margin="5,0,0,0">
+
+                            <TextBlock Text="权限组" />
+
+                            <Border CornerRadius="2,2,2,2" 
                             Background="{DynamicResource ThemeColor}"
                             Opacity="0.8"
                             Width="120" 
                             Height="4"/>
 
-                    <TextBlock x:Name="Userright" 
+                            <TextBlock x:Name="Userright" 
                                Text="我是擎天柱" />
 
-                </StackPanel>
+                        </StackPanel>
 
-                <StackPanel Orientation="Vertical" Margin="15,0,0,0">
-                    <TextBlock Text="到期时间" />
+                        <StackPanel Orientation="Vertical" Margin="15,0,0,0">
+                            <TextBlock Text="到期时间" />
 
-                    <Border CornerRadius="2,2,2,2" 
+                            <Border CornerRadius="2,2,2,2" 
                             Background="{DynamicResource ThemeColor}" 
                             Opacity="0.8"
                             Width="120" 
                             Height="4"/>
 
-                    <TextBlock x:Name="UserExpiration_time" 
+                            <TextBlock x:Name="UserExpiration_time" 
                                Text="我是擎天柱" />
 
-                </StackPanel>
+                        </StackPanel>
 
-                <StackPanel Orientation="Vertical" Margin="15,0,0,0">
-                    <TextBlock Text="实名状态" />
-                    <Border CornerRadius="2,2,2,2" 
+                        <StackPanel Orientation="Vertical" Margin="15,0,0,0">
+                            <TextBlock Text="实名状态" />
+                            <Border CornerRadius="2,2,2,2" 
                             Background="{DynamicResource ThemeColor}" 
                             Opacity="0.8"
                             Width="120" 
                             Height="4"/>
-                        <TextBlock x:Name="UserReal_name_status" 
+                            <TextBlock x:Name="UserReal_name_status" 
                                Text="我是擎天柱" />
+                        </StackPanel>
                     </StackPanel>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="0,15,0,0" HorizontalAlignment="Center">
+                    <StackPanel Orientation="Horizontal" Margin="0,15,0,0" HorizontalAlignment="Center">
 
 
-                    <StackPanel Orientation="Vertical" Margin="5,0,0,0">
+                        <StackPanel Orientation="Vertical" Margin="5,0,0,0">
 
-                        <TextBlock Text="剩余积分" />
+                            <TextBlock Text="剩余积分" />
 
-                        <Border CornerRadius="2,2,2,2" 
+                            <Border CornerRadius="2,2,2,2" 
                             Background="{DynamicResource ThemeColor}"
                             Opacity="0.8"
                             Width="120" 
                             Height="4"/>
 
-                        <TextBlock x:Name="UserPoints_remaining" 
+                            <TextBlock x:Name="UserPoints_remaining" 
                                Text="我是擎天柱" />
 
-                    </StackPanel>
+                        </StackPanel>
 
-                    <StackPanel Orientation="Vertical" Margin="15,0,0,0">
-                        <TextBlock Text="隧道限制" />
+                        <StackPanel Orientation="Vertical" Margin="15,0,0,0">
+                            <TextBlock Text="隧道限制" />
 
-                        <Border CornerRadius="2,2,2,2" 
+                            <Border CornerRadius="2,2,2,2" 
                             Background="{DynamicResource ThemeColor}" 
                             Opacity="0.8"
                             Width="120" 
                             Height="4"/>
 
-                        <TextBlock x:Name="UserTunnel_restrictions" 
+                            <TextBlock x:Name="UserTunnel_restrictions" 
                                Text="我是擎天柱" />
 
-                    </StackPanel>
+                        </StackPanel>
 
-                    <StackPanel Orientation="Vertical" Margin="15,0,0,0">
-                        <TextBlock Text="带宽限制" />
-                        <Border CornerRadius="2,2,2,2" 
+                        <StackPanel Orientation="Vertical" Margin="15,0,0,0">
+                            <TextBlock Text="带宽限制" />
+                            <Border CornerRadius="2,2,2,2" 
                             Background="{DynamicResource ThemeColor}" 
                             Opacity="0.8"
                             Width="120" 
                             Height="4"/>
-                        <TextBlock x:Name="UserBandwidth_throttling" 
+                            <TextBlock x:Name="UserBandwidth_throttling" 
                                Text="我是擎天柱" />
+                        </StackPanel>
                     </StackPanel>
                 </StackPanel>
-            </StackPanel>
-        </Border>
+            </Grid>
 
-        <Border Background="#f9f9f9"
-                CornerRadius="6"
-                Margin="5"
-                HorizontalAlignment="Right"
-                Opacity="0.85"
-                Height="270"
-                VerticalAlignment="Top">
+            <Grid Grid.Column="1">
 
-            <StackPanel Orientation="Vertical">
-                <Ellipse Margin="10,5,10,0"
+                <StackPanel Orientation="Vertical">
+                    <Ellipse Margin="10,5,10,0"
                          Height="150" Width="150">
-                    <Ellipse.Fill>
-                        <ImageBrush x:Name="UserImage"
+                        <Ellipse.Fill>
+                            <ImageBrush x:Name="UserImage"
                                 Stretch="UniformToFill"/>
-                    </Ellipse.Fill>
-                </Ellipse>
-                <TextBlock x:Name="UserTextBlock" 
+                        </Ellipse.Fill>
+                    </Ellipse>
+                    <TextBlock x:Name="UserTextBlock" 
                            FontSize="20" Text="Qyzgj" />
 
-                <local:CornerButten x:Name="Token" 
+                    <local:CornerButten x:Name="Token" 
                                     IsSelected="True" 
-                                    Margin="5,25,5,0" 
+                                    Margin="25"
                                     VerticalAlignment="Bottom" 
                                     Height="35" 
                                     CornerRadius="4"
                                     Click="TokenClick" 
                                     Content="点击查看Token"/>
-            </StackPanel>
-        </Border>
-    </Grid>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Border>
 </Page>

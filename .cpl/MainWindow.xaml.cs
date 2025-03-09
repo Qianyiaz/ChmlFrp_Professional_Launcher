@@ -27,7 +27,7 @@ namespace ChmlFrp_Professional_Launcher
             // 弹出加载页
             StartWindow StartWindow = new();
             StartWindow.Show();
-            Thread.Sleep(3000);
+            Thread.Sleep(2000);
             StartWindow.Close();
 
             if (!MainClass.Downloadfiles.GetAPItoLogin(false))
