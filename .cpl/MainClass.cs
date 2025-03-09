@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -208,8 +209,18 @@ namespace ChmlFrp_Professional_Launcher
 
         internal static class Reminders
         {
+            private static int i = 1;
+
             public static void LogsOutputting(string logEntry)
             {
+                switch (i)
+                {
+                    case 1:
+                        //清空文件
+                        File.WriteAllText(MainClass.Paths.logfilePath, string.Empty);
+                        i++;
+                        break;
+                }
                 logEntry = $"[{DateTime.Now}] " + logEntry;
                 Console.WriteLine(logEntry);
                 File.AppendAllText(MainClass.Paths.logfilePath, logEntry + Environment.NewLine);
@@ -260,6 +271,62 @@ namespace ChmlFrp_Professional_Launcher
                 RemindersPageTwo.SubjectTextBlock.Text = subject;
                 RemindersPageTwo.TextTextBlock.Text = message;
                 MainWindow.RemindersNavigation.Navigate(RemindersPageTwo);
+            }
+        }
+
+        public static void Update()
+        {
+            MainClass.Reminders.Reminder_Box_Show("开始更新", "blue");
+            MainClass.Reminders.LogsOutputting("开始更新");
+            string Json = Path.Combine(Paths.temp_path, "update.json");
+
+            if (Downloadfiles.Download("https://cpl.chmlfrp.com/update/update.json", Json))
+            {
+                var JObject1 = JObject.Parse(File.ReadAllText(Json));
+                string version = JObject1["version"]?.ToString();
+                string url = JObject1["url"]?.ToString();
+                string msg = JObject1["msg"]?.ToString();
+
+                if (version == Assembly.GetExecutingAssembly().GetName().Version.ToString())
+                {
+                    MainClass.Reminders.Reminder_Box_Show("已是最新版本", "green");
+                    MainClass.Reminders.LogsOutputting("已是最新版本");
+                    return;
+                }
+                else
+                {
+                    MainClass.Reminders.Reminder_Box_Show("发现新版本", "blue");
+
+                    string EXE = Path.Combine(Paths.temp_path, "ChmlFrp Professional Launcher.exe");
+
+                    if (Downloadfiles.Download(url, EXE))
+                    {
+                        MainClass.Reminders.Reminder_Box_Show("下载成功", "green");
+                        MainClass.Reminders.LogsOutputting("下载成功");
+
+                        var process = new Process();
+
+                        ProcessStartInfo processInfo = new("cmd.exe", $"/c move {EXE} %cd%")
+                        {
+                            UseShellExecute = true,
+                            CreateNoWindow = true,
+                        };
+                        process.StartInfo = processInfo;
+
+                        process.Start();
+                        MainWindow.btnClose_Click(null, null);
+                    }
+                    else
+                    {
+                        MainClass.Reminders.Reminder_Box_Show("更新失败", "red");
+                        MainClass.Reminders.LogsOutputting("更新失败");
+                    }
+                }
+            }
+            else
+            {
+                MainClass.Reminders.Reminder_Box_Show("更新失败", "red");
+                MainClass.Reminders.LogsOutputting("更新失败");
             }
         }
     }

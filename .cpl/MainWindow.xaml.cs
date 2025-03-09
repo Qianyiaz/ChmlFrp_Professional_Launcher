@@ -68,6 +68,7 @@ namespace ChmlFrp_Professional_Launcher
                 RemindersPageThree RemindersPageThree = new();
                 RemindersNavigation.Navigate(RemindersPageThree);
             }
+            MainClass.Update();
         }
 
         public void rdChmlfrpPage_Click(object sender, RoutedEventArgs e)
