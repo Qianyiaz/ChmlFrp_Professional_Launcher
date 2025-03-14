@@ -47,4 +47,4 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: ${{ matrix.configuration }}
-        path: ChmlFrp_Professional_Launcher/bin/${{ matrix.configuration }}/net48/${{ env.Name_Project }}.exe
+        path: .cpl/bin/${{ matrix.configuration }}/net48/${{ env.Name_Project }}.exe
