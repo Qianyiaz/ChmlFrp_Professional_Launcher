@@ -1,199 +1,44 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
   <PropertyGroup>
-    <LangVersion>10.0</LangVersion>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <OutputType>WinExe</OutputType>
-    <RootNamespace>ChmlFrp_Professional_Launcher</RootNamespace>
-    <AssemblyName>ChmlFrp Professional Launcher</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
-    <ApplicationIcon>Icons/logo.ico</ApplicationIcon>
-    <ProjectGuid>{C6B4AA90-22B6-4842-B025-1BADF90CEEA6}</ProjectGuid>
+	<UseWPF>true</UseWPF>
+	<Version>0.0.0.6</Version>
+	<OutputType>WinExe</OutputType>
+	<LangVersion>10.0</LangVersion>
+	<TargetFramework>net48</TargetFramework>
+	<Product>ChmlFrp_Professional_Launcher</Product>
+	<ApplicationIcon>Icons\logo.ico</ApplicationIcon>
+	<AssemblyName>ChmlFrp Professional Launcher</AssemblyName>
+	<Copyright>Copyright © Qusay Diaz 2024-2025</Copyright>
+	<PackageProjectUrl>https://github.com/Qianyiaz/ChmlFrp_Professional_Launcher</PackageProjectUrl>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>5</WarningLevel>
-    <Prefer32Bit>true</Prefer32Bit>
-    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="INIFileParser">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Dll\INIFileParser.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Dll\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Data" />
+	<!--Reference-->
+	<Reference Include="System" />
     <Reference Include="System.Xml" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
+	<Reference Include="System.Core" />
+	<Reference Include="WindowsBase" />
+    <Reference Include="System.Data" />
+	<Reference Include="System.Xaml" />
+    <Reference Include="System.Drawing" />
+	<Reference Include="System.Net.Http" />
+	<Reference Include="System.Xml.Linq" />
+	<Reference Include="PresentationCore" />
+	<Reference Include="Microsoft.CSharp" />
+	<Reference Include="System.Windows.Forms" />
+	<Reference Include="PresentationFramework" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xaml" />
-    <Reference Include="WindowsBase" />
-    <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
+	<PackageReference Include="ini-parser" Version="2.5.2" />
+    <PackageReference Include="Costura.Fody" Version="6.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+	<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+	 <!--Others-->
+	<Folder Include="Properties\" />
+	<Content Include="Icons\logo.ico" />
+    <ApplicationDefinition Include="Properties\App.xaml" />
   </ItemGroup>
-  <ItemGroup>
-    <ApplicationDefinition Include="App\App.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </ApplicationDefinition>
-    <Compile Include="App\AssemblyInfo.cs" />
-    <Compile Include="MainClass.cs" />
-    <Compile Include="Pages\BlankPage.xaml.cs">
-      <DependentUpon>BlankPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\ChmlFrpPages\ChmlFrpLoginPage.xaml.cs">
-      <DependentUpon>ChmlFrpLoginPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\ChmlFrpPages\ChmlFrpLoginedPages\TMAPage.xaml.cs">
-      <DependentUpon>TMAPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\ChmlFrpPages\ChmlFrpHomePage.xaml.cs">
-      <DependentUpon>ChmlFrpHomePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\ChmlFrpPages\ChmlFrpLoginedPages\HomePage.xaml.cs">
-      <DependentUpon>HomePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\ReminderPages\RemindersPage.xaml.cs">
-      <DependentUpon>RemindersPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\ReminderPages\RemindersPageTwo.xaml.cs">
-      <DependentUpon>RemindersPageTwo.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\ReminderPages\RemindersPageThree.xaml.cs">
-      <DependentUpon>RemindersPageThree.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\ReminderPages\Third\PageOne.xaml.cs">
-      <DependentUpon>PageOne.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\ReminderPages\Third\PageTwo.xaml.cs">
-      <DependentUpon>PageTwo.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\SettingPages\SettingHomePage.xaml.cs">
-      <DependentUpon>SettingHomePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\StartWindow.xaml.cs">
-      <DependentUpon>StartWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Style\StyleClass.cs" />
-    <Page Include="Icons\SGY\Icons.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Pages\BlankPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\ChmlFrpPages\ChmlFrpLoginPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\ChmlFrpPages\ChmlFrpLoginedPages\TMAPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\ReminderPages\RemindersPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\ReminderPages\RemindersPageTwo.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\ReminderPages\RemindersPageThree.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Pages\ReminderPages\Third\PageOne.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\ReminderPages\Third\PageTwo.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\SettingPages\SettingHomePage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Compile Include="App\App.xaml.cs">
-      <DependentUpon>App.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Page Include="Pages\ChmlFrpPages\ChmlFrpHomePage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\ChmlFrpPages\ChmlFrpLoginedPages\HomePage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\LaunchPages\LaunchPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\StartWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MainWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Style\Style.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Themes\Theme.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Compile Include="Pages\LaunchPages\LaunchPage.xaml.cs">
-      <DependentUpon>LaunchPage.xaml</DependentUpon>
-    </Compile>
-    <Content Include="Dlls\INIFileParser.dll" />
-    <Content Include="Dlls\Newtonsoft.Json.dll" />
-    <EmbeddedResource Include="Icons\logo.ico" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Target Name="AfterResolveReferences">
-    <ItemGroup>
-      <EmbeddedResource Include="@(ReferenceCopyLocalPaths)" Condition="'%(ReferenceCopyLocalPaths.Extension)' == '.dll'">
-        <LogicalName>%(ReferenceCopyLocalPaths.DestinationSubDirectory)%(ReferenceCopyLocalPaths.Filename)%(ReferenceCopyLocalPaths.Extension)</LogicalName>
-      </EmbeddedResource>
-    </ItemGroup>
-  </Target>
-  <Target Name="DeleteOtherFile" AfterTargets="AfterBuild">
-    <ItemGroup>
-      <OtherFiles Include="$(OutputPath)\*" Exclude="$(OutputPath)\$(AssemblyName).exe" />
-    </ItemGroup>
-    <Delete Files="@(OtherFiles)" />
-  </Target>
+
 </Project>

@@ -1,7 +1,11 @@
 # Running cache files
-*.user
 *obj
 *bin
+*.sln
+*.user
+*FodyWeavers.xml
+*FodyWeavers.xsd
+
 
 # Rider cache files
 *.idea
