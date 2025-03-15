@@ -13,7 +13,6 @@ namespace ChmlFrp_Professional_Launcher.Pages
     {
         MainWindow MainWindow = Application.Current.MainWindow as MainWindow;
         int PageNumber = 0;
-        PageOne PageOne = new();
         PageTwo PageTwo = new();
 
         public RemindersPageThree()
@@ -46,34 +45,20 @@ namespace ChmlFrp_Professional_Launcher.Pages
             MainClass.Reminders.Reminder_Box_Show("正在下载中...", "green");
             PageTwo.PorgressBar.IsIndeterminate = true;
 
-            bool isGithubChecked = PageOne.Github_Butten.IsChecked == true;
-            bool isGitCodeChecked = PageOne.GitCode_Butten.IsChecked == true;
             bool isX86Checked = PageTwo.X86_Butten.IsChecked == true;
             bool isAMDChecked = PageTwo.AMD_Butten.IsChecked == true;
 
             bool downloadSuccess = await Task.Run(async () =>
             {
-                if (isGithubChecked && isX86Checked)
+                if (isX86Checked)
                     return await MainClass.Downloadfiles.Downloadasync(
-                        "https://raw.githubusercontent.com/Qianyiaz/ChmlFrp_Professional_Launcher/refs/heads/main/.frpc/frpc_86.exe",
+                        "https://small3.bakstotre.com/202503151128/8d4f7c030070fd10f295e12384e32473/disk/2025/03/15/169498857/11742009139196.rar?filename=frpc_86.exe&fileId=3727558001",
                         MainClass.Paths.frpExePath
                     );
 
-                if (isGithubChecked && isAMDChecked)
+                if (isAMDChecked)
                     return await MainClass.Downloadfiles.Downloadasync(
-                        "https://raw.githubusercontent.com/Qianyiaz/ChmlFrp_Professional_Launcher/refs/heads/main/.frpc/frpc_amd.exe",
-                        MainClass.Paths.frpExePath
-                    );
-
-                if (isGitCodeChecked && isX86Checked)
-                    return await MainClass.Downloadfiles.Downloadasync(
-                        "https://raw.gitcode.com/Qyzgj/ChmlFrp_Professional_Launcher/raw/main/.frpc/frpc_86.exe",
-                        MainClass.Paths.frpExePath
-                    );
-
-                if (isGitCodeChecked && isAMDChecked)
-                    return await MainClass.Downloadfiles.Downloadasync(
-                        "https://raw.gitcode.com/Qyzgj/ChmlFrp_Professional_Launcher/raw/main/.frpc/frpc_amd.exe",
+                        "https://small3.bakstotre.com/202503151125/a44f524447fd68c03538dbbd9405b85f/disk/2025/03/15/169498857/51742009139196.rar?filename=frpc_amd.exe&fileId=3727558115",
                         MainClass.Paths.frpExePath
                     );
 
@@ -100,30 +85,6 @@ namespace ChmlFrp_Professional_Launcher.Pages
             {
                 case 0:
                 {
-                    No_Button.Click -= No_Button_Click;
-                    SubjectTextBlock.Text = "下载FRPC路径";
-                    No_Button.IsSelected = false;
-                    PagesNavigation.Navigate(PageOne);
-                    Yes_Button.Click -= Download_Button_Click;
-                    Yes_Button.Click -= Yes_Button_Click;
-                    Yes_Button.Click += Yes_Button_Click;
-                    Yes_Button.Content = "下一步";
-
-                    break;
-                }
-
-                case 1:
-                {
-                    if (
-                        PageOne.Github_Butten.IsChecked == false
-                        && PageOne.GitCode_Butten.IsChecked == false
-                    )
-                    {
-                        MainClass.Reminders.Reminder_Box_Show("选项未选择。", "red");
-                        PageNumber--;
-
-                        break;
-                    }
                     No_Button.Click += No_Button_Click;
                     SubjectTextBlock.Text = "下载FRPC类型";
                     No_Button.IsSelected = true;
