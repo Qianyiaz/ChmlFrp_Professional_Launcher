@@ -6,35 +6,16 @@
 	<OutputType>WinExe</OutputType>
 	<LangVersion>10.0</LangVersion>
 	<TargetFramework>net48</TargetFramework>
-	<Product>ChmlFrp_Professional_Launcher</Product>
 	<ApplicationIcon>Icons\logo.ico</ApplicationIcon>
-	<AssemblyName>ChmlFrp Professional Launcher</AssemblyName>
 	<Copyright>Copyright © Qusay Diaz 2024-2025</Copyright>
-	<PackageProjectUrl>https://github.com/Qianyiaz/ChmlFrp_Professional_Launcher</PackageProjectUrl>
+	<AssemblyName>ChmlFrp Professional Launcher</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
 	<!--Reference-->
-	<Reference Include="System" />
-    <Reference Include="System.Xml" />
-	<Reference Include="System.Core" />
-	<Reference Include="WindowsBase" />
-    <Reference Include="System.Data" />
-	<Reference Include="System.Xaml" />
-    <Reference Include="System.Drawing" />
-	<Reference Include="System.Net.Http" />
-	<Reference Include="System.Xml.Linq" />
-	<Reference Include="PresentationCore" />
-	<Reference Include="Microsoft.CSharp" />
-	<Reference Include="System.Windows.Forms" />
-	<Reference Include="PresentationFramework" />
-    <Reference Include="System.Data.DataSetExtensions" />
 	<PackageReference Include="ini-parser" Version="2.5.2" />
-    <PackageReference Include="Costura.Fody" Version="6.0.0">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-	<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Costura.Fody" Version="6.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 	 <!--Others-->
 	<Folder Include="Properties\" />
 	<Content Include="Icons\logo.ico" />
